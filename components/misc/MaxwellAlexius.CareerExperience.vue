@@ -7,7 +7,7 @@
         <ul class="timeline">
           <li>
             <h3>Umbo Computer Vision, Inc.</h3>
-            <p class="date">Nov. 2017 - Jan. 2019</p>
+            <p class="date">Nov. 2017 - Present</p>
             <p class="position">Intern. CV Team Front-End Engineer</p>
           </li>
           <li>

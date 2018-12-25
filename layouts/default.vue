@@ -5,8 +5,7 @@
 </template>
 
 <style lang="sass">
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,500')
-@import url('https://fonts.googleapis.com/css?family=Staatliches')
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,500|Staatliches');
 @import '../sass/colors.sass'
 
 html

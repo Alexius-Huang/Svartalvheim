@@ -21,6 +21,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
 @import '../../sass/colors.sass'
 @import '../../sass/helpers.sass'
 
