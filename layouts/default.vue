@@ -5,7 +5,6 @@
 </template>
 
 <style lang="sass">
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,500|Staatliches');
 @import '../sass/colors.sass'
 
 html
@@ -18,6 +17,7 @@ html
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
   box-sizing: border-box
+  color: $grey-900
   background-color: $grey-900
 
 *, *:before, *:after
