@@ -4,12 +4,14 @@
 
     <ul>
       <li>
-        <h2>SITCON Taiwan, Taipei 2018</h2>
-        <p>跨越時間軸 - 創造美好使用者體驗 (Travel Through Timeline - Realizing Graceful User Experience)</p>
+        <h2>跨越時間軸 - 創造美好使用者體驗 (Travel Through Timeline - Realizing Graceful User Experience)</h2>
+        <p class="title">SITCON Taiwan, Taipei 2018</p>
+        <p class="date">March 10th, 2018</p>
       </li>
       <li>
-        <h2>SITCON Hong Kong 2017</h2>
-        <p>Welcome the Brand New Ruby-like Language - Goby</p>
+        <h2>Welcome the Brand New Ruby-like Language - Goby</h2>
+        <p class="title">SITCON Hong Kong 2017</p>
+        <p class="date">October 2nd, 2017</p>
       </li>
     </ul>
   </section>
@@ -21,7 +23,6 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import url('https://fonts.googleapis.com/css?family=Staatliches');
 @import '../../sass/colors.sass'
 @import '../../sass/helpers.sass'
 
@@ -67,14 +68,22 @@ section.public-speech
       border-radius: 5pt
       position: relative
       > h2
-        font-size: 24pt
-        height: 40pt
+        font-size: 20pt
+        // height: 40pt
         line-height: 40pt
         border-left: 3pt solid $grey-900
         padding-left: 12pt
       > p
         font-size: 16pt
         margin-top: 8pt
+
+        &.date
+          color: white
+          position: absolute
+          top: -30pt
+          left: 0
+          font-size: 14pt
+          font-style: italic
         
       + li
         margin-top: 48pt

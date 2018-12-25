@@ -27,7 +27,8 @@ section.jumbotron
     padding: 32pt 64pt 32pt 96pt
 
 h1, h2
-  font-family: 'Staatliches', 'Roboto'
+  // font-family: 'Staatliches', 'Roboto'
+  font-family: 'Roboto'
   color: $grey-900
   letter-spacing: 1pt
 

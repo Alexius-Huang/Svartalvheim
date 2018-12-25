@@ -150,7 +150,8 @@ div.diamond
           margin-top: 5pt
           background-color: $grey-900
           cursor: pointer
-          font-family: 'Staatliches'
+          // font-family: 'Staatliches'
+          font-family: 'Roboto'
           transform: translateX(-10vw)
           // transition: .25s
           &:hover
@@ -180,7 +181,8 @@ div.diamond
         font-size: 24pt
         border: none
         cursor: pointer
-        font-family: 'Staatliches'
+        // font-family: 'Staatliches'
+        font-family: 'Roboto'
         &:before
           content: '<< '
           font-size: 24pt
@@ -197,7 +199,8 @@ div.diamond
       padding-left: 24pt
 
       > h2.title
-        font-family: 'Staatliches'
+        // font-family: 'Staatliches'
+        font-family: 'Roboto'
         font-size: 48pt
         letter-spacing: 1.5pt
         text-decoration: underline
