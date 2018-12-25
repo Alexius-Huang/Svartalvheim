@@ -1,0 +1,82 @@
+<template>
+  <section class="introduction">
+    <h1 class="title"> > {{ t1 }}<span class="highlight">{{ t2 }}</span>_</h1>
+
+    <p>Passionated Front-End Developer has both experiences on work in the office and works as contractor remotely.</p>
+    <p>Eagers to dedicate time to improve the programming skills such as diving deep in JavaScript, design patterns and learn by building the tools from scratch.</p>
+    <p>Appreciates the art of coding and values maintainability as an important role in developing projects or products.</p>
+  </section>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      titleText: [
+        'About ',
+        'Maxwell',
+      ],
+      t1: '',
+      t2: '',
+      textAnimationInterval: null,
+      textAnimationTimeout: null,
+    };
+  },
+  mounted() {
+    const setTextAnimation = () => {
+      return window.setInterval(() => {
+        if (this.t1 !== this.titleText[0]) {
+          this.t1 += this.titleText[0][this.t1.length];
+        } else if (this.t2 !== this.titleText[1]) {
+          this.t2 += this.titleText[1][this.t2.length];
+        } else {
+          window.clearInterval(this.textAnimationInterval);
+          this.textAnimationTimeout = window.setTimeout(() => {
+            this.t1 = '';
+            this.t2 = '';
+            this.textAnimationInterval = setTextAnimation();
+          }, 3000);
+        }
+      }, 50);
+    }
+    this.textAnimationInterval = setTextAnimation();
+  },
+  beforeDestroy() {
+    window.clearInterval(this.textAnimationInterval);
+    window.clearTimeout(this.textAnimationTimeout);
+  },
+
+};
+</script>
+
+<style scoped lang="sass">
+@import '../../sass/colors.sass'
+
+section.introduction
+  width: 80vw
+  margin: 0 auto
+
+h1.title
+  height: 72pt
+  line-height: 72pt
+  border-left: 10pt solid white
+  padding-left: 24pt
+  color: white
+  letter-spacing: 1pt
+  margin-bottom: 24pt
+  font-size: 48pt
+  > span.highlight
+    color: $yellow-500
+
+p
+  font-weight: 500
+  font-size: 18pt
+  line-height: 1.7
+  letter-spacing: 1pt
+  color: white
+  &:first-letter
+    color: $yellow-500
+    font-size: 24pt
+  + p
+    margin-top: 12pt
+</style>

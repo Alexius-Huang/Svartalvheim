@@ -1,10 +1,7 @@
 <template>
   <section class="skill-set">
     <h1 class="title">
-      > <span>{{ t1 }}</span>
-      <span class="highlight">{{ t2 }}</span>
-      <span>{{ t3 }}</span>
-      <span class="highlight">{{ t4 }}</span> _
+      > <span>{{ t1 }}</span><span class="highlight">{{ t2 }}</span><span>{{ t3 }}</span><span class="highlight">{{ t4 }}</span>_
     </h1>
 
     <div class="row">
@@ -173,9 +170,9 @@ export default {
   data() {
     return {
       skillsTitle: [
-        'Skills where you can find from',
-        'Maxwell',
-        'in',
+        'Skills where you can find from ',
+        'Maxwell ',
+        'in ',
         'Svartalvheim',
       ],
       t1: '',
@@ -218,7 +215,7 @@ export default {
             this.textAnimationInterval = setTextAnimation();
           }, 3000);
         }
-      }, 100);
+      }, 75);
     }
     this.textAnimationInterval = setTextAnimation();
   },
@@ -239,8 +236,8 @@ section.skill-set
   > h1.title
     text-align: center
     color: white
-    font-size: 24pt
-    width: 80vw
+    font-size: 32pt
+    width: 60vw
     margin: 0 auto 144pt auto
     letter-spacing: 1pt
 
