@@ -19,6 +19,8 @@
 
       <div class="content-wrapper">
         <h2 class="title">{{ $props.title }}</h2>
+
+        <slot />
       </div>
     </div>
   </div>
@@ -45,6 +47,7 @@ div.diamond
   position: relative
   overflow: hidden
   display: inline-block
+  box-shadow: inset 0pt 0pt 10pt $grey-900
   transition: .25s
   + div.diamond
     margin-left: 100pt
