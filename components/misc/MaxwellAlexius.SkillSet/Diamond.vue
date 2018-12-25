@@ -21,6 +21,9 @@
         <h2 class="title">{{ $props.title }}</h2>
 
         <slot />
+
+        <span v-if="$props.jsIcon" class="js-icon">JS</span>
+        <img v-else :src="$props.icon" class="bg-img" />
       </div>
     </div>
   </div>
@@ -200,6 +203,22 @@ div.diamond
     > div.content-wrapper
       margin-top: 16pt
       padding-left: 24pt
+      position: relative
+
+      > span.js-icon
+        position: absolute
+        font-size: 300pt
+        opacity: 0.3
+        right: -15vw
+        bottom: -15vh
+        font-weight: 500
+
+      > img.bg-img
+        position: absolute
+        height: 50vh
+        right: -15vw
+        bottom: -15vh
+        opacity: 0.3
 
       > h2.title
         // font-family: 'Staatliches'
