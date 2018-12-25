@@ -21,7 +21,15 @@
           <li>Knows the advanced concept of JavaScript such as variable scopes, closure, function binding, IIFE, and the “this” keyword</li>
           <li>Knows how to use JQuery and how to not to use JQuery (Vanilla JavaScript)</li>
           <li>Knows how to send HTTP requests using Axios or Fetch API</li>
-          <li>Knows the syntax and concepts of ECMAScript:</li>
+          <li>
+            Knows the syntax and concepts of ECMAScript:
+            <ul class="list">
+              <li>ES6 “var” v.s. “let” v.s. “const”, Arrow Functions, Promise, Destructuring, Class … etc.</li>
+              <li>ES6 metaprogramming features: Symbols, Proxy & Reflect</li>
+              <li>ES7 Async-Await & Rest-Spread Operator</li>
+              <li>ES8 Async Iterator & for-await-of Loop</li>
+            </ul>
+          </li>
           <li>Knows the concept of polyfill and the prototype chain</li>
           <li>Knows the concept of TDD and have experience with writing unit tests using AvaJS or Mocha</li>
           <li>Has a basic understanding of Webpack and its configuration</li>
@@ -62,11 +70,13 @@
         :icon="icons.GoLangIcon"
         icon-alt="Go Lang."
       >
-        <li>Knows the basic syntax of using Go Lang.</li>
-        <li>Understands the difference between concurrency & parallel</li>
-        <li>Has contributed GitHub open source project - Goby Programming Language</li>
-        <li>Has given a public speech related to contributing to open source project - Goby</li>
-        <li>Has experience working with GraphQL Go</li>
+        <ul class="list">
+          <li>Knows the basic syntax of using Go Lang.</li>
+          <li>Understands the difference between concurrency & parallel</li>
+          <li>Has contributed GitHub open source project - Goby Programming Language</li>
+          <li>Has given a public speech related to contributing to open source project - Goby</li>
+          <li>Has experience working with GraphQL Go</li>
+        </ul>
       </diamond>
     </div>
     <div class="row">
@@ -251,6 +261,9 @@ ul.list
     position: relative
     padding-left: 32pt
     line-height: 1.7
+    > ul.list
+      height: auto
+      margin-bottom: 48pt
     + li
       margin-top: 12pt
 
