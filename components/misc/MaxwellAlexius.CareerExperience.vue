@@ -57,7 +57,7 @@ section.career-experience
     left: 0
     top: 50vh
     overflow: hidden
-
+    box-shadow: inset 0pt 0pt 20pt $grey-900;
     > h2.title
       position: absolute
       left: 60vw
