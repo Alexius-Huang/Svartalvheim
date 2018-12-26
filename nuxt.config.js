@@ -7,7 +7,12 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Maxwell Alexius' }
+      { hid: 'description', name: 'description', content: 'Maxwell Alexius' },
+      { property: 'og:url', content: 'https://svartalvhe.im/maxwell-alexius' },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:title', content: 'Maxwell Alexius' },
+      { property: 'og:description', content: 'Welcome to Svartalvheim where Software Built' },
+      { property: 'og:image', content: 'https://i.imgur.com/appNsU9.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -38,4 +43,3 @@ module.exports = {
     }
   }
 }
-
