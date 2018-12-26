@@ -131,13 +131,6 @@ h2
   margin-left: -10vw
   color: $grey-900
   letter-spacing: 1pt
-div.timeline-wrapper
-  position: absolute
-  left: 0
-  top: 0
-  transform: rotate(30deg)
-  width: 100vw
-  height: 100vh
 
 ul.timeline
   position: absolute
@@ -199,4 +192,64 @@ ul.timeline
         font-style: italic
       &.position
         font-weight: 500
+
+@media screen and (max-width: 768px)
+  section.career-experience
+    width: 100%
+    height: auto
+    > div.parallelogram-bg
+      position: relative
+      width: 100%
+      height: auto
+      top: 0
+      left: 0
+      transform: rotate(0deg)
+      transform-origin: left bottom
+      > h2.title
+        margin-left: 0
+        padding: 16pt 20pt
+        font-size: 32pt
+        position: relative
+        width: 100%
+        left: 0
+        top: 0
+
+      > div.content-wrapper
+        transform: rotate(0deg)
+        left: 0
+        top: 0
+        height: auto
+        margin-top: 0
+        margin-left: 0
+        position: relative
+        margin-left: 0
+        width: 100%
+  ul.timeline
+    height: auto
+    width: 100%
+    position: relative
+    overflow: visible
+    left: 0
+    top: 0
+    padding: 0
+    margin-top: 30pt
+    padding-bottom: 96pt
+
+    > li
+      padding-left: 20pt
+      &:first-child
+        margin-top: 0
+      &:before
+        height: calc(100% + 96pt)
+
+      + li
+        margin-top: 96pt
+
+      > h3
+        font-size: 16pt
+      > p.date
+        margin-top: 2pt
+        font-size: 12pt
+      > p.position
+        font-size: 13pt
 </style>

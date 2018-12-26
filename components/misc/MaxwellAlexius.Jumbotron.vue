@@ -36,5 +36,17 @@ h1
 
 h2
   font-size: 30pt
-  
+
+@media screen and (max-width: 768px)
+  section.jumbotron
+    > div.content-wrapper
+      padding: 10pt
+
+  h1
+    font-size: 36pt
+
+  h2
+    margin-top: 12pt
+    font-size: 24pt
+
 </style>

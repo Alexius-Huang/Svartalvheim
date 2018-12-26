@@ -1,7 +1,7 @@
 <template>
   <section class="skill-set">
     <h1 class="title">
-      > <span>{{ t1 }}</span><span class="highlight">{{ t2 }}</span><span>{{ t3 }}</span><span class="highlight">{{ t4 }}</span>_
+      $> <span>{{ t1 }}</span><span class="highlight">{{ t2 }}</span><span>{{ t3 }}</span><span class="highlight">{{ t4 }}</span>_
     </h1>
 
     <div class="row">
@@ -275,4 +275,37 @@ ul.list
       box-sizing: border-box
       background-color: $grey-900
       transform: rotate(45deg)
+
+@media screen and (max-width: 768px)
+  section.skill-set
+    > h1.title
+      line-height: 1.7
+      font-size: 24pt
+      width: 95vw
+      margin-bottom: 72pt
+
+    > div.row
+      + div.row
+        margin-top: -25pt
+
+  ul.list
+    margin-top: 8pt
+    height: calc(100vh - 50pt)
+    overflow-y: auot
+    padding-bottom: 50vh
+
+    > li
+      font-size: 14pt
+      > ul.list
+        height: auto
+        margin-bottom: 24pt
+        padding-bottom: 0
+      &:before
+        top: 4pt
+
+@media screen and (max-width: 425px)
+  section.skill-set
+    > div.row
+      + div.row
+        margin-top: -20pt
 </style>

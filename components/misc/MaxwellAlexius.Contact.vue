@@ -188,4 +188,14 @@ div.screen-wrapper
             color: white
             font-weight: 500
             font-size: 14pt
+
+@media screen and (max-width: 768px)
+  div.screen-wrapper
+    > span.screen
+      height: 300pt
+      width: 90vw
+      > span.content-section
+        > a
+          width: 100pt
+          height: 100pt
 </style>

@@ -30,6 +30,6 @@ html
 
 /* optional: show position indicator in red */
 ::-webkit-scrollbar-thumb
-  background: #FF0000
+  // background: #FF0000
 </style>
 

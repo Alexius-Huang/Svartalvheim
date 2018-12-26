@@ -156,8 +156,7 @@ div.diamond
           margin-top: 5pt
           background-color: $grey-900
           cursor: pointer
-          // font-family: 'Staatliches'
-          font-family: 'Roboto'
+          font-family: 'Staatliches', 'Roboto'
           transform: translateX(-10vw)
           // transition: .25s
           &:hover
@@ -172,6 +171,7 @@ div.diamond
   > div.modal-content
     padding: 40pt
     pointer-events: none
+    box-sizing: border-box
     opacity: 0
     display: inline-block
     background-color: $yellow-500
@@ -224,4 +224,57 @@ div.diamond
         font-size: 48pt
         letter-spacing: 1.5pt
         text-decoration: underline
+
+@media screen and (max-width: 768px)
+  div.diamond
+    width: 100pt
+    height: 100pt
+    + div.diamond
+      margin-left: 50pt
+
+    > div.inner-content
+      > div.description-wrapper
+        > span.description
+          > span.title
+            font-size: 16pt
+          > button
+            font-size: 12pt
+
+      > span.js-icon
+        font-size: 64pt
+    > div.modal-content
+      padding: 16pt 24pt
+      > div.close-btn-wrapper
+        > button
+          font-size: 16pt
+          &:before
+            font-size: 16pt
+
+      > div.content-wrapper
+        padding-left: 0
+        margin-top: 12pt
+        > h2.title
+          font-size: 32pt
+
+@media screen and (max-width: 425px)
+  div.diamond
+    width: 80pt
+    height: 80pt
+    + div.diamond
+      margin-left: 40pt
+
+    > div.inner-content
+      > div.description-wrapper
+        > span.description
+          > span.title
+            font-size: 12pt
+          > button
+            margin-top: 2.5pt
+            font-size: 9pt
+            height: 16pt
+            line-height: 16pt
+
+      > span.js-icon
+        font-size: 48pt
+
 </style>

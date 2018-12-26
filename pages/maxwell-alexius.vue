@@ -42,4 +42,16 @@ main
   margin-top: 50vh
 .contact
   margin-top: 50vh
+
+@media screen and (max-width: 768px)
+  main
+    padding-bottom: 96pt
+  .career-experience
+    margin-top: 96pt
+  .skill-set
+    margin-top: 96pt
+  .public-speech
+    margin-top: 188pt
+  .contact
+    margin-top: 144pt
 </style>

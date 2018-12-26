@@ -165,4 +165,44 @@ section.public-speech
     transform: rotate(10deg)
   10%
     transform: rotate(0deg)
+
+@media screen and (max-width: 768px)
+  section.public-speech
+    > h1
+      font-size: 32pt
+      &:before
+        width: 150pt
+        height: 50pt
+        top: -65pt
+        right: 20pt
+      &:after
+        border-left: 15pt solid transparent
+        border-right: 15pt solid transparent
+        border-bottom: 15pt solid $yellow-500
+        right: 120pt
+        top: -25pt
+
+    > ul
+      padding: 0
+      > li
+        width: 90%
+        &:nth-child(2n + 1)
+          margin-left: 10%
+        > h2
+          font-size: 16pt
+          line-height: 1.5
+        > p
+          font-size: 12pt
+        > p.date
+          font-size: 14pt
+        > p.title
+          font-size: 14pt
+          line-height: 1.7
+          text-decoration: underline
+
+          > img
+            width: 14pt
+
+        &:hover
+          transform: none
 </style>
