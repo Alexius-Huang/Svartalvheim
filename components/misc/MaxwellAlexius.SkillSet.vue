@@ -291,7 +291,7 @@ ul.list
   ul.list
     margin-top: 8pt
     height: calc(100vh - 50pt)
-    overflow-y: auot
+    overflow-y: auto
     padding-bottom: 50vh
 
     > li
