@@ -7,11 +7,12 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'My website' }
+      { hid: 'description', name: 'description', content: 'Maxwell Alexius' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,500|Staatliches' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,500|Staatliches' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Share+Tech+Mono' }
     ]
   },
   /*

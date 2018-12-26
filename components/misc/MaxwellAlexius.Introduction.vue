@@ -2,9 +2,9 @@
   <section class="introduction">
     <h1 class="title"> > {{ t1 }}<span class="highlight">{{ t2 }}</span>_</h1>
 
-    <p>Passionated Front-End Developer has both experiences on work in the office and works as contractor remotely.</p>
-    <p>Eagers to dedicate time to improve the programming skills such as diving deep in JavaScript, design patterns and learn by building the tools from scratch.</p>
-    <p>Appreciates the art of coding and values maintainability as an important role in developing projects or products.</p>
+    <p>Passionated Front-End Developer which has both experience on working in the office and working as a contractor remotely.</p>
+    <p>Eagers to dedicate time to improve the programming skills, diving deep into JavaScript, learning from design patterns and from building the tools from scratch.</p>
+    <p>Appreciates the art of coding and values maintainability as an important role in developing projects and products.</p>
   </section>
 </template>
 
@@ -45,7 +45,6 @@ export default {
     window.clearInterval(this.textAnimationInterval);
     window.clearTimeout(this.textAnimationTimeout);
   },
-
 };
 </script>
 
@@ -78,5 +77,5 @@ p
     color: $yellow-500
     font-size: 24pt
   + p
-    margin-top: 12pt
+    margin-top: 16pt
 </style>

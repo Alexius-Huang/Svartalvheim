@@ -243,7 +243,7 @@ section.skill-set
 
     span.highlight
       color: $yellow-500
-      font-family: 'Staatliches'
+      font-family: 'Staatliches', 'Roboto'
 
 div.row + div.row
   margin-top: -50pt

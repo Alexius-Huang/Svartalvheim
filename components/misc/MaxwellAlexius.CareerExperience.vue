@@ -1,5 +1,43 @@
 <template>
   <section class="career-experience">
+    <!-- <pre>
+      <code>
+        <span class="hl">async function</span> fetchData() {
+          <span class="hl">try</span> {
+            <span class="hl">const</span> responses = <span class="hl">await</span> Promise.all([
+              fetchTopics(),
+              fetchContents(),
+              fetchLists()
+            ]);
+
+            <span class="hl">return</span> responses;
+          } <span class="hl">catch</span> (err) {
+            console.error(`[Fetch Data Error] ${err}`);
+          }
+        }
+
+        <span class="hl">const</span> $el = <span class="hl">document</span>.getElementById('element');
+
+        (<span class="hl">async function</span>() {
+          <span class="hl">const</span> [
+            topics,
+            contents,
+            lists
+          ] = <span class="hl">await</span> fetchData();
+
+          topics
+            .concat(contents)
+            .concat(lists)
+            .forEach((item) => {
+              <span class="hl">const</span> node = <span class="hl">document</span>.createElement('p');
+              node.innerText(item);
+
+              $el.appendChild(node);
+            });
+        })();
+      </code>
+    </pre> -->
+
     <div class="parallelogram-bg">
       <h2 class="title">Career Experience</h2>
       <div class="content-wrapper">
@@ -47,6 +85,19 @@ section.career-experience
   width: 100vw
   height: 100vh
   position: relative
+  > pre
+    position: absolute
+    top: -75vh
+    left: 0
+    perspective: 5pt
+    > code
+      font-family: 'Share Tech Mono', 'Roboto Mono', monospace
+      color: white
+      opacity: 0.8
+      font-size: 12pt
+
+      > span.hl
+        color: $yellow-500
   > div.parallelogram-bg
     position: absolute
     width: 200vw

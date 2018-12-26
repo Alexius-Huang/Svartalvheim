@@ -187,8 +187,7 @@ div.diamond
         font-size: 24pt
         border: none
         cursor: pointer
-        // font-family: 'Staatliches'
-        font-family: 'Roboto'
+        font-family: 'Staatliches', 'Roboto'
         &:before
           content: '<< '
           font-size: 24pt
@@ -221,8 +220,7 @@ div.diamond
         opacity: 0.3
 
       > h2.title
-        // font-family: 'Staatliches'
-        font-family: 'Roboto'
+        font-family: 'Staatliches', 'Roboto'
         font-size: 48pt
         letter-spacing: 1.5pt
         text-decoration: underline

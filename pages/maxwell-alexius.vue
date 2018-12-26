@@ -5,6 +5,7 @@
     <career-experience class="career-experience" />
     <skill-set class="skill-set" />
     <public-speech class="public-speech" />
+    <contact class="contact" />
   </main>
 </template>
 
@@ -14,9 +15,17 @@ import Introduction from '@/components/misc/MaxwellAlexius.Introduction';
 import CareerExperience from '@/components/misc/MaxwellAlexius.CareerExperience';
 import SkillSet from '@/components/misc/MaxwellAlexius.SkillSet';
 import PublicSpeech from '@/components/misc/MaxwellAlexius.PublicSpeech';
+import Contact from '@/components/misc/MaxwellAlexius.Contact';
 
 export default {
-  components: { Jumbotron, Introduction, CareerExperience, SkillSet, PublicSpeech },
+  components: {
+    Jumbotron,
+    Introduction,
+    CareerExperience,
+    SkillSet,
+    PublicSpeech,
+    Contact,
+  },
 };
 </script>
 
@@ -30,5 +39,7 @@ main
 .skill-set
   margin-top: 100vh
 .public-speech
+  margin-top: 50vh
+.contact
   margin-top: 50vh
 </style>

@@ -6,11 +6,30 @@
       <li>
         <h2>跨越時間軸 - 創造美好使用者體驗 (Travel Through Timeline - Realizing Graceful User Experience)</h2>
         <p class="title">SITCON Taiwan, Taipei 2018</p>
+        <p class="location">
+          <img :src="icons.pointer" />
+          Taipei, Taiwan
+        </p>
+        <!-- <p class="ppt">
+          <img :src="icons.ppt" />
+        </p> -->
+        <p class="language">
+          <img :src="icons.language" />
+          Chinese
+        </p>
         <p class="date">March 10th, 2018</p>
       </li>
       <li>
         <h2>Welcome the Brand New Ruby-like Language - Goby</h2>
         <p class="title">SITCON Hong Kong 2017</p>
+        <p class="location">
+          <img :src="icons.pointer" />
+          Hong Kong, China
+        </p>
+        <p class="language">
+          <img :src="icons.language" />
+          English
+        </p>
         <p class="date">October 2nd, 2017</p>
       </li>
     </ul>
@@ -18,7 +37,16 @@
 </template>
 
 <script>
+import pointer from '@/assets/icons/pointer.png';
+import ppt from '@/assets/icons/ppt.svg';
+import language from '@/assets/icons/language.png'; 
+
 export default {
+  data() {
+    return {
+      icons: { pointer, ppt, language },
+    };
+  }
 };
 </script>
 
@@ -67,6 +95,11 @@ section.public-speech
       padding: 24pt 18pt
       border-radius: 5pt
       position: relative
+      transiiton: .25s
+      &:hover
+        transform: scale(1.2)
+        transition: .25s
+
       > h2
         font-size: 20pt
         // height: 40pt
@@ -76,6 +109,17 @@ section.public-speech
       > p
         font-size: 16pt
         margin-top: 8pt
+
+        > img
+          width: 16pt
+          margin-right: 5pt
+          opacity: 0.87
+          vertical-align: middle
+
+        &.title
+          margin-top: 16pt
+          font-size: 20pt
+          font-weight: 500
 
         &.date
           color: white
