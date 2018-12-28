@@ -19,6 +19,7 @@ html
   box-sizing: border-box
   color: $grey-900
   background-color: $grey-900
+  user-select: none
 
 *, *:before, *:after
   box-sizing: border-box
