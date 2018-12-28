@@ -31,5 +31,11 @@ html
 /* optional: show position indicator in red */
 ::-webkit-scrollbar-thumb
   // background: #FF0000
-</style>
 
+code
+  font-family: 'Share Tech Mono', 'Roboto Mono', monospace
+  color: $yellow-500
+  padding: 3pt 5pt
+  border-radius: 2pt
+  background-color: transparentize($grey-900, 0.1)
+</style>
