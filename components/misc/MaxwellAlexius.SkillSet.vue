@@ -1,8 +1,10 @@
 <template>
   <section class="skill-set">
-    <h1 class="title">
-      $> <span>{{ t1 }}</span><span class="highlight">{{ t2 }}</span><span>{{ t3 }}</span><span class="highlight">{{ t4 }}</span>_
-    </h1>
+    <div class="title-wrapper">
+      <h1 class="title">
+        $> <span>{{ t1 }}</span><span class="highlight">{{ t2 }}</span><span>{{ t3 }}</span><span class="highlight">{{ t4 }}</span>_
+      </h1>
+    </div>
 
     <div class="row">
       <diamond
@@ -233,17 +235,21 @@ export default {
 section.skill-set
   position: relative
   text-align: center
-  > h1.title
-    text-align: center
-    color: white
-    font-size: 32pt
-    width: 60vw
-    margin: 0 auto 144pt auto
-    letter-spacing: 1pt
+  > div.title-wrapper
+    height: 96pt
+    margin-bottom: 96pt
+    > h1.title
+      text-align: center
+      color: white
+      font-size: 32pt
+      width: 60vw
+      line-height: 1.7
+      margin: 0 auto 144pt auto
+      letter-spacing: 1pt
 
-    span.highlight
-      color: $yellow-500
-      font-family: 'Staatliches', 'Roboto'
+      span.highlight
+        color: $yellow-500
+        font-family: 'Staatliches', 'Roboto'
 
 div.row + div.row
   margin-top: -50pt
@@ -278,11 +284,14 @@ ul.list
 
 @media screen and (max-width: 768px)
   section.skill-set
-    > h1.title
-      line-height: 1.7
-      font-size: 24pt
-      width: 95vw
-      margin-bottom: 72pt
+    > div.title-wrapper
+      height: 96pt
+      margin-bottom: 48pt
+      > h1.title
+        line-height: 1.7
+        font-size: 24pt
+        width: 80vw
+        margin-bottom: 72pt
 
     > div.row
       + div.row
@@ -305,6 +314,9 @@ ul.list
 
 @media screen and (max-width: 425px)
   section.skill-set
+    > div.title-wrapper
+      height: 124pt
+      margin-bottom: 48pt
     > div.row
       + div.row
         margin-top: -20pt

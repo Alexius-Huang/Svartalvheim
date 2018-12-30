@@ -37,11 +37,11 @@ section.jumbotron
     background-color: $yellow-500
     padding: 32pt 64pt 32pt 96pt
     position: relative
+    animation: slideFromLeft 3s
     opacity: .85
     > img.bg
       position: absolute
-      // max-width: 50vw
-      // max-height: 80vh
+      animation: slideFromRight 3s
       width: 400pt
       z-index: -1
       right: -25vw
@@ -65,12 +65,11 @@ h2
     > div.content-wrapper
       padding: 10pt
       opacity: .9
+
       > img.bg
         opacity: .65
         right: -40vw
         top: -150pt
-        // max-height: 1000vh
-        // max-width: 1000vw
         height: 350%
 
   h1
@@ -80,4 +79,22 @@ h2
     margin-top: 12pt
     font-size: 24pt
 
+@keyframes slideFromLeft
+  0%
+    opacity: 0
+    transform: translateX(-100pt)
+  40%
+    opacity: 0
+    transform: translateX(-100pt)
+  100%
+    opacity: .65
+    transform: translateX(0)
+
+@keyframes slideFromRight
+  0%
+    transform: translateX(150vw)
+  40%
+    transform: translateX(150vw)
+  100%
+    transform: translateX(0)
 </style>

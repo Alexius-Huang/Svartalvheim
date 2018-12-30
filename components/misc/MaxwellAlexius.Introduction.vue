@@ -1,6 +1,8 @@
 <template>
   <section class="introduction">
-    <h1 class="title">{{ t1 }}<span class="highlight">{{ t2 }}</span>_</h1>
+    <div class="title-wrapper">
+      <h1 class="title">{{ t1 }}<span class="highlight">{{ t2 }}</span>_</h1>
+    </div>
 
     <div class="description-wrapper">
       <p class="description">Passionated Front-End Developer which has both experience on working in the office and working as a contractor remotely.</p>
@@ -57,19 +59,20 @@ section.introduction
   width: 80vw
   margin: 0 auto
 
-h1.title
-  height: 72pt
-  line-height: 72pt
-  border-left: 10pt solid white
-  padding-left: 24pt
-  color: white
-  letter-spacing: 1pt
-  margin-bottom: 24pt
-  font-size: 48pt
-  &:before
-    content: ' $> '
-  > span.highlight
-    color: $yellow-500
+div.title-wrapper
+  h1.title
+    height: 72pt
+    line-height: 72pt
+    border-left: 10pt solid white
+    padding-left: 24pt
+    color: white
+    letter-spacing: 1pt
+    margin-bottom: 24pt
+    font-size: 48pt
+    &:before
+      content: ' $> '
+    > span.highlight
+      color: $yellow-500
 
 p.description
   font-weight: 500
@@ -84,12 +87,15 @@ p.description
     margin-top: 16pt
 
 @media screen and (max-width: 768px)
-  h1.title
-    font-size: 32pt
-    height: auto
-    line-height: 48pt
-    &:before
-      content: ''
+  div.title-wrapper
+    height: 96pt
+    margin-bottom: 24pt
+    h1.title
+      font-size: 32pt
+      height: auto
+      line-height: 48pt
+      &:before
+        content: ''
 
   p.description
     font-size: 16pt
