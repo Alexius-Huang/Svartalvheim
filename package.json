@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^17.3.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
