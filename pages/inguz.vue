@@ -21,6 +21,7 @@ main
   > .chart-section
     + .chart-section
       margin-top: 48pt
+
 @media screen and (max-width: 768px)
   main
     width: 100vw

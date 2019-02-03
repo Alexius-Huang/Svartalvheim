@@ -14,7 +14,14 @@ export default {
 
 <style scoped lang="sass">
 main
+  width: 100vw
   padding-top: 50pt
+  box-sizing: border-box
 // .weight-status
 //   margin-top: 50pt
+
+@media screen and (max-width: 768px)
+  main
+    padding: 24pt
+
 </style>
