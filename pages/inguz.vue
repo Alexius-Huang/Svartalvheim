@@ -21,4 +21,9 @@ main
   > .chart-section
     + .chart-section
       margin-top: 48pt
+@media screen and (max-width: 768px)
+  main
+    width: 100vw
+    padding: 24pt
+    box-sizing: border-box
 </style>

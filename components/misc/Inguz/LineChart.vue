@@ -22,8 +22,8 @@
           <p class="legend">Acceleration</p>
           <span class="x-axis" />
           <span class="y-axis" />
-          <span class="x-line" v-for="i in 25" :key="i" :style="{ bottom: `${10 + (80 / 25) * i}%` }" />
-          <span class="y-line" v-for="i in 25" :key="i" :style="{ left: `${10 + (90 / 25) * i}%` }" />
+          <span class="x-line" v-for="i in 25" :key="`acceleration-x-${i}`" :style="{ bottom: `${10 + (80 / 25) * i}%` }" />
+          <span class="y-line" v-for="i in 25" :key="`acceleration-y-${i}`" :style="{ left: `${10 + (90 / 25) * i}%` }" />
 
           <span class="svg-wrapper">
             <svg
@@ -40,7 +40,7 @@
           <span
             class="dot"
             v-for="([x, y], i) in accelerationData"
-            :key="i"
+            :key="`acceleration-data-${i}`"
             ref="accelerationDataNodes"
             :style="{
               left: `${10 + (90 / 5) * x}%`,
@@ -53,8 +53,8 @@
           <p class="legend">Velocity</p>
           <span class="x-axis" />
           <span class="y-axis" />
-          <span class="x-line" v-for="i in 25" :key="i" :style="{ bottom: `${10 + (80 / 25) * i}%` }" />
-          <span class="y-line" v-for="i in 25" :key="i" :style="{ left: `${10 + (90 / 25) * i}%` }" />
+          <span class="x-line" v-for="i in 25" :key="`velocity-x-${i}`" :style="{ bottom: `${10 + (80 / 25) * i}%` }" />
+          <span class="y-line" v-for="i in 25" :key="`velocity-y-${i}`" :style="{ left: `${10 + (90 / 25) * i}%` }" />
 
           <span class="svg-wrapper">
             <svg
@@ -71,7 +71,7 @@
           <span
             class="dot"
             v-for="([x, y], i) in velocityData"
-            :key="i"
+            :key="`velocity-data-${i}`"
             ref="velocityDataNodes"
             :style="{
               left: `${10 + (90 / 5) * x}%`,
@@ -84,8 +84,8 @@
           <p class="legend">Distance Travelled</p>
           <span class="x-axis" />
           <span class="y-axis" />
-          <span class="x-line" v-for="i in 25" :key="i" :style="{ bottom: `${10 + (80 / 25) * i}%` }" />
-          <span class="y-line" v-for="i in 25" :key="i" :style="{ left: `${10 + (90 / 25) * i}%` }" />
+          <span class="x-line" v-for="i in 25" :key="`distance-x-${i}`" :style="{ bottom: `${10 + (80 / 25) * i}%` }" />
+          <span class="y-line" v-for="i in 25" :key="`distance-y-${i}`" :style="{ left: `${10 + (90 / 25) * i}%` }" />
 
           <span class="svg-wrapper">
             <svg
@@ -102,7 +102,7 @@
           <span
             class="dot"
             v-for="([x, y], i) in distanceData"
-            :key="i"
+            :key="`distance-data-${i}`"
             ref="distanceDataNodes"
             :style="{
               left: `${10 + (90 / 5) * x}%`,
@@ -337,4 +337,11 @@ section.line-chart
       transform: translate(-4px, 4px)
       border-radius: 50%
       position: absolute
+
+@media screen and (max-width: 768px)
+  .charts
+    &.physics-example > .chart
+      width: 100%
+      // height: 250pt
+      display: block  
 </style>
