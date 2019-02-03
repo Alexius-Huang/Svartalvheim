@@ -218,23 +218,14 @@ export default {
 <style scoped lang="sass">
 @import '../../sass/shared.sass'
 @import '../../sass/colors.sass'
+@import '../../sass/helpers.sass'
 
 section.weight-status
   max-width: 750px
   height: 500px
   width: 100%
   margin: 0 auto
-  > div.title-wrapper
-    height: 50pt
-    > h1.title
-      margin: 0
-      padding-left: 20pt
-      font-size: 36pt
-      letter-spacing: .7pt
-      color: white
-      font-family: $base-font-family
-      line-height: 50pt
-      border-left: 10pt solid $yellow-500
+  @include title-style
 
   > div.weight-average
     margin-top: 24pt
