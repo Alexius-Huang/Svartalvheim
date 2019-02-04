@@ -3,6 +3,7 @@
     <div class="inner-wrapper">
       <line-chart  v-if="chartType === 'line-chart'"       />
       <donut-chart v-else-if="chartType === 'donut-chart'" />
+      <bar-chart   v-else-if="chartType === 'bar-chart'"   />
     </div>
   </section>
 </template>
@@ -10,9 +11,10 @@
 <script>
 import LineChart from '@/components/misc/Inguz/LineChart';
 import DonutChart from '@/components/misc/Inguz/DonutChart';
+import BarChart from '@/components/misc/Inguz/BarChart';
 
 export default {
-  components: { LineChart, DonutChart },
+  components: { LineChart, DonutChart, BarChart },
   computed: {
     chartType() { return this.$route.params.chart },
   },

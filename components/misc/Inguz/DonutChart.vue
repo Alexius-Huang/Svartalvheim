@@ -27,7 +27,7 @@
       <p>When data values are too close to compare, consider using bar chart or histogram.</p>
       <p>Don't put legends in the section of the donut chart, put it outside.</p>
 
-      <p :style="{ 'margin-top': '24pt' }"><span class="tag">Sociology</span> Racial and ethnic categories in U.S. in 2010</p>
+      <p><span class="tag">Sociology</span> Racial and ethnic categories in U.S. in 2010</p>
 
       <div class="chart sociology-example">
         <div class="chart-wrapper">
@@ -157,6 +157,8 @@ section.donut-chart
       letter-spacing: .5pt
       color: white
       line-height: 1.7
+      + p
+        margin-top: 8pt
 
       > span.tag
         background-color: $yellow-500

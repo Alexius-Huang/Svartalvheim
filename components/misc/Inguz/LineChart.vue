@@ -222,6 +222,8 @@ section.line-chart
       letter-spacing: .5pt
       color: white
       line-height: 1.7
+      + p
+        margin-top: 8pt
 
       > span.tag
         background-color: $yellow-500

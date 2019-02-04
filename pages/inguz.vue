@@ -15,6 +15,10 @@
         <img class="chart-bg" :src="imgs.donutChart" alt="Donut Chart" />
         <span class="label">Donut Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div>
+      <div class="chart" @click="inspectChartDetail('bar-chart')">
+        <img class="chart-bg" :src="imgs.barChart" alt="Bar Chart" />
+        <span class="label">Bar Chart <img class="icon" :src="icons.chevronRight" /></span>
+      </div>
     </section>
 
     <nuxt-child />
@@ -24,6 +28,7 @@
 <script>
 import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
 import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
+import barChartImg from '@/assets/inguz/bar-chart-bg.gif';
 import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 
 export default {
@@ -32,6 +37,7 @@ export default {
       imgs: {
         lineChart: lineChartImg,
         donutChart: donutChartImg,
+        barChart: barChartImg,
       },
       icons: {
         chevronRight,
