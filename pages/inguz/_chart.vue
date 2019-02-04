@@ -1,16 +1,18 @@
 <template>
   <section class="chart-wrapper" :class="{ hide: !chartType }">
     <div class="inner-wrapper">
-      <line-chart v-if="chartType === 'line-chart'" />
+      <line-chart  v-if="chartType === 'line-chart'"       />
+      <donut-chart v-else-if="chartType === 'donut-chart'" />
     </div>
   </section>
 </template>
 
 <script>
 import LineChart from '@/components/misc/Inguz/LineChart';
+import DonutChart from '@/components/misc/Inguz/DonutChart';
 
 export default {
-  components: { LineChart },
+  components: { LineChart, DonutChart },
   computed: {
     chartType() { return this.$route.params.chart },
   },

@@ -7,9 +7,13 @@
     </section>
 
     <section class="chart-grid">
-      <div class="chart" @click="$router.push({ name: 'inguz-chart', params: { chart: 'line-chart' } })">
+      <div class="chart" @click="inspectChartDetail('line-chart')">
         <img class="chart-bg" :src="imgs.lineChart" alt="Line Chart" />
         <span class="label">Line Chart</span>
+      </div>
+      <div class="chart" @click="inspectChartDetail('donut-chart')">
+        <img class="chart-bg" :src="imgs.donutChart" alt="Donut Chart" />
+        <span class="label">Donut Chart</span>
       </div>
     </section>
 
@@ -19,14 +23,24 @@
 
 <script>
 import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
+import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
 
 export default {
   data() {
     return {
       imgs: {
         lineChart: lineChartImg,
+        donutChart: donutChartImg,
       },
     };
+  },
+  methods: {
+    inspectChartDetail(type) {
+      this.$router.push({
+        name: 'inguz-chart',
+        params: { chart: type },
+      });
+    },
   },
 };
 </script>
