@@ -9,11 +9,11 @@
     <section class="chart-grid">
       <div class="chart" @click="inspectChartDetail('line-chart')">
         <img class="chart-bg" :src="imgs.lineChart" alt="Line Chart" />
-        <span class="label">Line Chart</span>
+        <span class="label">Line Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div>
       <div class="chart" @click="inspectChartDetail('donut-chart')">
         <img class="chart-bg" :src="imgs.donutChart" alt="Donut Chart" />
-        <span class="label">Donut Chart</span>
+        <span class="label">Donut Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div>
     </section>
 
@@ -24,6 +24,7 @@
 <script>
 import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
 import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
+import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 
 export default {
   data() {
@@ -31,6 +32,9 @@ export default {
       imgs: {
         lineChart: lineChartImg,
         donutChart: donutChartImg,
+      },
+      icons: {
+        chevronRight,
       },
     };
   },
@@ -112,6 +116,12 @@ main
         right: -100%
         bottom: 10pt
         transition: .25s
+        > img.icon
+          width: 24pt
+          height: 24pt
+          vertical-align: middle
+          display: inline-block
+
       &:hover
         > img.chart-bg
           opacity: .48
