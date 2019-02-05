@@ -7,7 +7,7 @@
     <article class="infos">
       <h2 class="title">What?</h2>
       <p>
-        A heat map (or choropleth map) is a graphical representation of data where the individual values contained in a matrix are represented as colors.
+        A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors.
         "Heat map" is a newer term but <em>shading matrices</em> have existed for over a century.
         Referenced from <a href="https://en.wikipedia.org/wiki/Heat_map" target="_blank">Wikipedia</a>
       </p>

@@ -186,7 +186,6 @@ section.donut-chart
   > .chart-wrapper
     width: 100%
     text-align: center
-    margin-bottom: 30pt
     margin-top: 30pt
     > .svg-wrapper
       display: inline-block

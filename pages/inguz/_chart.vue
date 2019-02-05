@@ -41,6 +41,7 @@ section.chart-wrapper
   font-size: 0
   opacity: 1
   transition: .25s
+  padding-bottom: 72pt
   &.hide
     opacity: 0
     pointer-events: none
