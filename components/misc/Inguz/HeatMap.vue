@@ -354,29 +354,30 @@ $heat-levels: $yellow-50 $yellow-100 $yellow-200 $yellow-300 $yellow-400 $yellow
       > .heat-map-wrapper
         > .rows
           > .row
-            height: 20px
+            height: 15px
             + .row
-              margin-top: 4px
+              margin-top: 3px
             > span.legend
-              width: 30pt
+              width: 40px
               padding-right: 5pt
             > span.values
-              width: 285px
+              width: 215px
               > span.value
-                width: 20px
-                height: 20px
+                width: 15px
+                height: 15px
                 border-radius: 1px
                 + span.value
-                  margin-left: 4px
+                  margin-left: 3px
               > span.label
                 margin-top: 3pt
-                width: 20px
-                height: 20px
-                line-height: 20px
+                width: 15px
+                height: 15px
+                line-height: 15px
                 font-size: 8pt
                 + span.label
-                  margin-left: 4px
+                  margin-left: 3px
         > .color-level-labels
+          margin: 12pt 0 0 0
           > span.label
             font-size: 8pt
             width: 80pt

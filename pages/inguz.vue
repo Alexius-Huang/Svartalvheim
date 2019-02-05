@@ -4,22 +4,22 @@
       <div class="title-wrapper">
         <h1 class="title">Visualizations</h1>
       </div>
-    </section>
+    </section><!--
 
-    <section class="chart-grid">
+ --><section class="chart-grid">
       <div class="chart" @click="inspectChartDetail('line-chart')">
         <img class="chart-bg" :src="imgs.lineChart" alt="Line Chart" />
         <span class="label">Line Chart <img class="icon" :src="icons.chevronRight" /></span>
-      </div>
-      <div class="chart" @click="inspectChartDetail('donut-chart')">
+      </div><!--
+   --><div class="chart" @click="inspectChartDetail('donut-chart')">
         <img class="chart-bg" :src="imgs.donutChart" alt="Donut Chart" />
         <span class="label">Donut Chart <img class="icon" :src="icons.chevronRight" /></span>
-      </div>
-      <div class="chart" @click="inspectChartDetail('bar-chart')">
+      </div><!--
+   --><div class="chart" @click="inspectChartDetail('bar-chart')">
         <img class="chart-bg" :src="imgs.barChart" alt="Bar Chart" />
         <span class="label">Bar Chart <img class="icon" :src="icons.chevronRight" /></span>
-      </div>
-      <div class="chart" @click="inspectChartDetail('heat-map')">
+      </div><!--
+   --><div class="chart" @click="inspectChartDetail('heat-map')">
         <img class="chart-bg" :src="imgs.heatMap" alt="Heat Map" />
         <span class="label">Heat Map <img class="icon" :src="icons.chevronRight" /></span>
       </div>
@@ -96,7 +96,7 @@ main
       font-size: 0
       vertical-align: top
       display: inline-block
-      width: 359px
+      width: 360px
       height: 360px
       box-sizing: border-box
       position: relative
@@ -164,6 +164,8 @@ main
       margin-top: 48pt
 
       > .chart
+        width: 33.3%
+        height: 200pt
         > img.chart-bg
           opacity: .48
           transition: .25s
@@ -174,9 +176,33 @@ main
           opacity: 1
           transition: .25s
 
-// @media screen and (max-width: 768px)
-//   main
-//     width: 100vw
-//     // padding: 24pt
-//     box-sizing: border-box
+@media screen and (max-width: 768px)
+  main
+    width: 100vw
+    box-sizing: border-box
+    > section.left
+      > div.title-wrapper
+        > h1.title
+          height: 40pt
+          line-height: 40pt
+          font-size: 30pt
+    > section.chart-grid
+      > .chart
+        width: 50%
+        > span.label
+          font-size: 20pt
+
+@media screen and (max-width: 426px)
+  main
+    > section.left
+      > div.title-wrapper
+        > h1.title
+          height: 30pt
+          line-height: 30pt
+          font-size: 24pt
+    > section.chart-grid
+      > .chart
+        height: 150pt
+        > span.label
+          font-size: 16pt
 </style>
