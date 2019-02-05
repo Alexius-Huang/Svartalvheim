@@ -19,6 +19,10 @@
         <img class="chart-bg" :src="imgs.barChart" alt="Bar Chart" />
         <span class="label">Bar Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div>
+      <div class="chart" @click="inspectChartDetail('heat-map')">
+        <img class="chart-bg" :src="imgs.heatMap" alt="Heat Map" />
+        <span class="label">Heat Map <img class="icon" :src="icons.chevronRight" /></span>
+      </div>
     </section>
 
     <nuxt-child />
@@ -29,6 +33,7 @@
 import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
 import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
 import barChartImg from '@/assets/inguz/bar-chart-bg.gif';
+import heatMapImg from '@/assets/inguz/heat-map-bg.gif';
 import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 
 export default {
@@ -38,6 +43,7 @@ export default {
         lineChart: lineChartImg,
         donutChart: donutChartImg,
         barChart: barChartImg,
+        heatMap: heatMapImg,
       },
       icons: {
         chevronRight,
@@ -167,8 +173,6 @@ main
         &:after
           opacity: 1
           transition: .25s
-
-
 
 // @media screen and (max-width: 768px)
 //   main
