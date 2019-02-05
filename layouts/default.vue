@@ -1,8 +1,26 @@
 <template>
   <div>
     <nuxt/>
+
+    <div ref="scriptHolder"></div>
   </div>
 </template>
+
+<script>
+export default {
+  mounted() {
+    const scriptEl = document.createElement('script');
+    scriptEl.setAttribute('async', '');
+    scriptEl.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=UA-133870809-1');
+    this.$refs.scriptHolder.appendChild(scriptEl);
+
+    const googleAnalyticScript = document.createElement('script');
+    googleAnalyticScript.innerText = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-133870809-1');";
+    this.$refs.scriptHolder.appendChild(googleAnalyticScript);
+  },
+};
+</script>
+
 
 <style lang="sass">
 @import '../sass/colors.sass'
