@@ -127,6 +127,7 @@ export default {
 
 section.heat-map
   @include title-style
+  overflow-x: hidden
 
   > article.infos
     margin-top: 24pt
@@ -317,6 +318,7 @@ $heat-levels: $yellow-50 $yellow-100 $yellow-200 $yellow-300 $yellow-400 $yellow
           width: 100%
         > .color-level-labels
           margin-top: 12pt
+          margin-left: 0
           display: block
           width: 100%
           > span.label
@@ -342,6 +344,9 @@ $heat-levels: $yellow-50 $yellow-100 $yellow-200 $yellow-300 $yellow-400 $yellow
               > span.value
                 height: 20pt
                 width: 20pt
+                &:hover > span.tooltip
+                  opacity: 0
+
               > span.label
                 width: 20pt
                 font-size: 10pt

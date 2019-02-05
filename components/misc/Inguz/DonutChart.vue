@@ -182,10 +182,12 @@ section.donut-chart
       + .charts
         margin-top: 24pt
 
-div.chart
+.chart
   > .chart-wrapper
     width: 100%
     text-align: center
+    margin-bottom: 30pt
+    margin-top: 30pt
     > .svg-wrapper
       display: inline-block
       > svg
@@ -212,4 +214,32 @@ div.chart
           font-size: 12pt
           color: white
           vertical-align: middle
+
+@media screen and (max-width: 769px)
+  .chart
+    > .chart-wrapper
+      > span.svg-wrapper
+        > svg
+          width: 300px
+          height: 300px
+
+      > ul.legends
+        padding: 0
+        width: 75vw
+
+@media screen and (max-width: 476px)
+  .chart
+    > .chart-wrapper
+      > span.svg-wrapper
+        > svg
+          width: 250px
+          height: 250px
+
+      > ul.legends
+        > li
+          > span.color
+            width: 20px
+            height: 20px
+          > span.content
+            font-size: 10pt
 </style>
