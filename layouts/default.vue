@@ -39,6 +39,11 @@ html
   background-color: $grey-900
   user-select: none
 
+ul
+  padding: 0
+li
+  list-style-type: none
+
 *, *:before, *:after
   box-sizing: border-box
   margin: 0

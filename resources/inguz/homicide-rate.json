@@ -1,0 +1,22 @@
+[
+  { "countryCode": "sv", "country": "El Salvador", "rate": 82.84 },
+  { "countryCode": "ve", "country": "Venezuela", "rate": 56.33 },
+  { "countryCode": "za", "country": "South Africa", "rate": 33.97 },
+  { "countryCode": "br", "country": "Brazil", "rate": 29.53 },
+  { "countryCode": "mx", "country": "Mexico", "rate": 19.26 },
+  { "countryCode": "ph", "country": "Philippines", "rate": 11.02 },
+  { "countryCode": "ru", "country": "Russia", "rate": 10.82 },
+  { "countryCode": "iq", "country": "Iraq", "rate": 9.85 },
+  { "countryCode": "us", "country": "United State", "rate": 5.35 },
+  { "countryCode": "kp", "country": "North Korea", "rate": 4.40 },
+  { "countryCode": "in", "country": "India", "rate": 3.22 },
+  { "countryCode": "eg", "country": "Egypt", "rate": 2.51 },
+  { "countryCode": "fi", "country": "Finland", "rate": 1.42 },
+  { "countryCode": "fr", "country": "France", "rate": 1.35 },
+  { "countryCode": "gb", "country": "United Kingdom", "rate": 1.2 },
+  { "countryCode": "se", "country": "Sweden", "rate": 1.08 },
+  { "countryCode": "tw", "country": "Taiwan", "rate": 0.82 },
+  { "countryCode": "es", "country": "Spain", "rate": 0.63 },
+  { "countryCode": "no", "country": "Norway", "rate": 0.51 },
+  { "countryCode": "is", "country": "Iceland", "rate": 0.3 }
+]
