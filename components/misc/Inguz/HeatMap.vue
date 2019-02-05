@@ -96,11 +96,6 @@ import electricityConsumption from '@/resources/inguz/electricity-consumption.js
 
 export default {
   data() {
-    const kilowatts = electricityConsumption.map(({ kilowatts }) => kilowatts);
-    const maxConsumption = Math.max(...kilowatts);
-    const minConsumption = Math.min(...kilowatts);
-    console.log(maxConsumption, minConsumption);
-
     return {
       electricityConsumption: electricityConsumption.reduce((acc, d) => {
         if (acc.has(d.year)) {
@@ -121,9 +116,6 @@ export default {
       const level = Math.floor(value / 1000) - 12;
       return `level-${level}`;
     },
-  },
-  mounted() {
-    console.log(this.electricityConsumption);
   },
 };
 </script>
@@ -362,28 +354,28 @@ $heat-levels: $yellow-50 $yellow-100 $yellow-200 $yellow-300 $yellow-400 $yellow
       > .heat-map-wrapper
         > .rows
           > .row
-            height: 12pt
+            height: 20px
             + .row
-              margin-top: 2pt
+              margin-top: 4px
             > span.legend
               width: 30pt
               padding-right: 5pt
             > span.values
-              width: 170pt
+              width: 285px
               > span.value
-                width: 12pt
-                height: 12pt
+                width: 20px
+                height: 20px
                 border-radius: 1px
                 + span.value
-                  margin-left: 2pt
+                  margin-left: 4px
               > span.label
                 margin-top: 3pt
-                width: 12pt
-                height: 12pt
-                line-height: 12pt
+                width: 20px
+                height: 20px
+                line-height: 20px
                 font-size: 8pt
                 + span.label
-                  margin-left: 2pt
+                  margin-left: 4px
         > .color-level-labels
           > span.label
             font-size: 8pt
