@@ -10,9 +10,11 @@
           v-for="i in 115"
           :style="styleData[i - 1]"
           :key="i"
-        >
-          <span />
-        </div>
+        ><span /></div>
+      </div>
+
+      <div class="hint" :style="{ opacity: hintOpacity }">
+        <h3>Scroll Down</h3>
       </div>
 
       <div class="main-content" :style="{ opacity: contentOpacity }">
@@ -28,14 +30,23 @@ export default {
   data() {
     return {
       contentOpacity: 0,
+      hintOpacity: 1,
       styleData: Array.from(Array(115)).map(() => this.getRandomStyle()),
     };
   },
   methods: {
     handleScroll(e) {
       const target = ((12500 - window.innerHeight) / 2);
-      const delta = Math.abs(e.target.scrollTop - target);
+      const hintFadeThreshold = target / 2;
+      const { scrollTop: scroll } = e.target;
+      const delta = Math.abs(scroll - target);
       this.contentOpacity = 1 - (delta / target);
+
+      if (scroll > hintFadeThreshold) {
+        this.hintOpacity = 0;
+      } else {
+        this.hintOpacity = (hintFadeThreshold - scroll) / hintFadeThreshold;
+      }
     },
     getRandomStyle() {
       const translateZ = -(Math.random() * 5);
@@ -54,6 +65,14 @@ export default {
 
 // main
 //   padding-bottom: 50vh
+
+@keyframes floating
+  0%
+    transform: translateY(0)
+  50%
+    transform: translateY(15pt)
+  100%
+    transform: translateY(0)
 
 section.fenrir
   width: 100vw
@@ -74,6 +93,37 @@ section.fenrir
     > p
       font-size: 12pt
 
+  > div.hint
+    pointer-events: none
+    position: absolute
+    width: 100vw
+    height: 100pt
+    left: 0
+    top: 0
+    bottom: 0
+    margin: auto 0
+    > h3
+      letters-spacing: .7pt
+      height: 50pt
+      line-height: 50pt
+      text-align: center
+      font-family: $base-font-family
+      color: white
+
+    &:before
+      content: ''
+      width: 0
+      height: 0
+      position: absolute
+      border-top: 10pt solid white
+      border-left: 7.5pt solid transparent
+      border-right: 7.5pt solid transparent
+      top: 50pt
+      left: 0
+      right: 0
+      margin: 0 auto
+      animation: floating 1.5s ease-in-out infinite
+
   > div.parallax-wrapper
     perspective: 1px
     overflow-x: hidden
@@ -89,10 +139,22 @@ section.fenrir
       bottom: 0
       left: 0
 
-      // &.base
-      //   transform: translateZ(0)
-      // &.back
-      //   transform: translateZ(-1px) scale(2)
+@media screen and (max-width: 768px)
+  section.fenrir
+    > div.parallax-wrapper
+      transform-origin: left top
+      transform: scale(.75)
+      height: 150vh
+      width: 150vw
+      -webkit-box-reflect: right calc(-150vw - 10px) linear-gradient(to right, transparent, white);
+      
+    > div.main-content
+      top: 5%
+      right: 5%
+      > h1
+        font-size: 24pt
+      > p
+        font-size: 10pt
 
 @import '../sass/algiz/fenrir.sass'
 </style>
