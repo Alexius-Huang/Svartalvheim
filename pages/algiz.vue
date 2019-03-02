@@ -23,6 +23,12 @@
         <h1>Fenrisúlfr</h1>
         <p>Monstrous wolf in Norse Mythology</p>
       </div>
+
+      <div class="link-content" :style="{ opacity: linkOpacity }">
+        <p>
+          Go to my <a href="svartalvhe.im" target="_blank">homepage</a>
+        </p>
+      </div>
     </section>
   </main>
 </template>
@@ -36,6 +42,7 @@ export default {
     return {
       contentOpacity: 0,
       hintOpacity: 1,
+      linkOpacity: 0,
       styleData: Array.from(Array(115)).map(() => this.getRandomStyle()),
     };
   },
@@ -43,6 +50,7 @@ export default {
     handleScroll(e) {
       const target = ((12500 - window.innerHeight) / 2);
       const hintFadeThreshold = target / 2;
+      const linkShowThreshold = target;
       const { scrollTop: scroll } = e.target;
       const delta = Math.abs(scroll - target);
       this.contentOpacity = 1 - (delta / target);
@@ -51,6 +59,12 @@ export default {
         this.hintOpacity = 0;
       } else {
         this.hintOpacity = (hintFadeThreshold - scroll) / hintFadeThreshold;
+      }
+      if (scroll < linkShowThreshold) {
+        this.linkOpacity = 0;
+      } else {
+        this.linkOpacity = (scroll - linkShowThreshold) / 200;
+        this.linkOpacity = linkOpacity > 1 ? 1 : linkOpacity;
       }
     },
     getRandomStyle() {
@@ -97,6 +111,25 @@ section.fenrir
     border-right: 5pt solid $yellow-500
     > p
       font-size: 12pt
+
+  > div.link-content
+    position: absolute
+    width: 100%
+    text-align: center
+    left: 0
+    top: 0
+    bottom: 0
+    margin: auto 0
+    transform: translateY(100px)
+    height: 50pt
+    color: $yellow-500
+    font-family: $base-font-family
+    > p
+      height: 50pt
+      line-height: 50pt
+      font-size: 16pt
+      > a
+        color: $yellow-500
 
   > div.hint
     pointer-events: none
