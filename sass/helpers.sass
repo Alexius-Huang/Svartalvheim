@@ -21,3 +21,21 @@
       font-family: $base-font-family
       line-height: 50pt
       border-left: 10pt solid $yellow-500
+
+@mixin triangle($direction, $size, $height, $color: $yellow-500)
+  @if $direction == 'left'
+    border-top: $size solid transparent
+    border-bottom: $size solid transparent
+    border-right: $height solid $color
+  @else if $direction == 'right'
+    border-top: $size solid transparent
+    border-bottom: $size solid transparent
+    border-left: $height solid $color
+  @else if $direction == 'top'
+    border-left: $size solid transparent
+    border-right: $size solid transparent
+    border-bottom: $height solid $color
+  @else
+    border-left: $size solid transparent
+    border-right: $size solid transparent
+    border-top: $height solid $color
