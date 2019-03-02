@@ -1,5 +1,7 @@
 <template>
   <main>
+    <warning-modal />
+
     <section class="fenrir">
       <div
         class="parallax-wrapper"
@@ -26,7 +28,10 @@
 </template>
 
 <script>
+import WarningModal from '@/components/misc/Algiz/WarningModal';
+
 export default {
+  components: { WarningModal },
   data() {
     return {
       contentOpacity: 0,
@@ -142,11 +147,11 @@ section.fenrir
 @media screen and (max-width: 768px)
   section.fenrir
     > div.parallax-wrapper
-      transform-origin: left top
-      transform: scale(.75)
-      height: 150vh
-      width: 150vw
-      -webkit-box-reflect: right calc(-150vw - 10px) linear-gradient(to right, transparent, white);
+      // transform-origin: left top
+      // transform: scale(.75)
+      // height: 150vh
+      // width: 150vw
+      // -webkit-box-reflect: right calc(-150vw - 10px) linear-gradient(to right, transparent, white);
       
     > div.main-content
       top: 5%
