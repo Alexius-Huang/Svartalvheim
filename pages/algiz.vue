@@ -25,8 +25,11 @@
       </div>
 
       <div class="link-content" :style="{ opacity: linkOpacity }">
+        <a class="logo" href="https://svartalvhe.im/" target="_blank">
+          <img :src="logo" />
+        </a>
         <p>
-          Go to my <a href="svartalvhe.im" target="_blank">homepage</a>
+          Go to my <a href="https://svartalvhe.im/" target="_blank">homepage</a>
         </p>
       </div>
     </section>
@@ -35,11 +38,13 @@
 
 <script>
 import WarningModal from '@/components/misc/Algiz/WarningModal';
+import logo from '@/assets/icons/valknut.svg';
 
 export default {
   components: { WarningModal },
   data() {
     return {
+      logo,
       contentOpacity: 0,
       hintOpacity: 1,
       linkOpacity: 0,
@@ -64,7 +69,7 @@ export default {
         this.linkOpacity = 0;
       } else {
         this.linkOpacity = (scroll - linkShowThreshold) / 200;
-        this.linkOpacity = linkOpacity > 1 ? 1 : linkOpacity;
+        this.linkOpacity = this.linkOpacity > 1 ? 1 : this.linkOpacity;
       }
     },
     getRandomStyle() {
@@ -121,15 +126,22 @@ section.fenrir
     bottom: 0
     margin: auto 0
     transform: translateY(100px)
-    height: 50pt
+    height: 0
     color: $yellow-500
     font-family: $base-font-family
+    pointer-events: none
+    > a.logo
+      pointer-events: visible
+      > img
+        width: 50pt
+        height: 50pt
     > p
-      height: 50pt
-      line-height: 50pt
+      height: 30pt
+      line-height: 30pt
       font-size: 16pt
       > a
         color: $yellow-500
+        pointer-events: visible
 
   > div.hint
     pointer-events: none
