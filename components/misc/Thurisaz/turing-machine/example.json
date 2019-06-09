@@ -1,0 +1,141 @@
+{
+  "initialCells": ["*", "0", "1", "0", "1", "0", "0", "1", "*"],
+  "initialState": "START",
+  "initialPosition": 8,
+  "availableStates": [
+    "START",
+    "RECORD",
+    "WRITE_ZERO",
+    "WRITE_ONE",
+    "TRANSFER_ZERO",
+    "TRANSFER_ONE",
+    "ROTATE_ZERO",
+    "ROTATE_ONE"
+  ],
+  "availableValues": [
+    "*",
+    "0",
+    "1"
+  ],
+  "rules": [
+    {
+      "state": "START",
+      "currentValue": "*",
+      "writeValue": "*",
+      "nextState": "RECORD",
+      "direction": "LEFT"
+    },
+    {
+      "state": "RECORD",
+      "currentValue": "0",
+      "writeValue": "0",
+      "nextState": "WRITE_ZERO",
+      "direction": "LEFT"
+    },
+    {
+      "state": "RECORD",
+      "currentValue": "1",
+      "writeValue": "1",
+      "nextState": "WRITE_ONE",
+      "direction": "LEFT"
+    },
+    {
+      "state": "WRITE_ZERO",
+      "currentValue": "*",
+      "writeValue": "*",
+      "nextState": "TRANSFER_ZERO",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "WRITE_ZERO",
+      "currentValue": "1",
+      "writeValue": "0",
+      "nextState": "WRITE_ONE",
+      "direction": "LEFT"
+    },
+    {
+      "state": "WRITE_ZERO",
+      "currentValue": "0",
+      "writeValue": "0",
+      "nextState": "WRITE_ZERO",
+      "direction": "LEFT"
+    },
+    {
+      "state": "WRITE_ONE",
+      "currentValue": "*",
+      "writeValue": "*",
+      "nextState": "TRANSFER_ONE",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "WRITE_ONE",
+      "currentValue": "1",
+      "writeValue": "1",
+      "nextState": "WRITE_ONE",
+      "direction": "LEFT"
+    },
+    {
+      "state": "WRITE_ONE",
+      "currentValue": "0",
+      "writeValue": "1",
+      "nextState": "WRITE_ZERO",
+      "direction": "LEFT"
+    },
+    {
+      "state": "TRANSFER_ZERO",
+      "currentValue": "*",
+      "writeValue": "*",
+      "nextState": "ROTATE_ZERO",
+      "direction": "LEFT"
+    },
+    {
+      "state": "TRANSFER_ZERO",
+      "currentValue": "1",
+      "writeValue": "1",
+      "nextState": "TRANSFER_ZERO",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "TRANSFER_ZERO",
+      "currentValue": "0",
+      "writeValue": "0",
+      "nextState": "TRANSFER_ZERO",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "TRANSFER_ONE",
+      "currentValue": "*",
+      "writeValue": "*",
+      "nextState": "ROTATE_ONE",
+      "direction": "LEFT"
+    },
+    {
+      "state": "TRANSFER_ONE",
+      "currentValue": "1",
+      "writeValue": "1",
+      "nextState": "TRANSFER_ONE",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "TRANSFER_ONE",
+      "currentValue": "0",
+      "writeValue": "0",
+      "nextState": "TRANSFER_ONE",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "ROTATE_ZERO",
+      "currentValue": null,
+      "writeValue": "0",
+      "nextState": null,
+      "direction": null
+    },
+    {
+      "state": "ROTATE_ONE",
+      "currentValue": null,
+      "writeValue": "1",
+      "nextState": null,
+      "direction": null
+    }
+  ]
+}

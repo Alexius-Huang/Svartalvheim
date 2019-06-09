@@ -1,3 +1,15 @@
+@mixin btn-reset
+  padding: 0
+  margin: 0
+  display: inline-block
+  background-color: #222
+  color: white
+  border: 0pt
+  font-size: 12pt
+  font-family: $base-font-family
+  &:active
+    outline: none
+
 @mixin vertical-align
   > *
     display: inline-block
@@ -23,6 +35,8 @@
       border-left: 10pt solid $yellow-500
 
 @mixin triangle($direction, $size, $height, $color: $yellow-500)
+  width: 0
+  height: 0
   @if $direction == 'left'
     border-top: $size solid transparent
     border-bottom: $size solid transparent
