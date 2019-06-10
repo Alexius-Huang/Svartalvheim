@@ -3,14 +3,38 @@
   "initialState": "START",
   "initialPosition": 8,
   "availableStates": [
-    "START",
-    "RECORD",
-    "WRITE_ZERO",
-    "WRITE_ONE",
-    "TRANSFER_ZERO",
-    "TRANSFER_ONE",
-    "ROTATE_ZERO",
-    "ROTATE_ONE"
+    {
+      "name": "START",
+      "description": "Initial state of the program."
+    },
+    {
+      "name": "RECORD",
+      "description": "Record the first value and transfer to corresponding state."
+    },
+    {
+      "name": "WRITE_ZERO",
+      "description": "Write the value '0' in this cell and record current value."
+    },
+    {
+      "name": "WRITE_ONE",
+      "description": "Write the value '1' in this cell and record current value."
+    },
+    {
+      "name": "TRANSFER_ZERO",
+      "description": "Value '0' being recorded and move back to the right-most position."
+    },
+    {
+      "name": "TRANSFER_ONE",
+      "description": "Value '1' being recorded and move back to the right-most position."
+    },
+    {
+      "name": "ROTATE_ZERO",
+      "description": "Place the value '0' in the right-most cell which contains digits."
+    },
+    {
+      "name": "ROTATE_ONE",
+      "description": "Place the value '1' in the right-most cell which contains digits."
+    }
   ],
   "availableValues": [
     "*",

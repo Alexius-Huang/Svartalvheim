@@ -7,7 +7,18 @@
   border: 0pt
   font-size: 12pt
   font-family: $base-font-family
-  &:active
+  &:focus
+    outline: none
+
+@mixin input-text-reset
+  background-color: transparent
+  border: none
+  margin: 0
+  padding: 0
+  font-family: $default-font-family
+  color: white
+  display: inline-block
+  &:focus
     outline: none
 
 @mixin vertical-align

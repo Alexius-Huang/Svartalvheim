@@ -24,13 +24,22 @@
           class="row"
           :class="{ active: matchedRuleIndex === i }"
         >
-          <span>{{ state }}</span><!--
-        --><span :class="{ 'use-base-font': !isNull(currentValue) }">
+          <span :title="stateDescriptions.get(state)">{{ state }}</span><!--
+       --><span
+            class="value-font"
+            :class="{ unavailable: !isNull(currentValue) && !availableValues.has(currentValue) }"
+          >
             {{ isNull(currentValue) ? 'Any' : currentValue }}
           </span><!--
-        --><span class="use-base-font">{{ writeValue }}</span><!--
-        --><span>{{ isNull(direction) ? 'No Move' : direction }}</span><!--
-        --><span :class="{ highlight: isNull(nextState) }">
+       --><span
+            class="value-font"
+            :class="{ unavailable: !isNull(writeValue) && !availableValues.has(writeValue) }"
+          >{{ writeValue }}</span><!--
+       --><span>{{ isNull(direction) ? 'No Move' : direction }}</span><!--
+       --><span
+            :title="stateDescriptions.get(nextState)"
+            :class="{ highlight: isNull(nextState) }"
+          >
             {{ isNull(nextState) ? 'HALT' : nextState }}
           </span>
         </div>
@@ -41,7 +50,15 @@
 
 <script>
 export default {
-  props: ['rules', 'matchedRuleIndex', 'isNull'],
+  props: [
+    'rules',
+    'matchedRuleIndex',
+    'stateDescriptions',
+    'availableValues',
+  ],
+  methods: {
+    isNull(value) { return value === null; },
+  },
 };
 </script>
 
@@ -54,7 +71,6 @@ div.rules
   width: 100%
   margin-top: 20pt
   padding-left: 20pt
-  padding-bottom: 96pt
   > h3
     color: white
     font-family: $base-font-family
@@ -89,8 +105,17 @@ div.rules
           display: inline-block
           font-size: 12pt
 
-          &.use-base-font
-            font-family: $base-font-family
+          &:hover
+            color: $yellow-600
+            text-decoration: underline
+            text-decoration-style: dotted
+
+          &.value-font
+            font-family: $default-font-family
+            font-weight: 500
+
+          &.unavailable
+            color: $red-500
 
           &.highlight
             color: $yellow-500

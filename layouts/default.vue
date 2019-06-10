@@ -24,9 +24,10 @@ export default {
 
 <style lang="sass">
 @import '../sass/colors.sass'
+@import '../sass/shared.sass'
 
 html
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+  font-family: $default-font-family
   font-size: 16pt
   font-weight: 100
   word-spacing: 1pt

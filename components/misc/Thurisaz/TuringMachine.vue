@@ -33,21 +33,27 @@
     <rules
       :rules="rules"
       :matched-rule-index="matchedRuleIndex"
-      :isNull="isNull"
+      :state-descriptions="stateDescriptions"
+      :available-values="availableValues"
     />
 
-    <div class="advanced-config">
-      <div class="available-states">
-      </div>
-
-      <div class="available-values">
-      </div>
-    </div>
+    <advanced-config
+      ref="advancedConfig"
+      :execute-state="executeState"
+      :available-values="availableValues"
+      :available-states="availableStates"
+      :state-descriptions="stateDescriptions"
+      @edit="executeState = Execute.EDITING"
+      @edit-complete="executeState = Execute.READY"
+      @append-available-value="handleAppendAvailableValue"
+      @delete-available-value="handleDeleteAvailableValue"
+    />
   </section>
 </template>
 
 <script>
 import Rules from './turing-machine/Rules';
+import AdvancedConfig from './turing-machine/AdvancedConfig';
 import example from './turing-machine/example.json';
 
 const {
@@ -55,9 +61,18 @@ const {
   initialPosition,
   initialState,
   rules,
-  availableStates,
-  availableValues,
+  availableStates: _AS,
+  availableValues: _AV,
 } = example;
+
+const availableValues = new Set(_AV);
+const availableStates = _AS.map(({ name }) => name);
+const stateDescriptions = _AS.reduce(
+  (acc, { name, description }) => acc.set(name, description),
+  new Map([
+    [null, 'Ending of the program.'],
+  ]),
+);
 
 const Execute = {
   READY: 1,
@@ -65,10 +80,11 @@ const Execute = {
   PAUSE: 3,
   HALT: 4,
   ERROR: 5,
+  EDITING: 6,
 };
 
 export default {
-  components: { Rules },
+  components: { Rules, AdvancedConfig },
   data() {
     return {
       Execute,
@@ -78,6 +94,7 @@ export default {
       initialState,
       availableStates,
       availableValues,
+      stateDescriptions,
       rules,
 
       position: null,
@@ -93,38 +110,47 @@ export default {
       const { executeState } = this;
 
       return (
-        (executeState === Execute.READY     && 'Run')      ||
-        (executeState === Execute.EXECUTING && 'Pause')    ||
-        (executeState === Execute.PAUSE     && 'Continue') ||
-        (executeState === Execute.HALT      && 'Reset')    ||
-        (executeState === Execute.ERROR     && 'Reset')
+        (executeState === Execute.READY     && 'Run')        ||
+        (executeState === Execute.EXECUTING && 'Pause')      ||
+        (executeState === Execute.PAUSE     && 'Continue')   ||
+        (executeState === Execute.HALT      && 'Reset')      ||
+        (executeState === Execute.ERROR     && 'Reset')      ||
+        (executeState === Execute.EDITING   && 'Done & Run')
       );
     },
   },
   methods: {
     isNull(value) { return value === null; },
+
     handleControlBtn() {
-      if (this.executeState === Execute.READY) {
+      const { executeState: s } = this;
+
+      if (
+        s === Execute.READY   ||
+        s === Execute.EDITING
+      ) {
         this.executeState = Execute.EXECUTING;
         this.execute();
-      } else if (this.executeState === Execute.EXECUTING) {
+      } else if (s === Execute.EXECUTING) {
         window.clearTimeout(this.stepTimeoutObject);
         this.stepTimeoutObject = null;
         this.executeState = Execute.PAUSE;
-      } else if (this.executeState === Execute.PAUSE) {
+      } else if (s === Execute.PAUSE) {
         this.stepTimeoutObject = window.setTimeout(() => {
           this.nextStep();
         }, this.delay);
         this.executeState = Execute.EXECUTING;
       } else if (
-        this.executeState === Execute.HALT  ||
-        this.executeState === Execute.ERROR
+        s === Execute.HALT  ||
+        s === Execute.ERROR
       ) {
         this.executeState = Execute.READY;
         this.cells = this.initialCells;
         this.position = null;
         this.state = null;
         this.matchedRuleIndex = NaN;
+      } else {
+        console.error(`Unregistered state: ${this.executeState}`);
       }
     },
     execute() {
@@ -196,6 +222,15 @@ export default {
         this.nextStep();
       }, this.delay);
     },
+
+    handleAppendAvailableValue(input) {
+      this.availableValues = new Set([...this.availableValues, input]);
+    },
+    handleDeleteAvailableValue(input) {
+      const { availableValues: a } = this;
+      a.delete(input);
+      this.availableValues = new Set([...a]);
+    },
   },
 };
 </script>
@@ -233,7 +268,8 @@ section.turing-machine
       height: $cell-size
       border: 1pt solid $yellow-500
       color: white
-      font-family: $base-font-family
+      font-family: $default-font-family
+      font-weight: 500
       transition: color background-color .25s
       + span.cell
         margin-left: 5pt
@@ -280,7 +316,7 @@ section.turing-machine
     > button.control-btn
       @include btn-reset
       border: 0pt solid #222
-      width: 50pt
+      width: 100pt
       height: 30pt
       line-height: 30pt
       border-radius: 2.5pt
