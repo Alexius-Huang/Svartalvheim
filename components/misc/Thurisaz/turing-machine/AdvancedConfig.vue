@@ -6,7 +6,7 @@
         <button
           v-if="!availableValuesEditing"
           class="edit-btn"
-          :disabled="executeState !== Execute.READY"
+          :disabled="executeState !== Execute.READY && executeState !== Execute.EDITING"
           @click="handleEditAvailableValues"
         >{{ editBtnText }}</button>
 
@@ -28,7 +28,7 @@
      --><li
           v-if="availableValuesEditing && !newAvailableValueAdding"
           class="add-value"
-          @click="handleActivateInputField"
+          @click="handleActivateValueInputField"
         >+</li><!--
      --><li
           v-if="availableValuesEditing && newAvailableValueAdding"
@@ -49,19 +49,56 @@
       <h3>
         Available States
         <button
+          v-if="!availableStatesEditing"
           class="edit-btn"
           :disabled="executeState !== Execute.READY && executeState !== Execute.EDITING"
           @click="handleEditAvailableStates"
         >{{ editBtnText }}</button>
+
+        <button
+          v-else
+          class="complete-btn"
+          @click="handleEditComplete"
+        >Done</button>
       </h3>
       <ul>
-        <li v-for="s in availableStates" :key="s">
-          <span class="title">{{ s }}</span><!--
-        --><span class="description">{{ stateDescriptions.get(s) }}</span>
+        <li v-for="s in Array.from(availableStates)" :key="s">
+          <button
+            v-if="availableStatesEditing"
+            class="delete-btn"
+            @click="handleDeleteAvailableState(s)"
+          >X</button><!--
+       --><span class="name">{{ s }}</span><!--
+       --><span class="description">{{ stateDescriptions.get(s) }}</span>
         </li><!--
-      --><li>
-          <span class="title highlight">HALT</span><!--
-        --><span class="description">End of the program.</span>
+     --><li>
+          <span class="name highlight">HALT</span><!--
+       --><span class="description">End of the program.</span>
+        </li><!--
+     --><li
+          v-if="availableStatesEditing && !newAvailableStateAdding"
+          class="add-state"
+          @click="handleActivateStateInputField"
+        >
+          + Add New State
+        </li><!--
+     --><li
+          v-if="availableStatesEditing && newAvailableStateAdding"
+          class="add-state"
+        >
+          <input
+            class="add-state-name-field"
+            ref="availableStateNameInput"
+            placeholder="State Name"
+            type="text"
+            v-model="newAvailableStateInput.name"
+          /><!--
+       --><input
+            class="add-state-description-field"
+            placeholder="State Description"
+            type="text"
+            v-model="newAvailableStateInput.description"
+          />
         </li>
       </ul>
     </div>
@@ -89,10 +126,18 @@ export default {
   ],
   data() {
     return {
+      keypressEvent: null,
+
       Execute,
       availableValuesEditing: false,
+      availableStatesEditing: false,
       newAvailableValueAdding: false,
       newAvailableValueInput: '',
+      newAvailableStateAdding: false,
+      newAvailableStateInput: {
+        name: '',
+        description: '',
+      },
     };
   },
   computed: {
@@ -107,13 +152,27 @@ export default {
     handleEditAvailableValues() {
       this.$emit('edit');
       this.availableValuesEditing = true;
+      this.availableStatesEditing = false;
     },
-    handleActivateInputField() {
+    handleEditAvailableStates() {
+      this.$emit('edit');
+      this.availableStatesEditing = true;
+      this.availableValuesEditing = false;
+    },
+
+    handleActivateValueInputField() {
       this.newAvailableValueAdding = true;
       window.setImmediate(() => {
         this.$refs.availableValueInput.focus();
       });
     },
+    handleActivateStateInputField() {
+      this.newAvailableStateAdding = true;
+      window.setImmediate(() => {
+        this.$refs.availableStateNameInput.focus();
+      });
+    },
+
     handleValidateAvailableValueInput() {
       const {
         availableValues,
@@ -132,19 +191,59 @@ export default {
     handleDeleteAvailableValue(input) {
       this.$emit('delete-available-value', input);
     },
-    handleEditAvailableStates() {},
+
+    handleNewAvailableStateEnterKeypress() {
+      const {
+        newAvailableStateAdding: adding,
+        newAvailableStateInput: input
+      } = this;
+
+      const { name: n, description: d } = input;
+      const name = n.trim();
+      const description = d.trim();
+
+      if (adding && !!name && !!description) {
+        this.$emit('append-available-state', { name, description });
+        this.newAvailableStateInput = { name: '', description: '' };
+      }
+    },
+    handleDeleteAvailableState(input) {
+      this.$emit('delete-available-state', input);
+    },
+
     handleEditComplete() {
       this.$emit('edit-complete');
+      this.resetFlagsAndInputs();
+    },
+    resetFlagsAndInputs() {
       this.availableValuesEditing = false;
+      this.newAvailableValueAdding = false;
+      this.newAvailableValueInput = '';
+      this.availableStatesEditing = false;
+      this.newAvailableStateAdding = false;
+      this.newAvailableStateInput = { name: '', description: '' };
     },
   },
   watch: {
     executeState() {
       const { executeState: s } = this;
       if (s !== Execute.EDITING) {
-        this.availableValuesEditing = false;
+        this.resetFlagsAndInputs();
       }
     },
+  },
+
+  mounted() {
+    this.keypressEvent = window.addEventListener('keypress', (e) => {
+      const { keyCode: k } = e;
+
+      if (k === 13) /* ENTER Key */ {
+        this.handleNewAvailableStateEnterKeypress();
+      }
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener('keypress', this.keypressEvent);
   },
 };
 </script>
@@ -199,27 +298,75 @@ div.advanced-config
           border-color: transparentize($yellow-500, 0.75)
           transition: .25s
 
+      > button.complete-btn
+        color: #222
+        background-color: $yellow-500
+
     > ul
       > li
         font-family: $base-font-family
         font-size: 12pt
 
     &.available-states > ul > li
+      position: relative
+      > button.delete-btn
+        @include btn-reset
+        position: absolute
+        width: 18pt
+        height: 18pt
+        left: -20pt
+        top: 0
+        color: $yellow-500
+        font-size: 14pt
+        line-height: 18pt
+        font-family: $base-font-family
+        transition: .25s
+        &:hover
+          width: 24pt
+          height: 24pt
+          font-size: 16pt
+          left: -24pt
+          top: -3pt
+          transition: .25s
+          color: $red-500
       > span
+        font-family: $default-font-family
         display: inline-block
         font-size: 12pt
         color: white
         height: 18pt
         line-height: 18pt
-        &.title
-          font-family: $base-font-family
+        &.name
+          font-weight: 500
           width: 100pt
         &.description
-          font-family: $default-font-family
           width: calc(100% - 100pt)
           letter-spacing: .25pt
         &.highlight
           color: $yellow-500
+
+      &.add-state
+        font-size: 14pt
+        height: 18pt
+        line-height: 18pt
+        color: $yellow-500
+
+        > input[type="text"]
+          @include input-text-reset
+          color: white
+          border-bottom: 1pt solid $yellow-500
+          font-size: 12pt
+          height: 18pt
+          line-height: 18pt
+          font-family: $default-font-family
+
+          &.add-state-name-field
+            width: 100pt
+          &.add-state-description-field
+            width: calc(100% - 100pt)
+
+          &:focus
+            border-bottom-width: 2pt
 
     &.available-values > ul > li
       vertical-align: top

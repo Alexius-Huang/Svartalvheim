@@ -34,6 +34,7 @@
       :rules="rules"
       :matched-rule-index="matchedRuleIndex"
       :state-descriptions="stateDescriptions"
+      :available-states="availableStates"
       :available-values="availableValues"
     />
 
@@ -47,6 +48,8 @@
       @edit-complete="executeState = Execute.READY"
       @append-available-value="handleAppendAvailableValue"
       @delete-available-value="handleDeleteAvailableValue"
+      @append-available-state="handleAppendAvailableState"
+      @delete-available-state="handleDeleteAvailableState"
     />
   </section>
 </template>
@@ -66,7 +69,7 @@ const {
 } = example;
 
 const availableValues = new Set(_AV);
-const availableStates = _AS.map(({ name }) => name);
+const availableStates = new Set(_AS.map(({ name }) => name));
 const stateDescriptions = _AS.reduce(
   (acc, { name, description }) => acc.set(name, description),
   new Map([
@@ -226,10 +229,27 @@ export default {
     handleAppendAvailableValue(input) {
       this.availableValues = new Set([...this.availableValues, input]);
     },
+    handleAppendAvailableState(input) {
+      const { name, description } = input;
+      const { availableStates: _AS, stateDescriptions: _SD } = this;
+      _AS.add(name);
+      _SD.set(name, description);
+
+      this.availableStates = new Set([..._AS]);
+      this.stateDescriptions = new Map(_SD);
+    },
     handleDeleteAvailableValue(input) {
-      const { availableValues: a } = this;
-      a.delete(input);
-      this.availableValues = new Set([...a]);
+      const { availableValues: av } = this;
+      av.delete(input);
+      this.availableValues = new Set([...av]);
+    },
+    handleDeleteAvailableState(input) {
+      const { availableStates: as, stateDescriptions: sd } = this;
+      as.delete(input);
+      sd.delete(input);
+
+      this.availableStates = new Set([...as]);
+      this.stateDescriptions = new Map(sd);
     },
   },
 };

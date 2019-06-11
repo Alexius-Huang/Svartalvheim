@@ -34,6 +34,10 @@
     {
       "name": "ROTATE_ONE",
       "description": "Place the value '1' in the right-most cell which contains digits."
+    },
+    {
+      "name": "RESET",
+      "description": "Place the pointer back to its initial position."
     }
   ],
   "availableValues": [
@@ -151,13 +155,34 @@
       "state": "ROTATE_ZERO",
       "currentValue": null,
       "writeValue": "0",
-      "nextState": null,
-      "direction": null
+      "nextState": "RESET",
+      "direction": "RIGHT"
     },
     {
       "state": "ROTATE_ONE",
       "currentValue": null,
       "writeValue": "1",
+      "nextState": "RESET",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "RESET",
+      "currentValue": "1",
+      "writeValue": "1",
+      "nextState": "RESET",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "RESET",
+      "currentValue": "0",
+      "writeValue": "0",
+      "nextState": "RESET",
+      "direction": "RIGHT"
+    },
+    {
+      "state": "RESET",
+      "currentValue": "*",
+      "writeValue": "*",
       "nextState": null,
       "direction": null
     }

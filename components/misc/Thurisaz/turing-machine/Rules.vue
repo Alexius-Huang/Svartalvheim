@@ -5,10 +5,10 @@
     <div class="rule-table">
       <div class="thead">
         <span>Current State</span><!--
-      --><span>Current Cell Content</span><!--
-      --><span>Value to Write</span><!--
-      --><span>Direction to Move</span><!--
-      --><span>New State</span>
+     --><span>Current Cell Content</span><!--
+     --><span>Value to Write</span><!--
+     --><span>Direction to Move</span><!--
+     --><span>New State</span>
       </div>
 
       <div class="tbody">
@@ -24,7 +24,10 @@
           class="row"
           :class="{ active: matchedRuleIndex === i }"
         >
-          <span :title="stateDescriptions.get(state)">{{ state }}</span><!--
+          <span 
+            :class="{ unavailable: !isNull(state) && !availableStates.has(state) }"
+            :title="stateDescriptions.get(state)"
+          >{{ state }}</span><!--
        --><span
             class="value-font"
             :class="{ unavailable: !isNull(currentValue) && !availableValues.has(currentValue) }"
@@ -38,7 +41,10 @@
        --><span>{{ isNull(direction) ? 'No Move' : direction }}</span><!--
        --><span
             :title="stateDescriptions.get(nextState)"
-            :class="{ highlight: isNull(nextState) }"
+            :class="{
+              highlight: isNull(nextState),
+              unavailable: !isNull(nextState) && !availableStates.has(nextState),
+            }"
           >
             {{ isNull(nextState) ? 'HALT' : nextState }}
           </span>
@@ -54,6 +60,7 @@ export default {
     'rules',
     'matchedRuleIndex',
     'stateDescriptions',
+    'availableStates',
     'availableValues',
   ],
   methods: {
