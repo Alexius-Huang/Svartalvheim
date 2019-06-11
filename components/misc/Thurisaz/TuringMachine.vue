@@ -40,7 +40,7 @@
       :available-values="availableValues"
       @edit="handleEditRules"
       @edit-complete="executeState = Execute.READY"
-      @change-current-state="handleRuleCurrentStateChange"
+      @change="handleRuleChange"
       @delete-rule="handleDeleteRule"
     />
 
@@ -241,11 +241,11 @@ export default {
       this.$refs.rules.resetFlagsAndInputs();
     },
 
-    handleRuleCurrentStateChange(params) {
-      const { index, state } = params;
+    handleRuleChange(params) {
+      const { key, index, value } = params;
       const { rules } = this;
 
-      rules[index].state = state;
+      rules[index][key] = value;
       this.rules = [...rules];
     },
 

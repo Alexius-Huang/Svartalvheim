@@ -44,47 +44,110 @@
             @click="handleDeleteRule(i)"
           >X</button><!--
        --><label
+            ref="current-state-label"
             tabindex="1"
             :class="{ unavailable: !isNull(state) && !availableStates.has(state) }"
             :title="stateDescriptions.get(state)"
             @blur="handleUncheckToggler('current-state-toggler', i)"
           >
             <span>{{ state }}</span>
-            <template v-if="editing">
 
+            <template v-if="editing">
             <input type="checkbox" ref="current-state-toggler" />
             <ul class="dropdown">
               <li
                 v-for="s in Array.from(availableStates)"
                 :key="s"
+                :class="{ highlight: s === state }"
                 @click="handleChangeCurrentState(i, s)"
               >{{ s }}</li>
             </ul>
-
             </template>
           </label><!--
        --><label
+            ref="current-value-label"
             tabindex="1"
             class="value-font"
             :class="{ unavailable: !isNull(currentValue) && !availableValues.has(currentValue) }"
+            @blur="handleUncheckToggler('current-value-toggler', i)"
           >
             <span>{{ isNull(currentValue) ? 'Any' : currentValue }}</span>
+
+            <template v-if="editing">
+            <input type="checkbox" ref="current-value-toggler" />
+            <ul class="dropdown">
+              <li
+                v-for="v in Array.from(availableValues)"
+                :key="v"
+                :class="{ highlight: v === currentValue }"
+                @click="handleChangeCurrentValue(i, v)"
+              >{{ v }}</li>
+            </ul>
+            </template>
           </label><!--
        --><label
+            ref="write-value-label"
             tabindex="1"
             class="value-font"
             :class="{ unavailable: !isNull(writeValue) && !availableValues.has(writeValue) }"
-          ><span>{{ writeValue }}</span></label><!--
-       --><label tabindex="1"><span>{{ isNull(direction) ? 'No Move' : direction }}</span></label><!--
+            @blur="handleUncheckToggler('write-value-toggler', i)"
+          >
+            <span>{{ writeValue }}</span>
+
+            <template v-if="editing">
+            <input type="checkbox" ref="write-value-toggler" />
+            <ul class="dropdown">
+              <li
+                v-for="v in Array.from(availableValues)"
+                :key="v"
+                :class="{ highlight: v === currentValue }"
+                @click="handleChangeWriteValue(i, v)"
+              >{{ v }}</li>
+            </ul>
+            </template>
+          </label><!--
        --><label
+            ref="direction-label"
+            tabindex="1"
+            @blur="handleUncheckToggler('direction-toggler', i)"
+          >
+            <span>{{ isNull(direction) ? 'No Move' : direction }}</span>
+
+            <template v-if="editing">
+            <input type="checkbox" ref="direction-toggler" />
+            <ul class="dropdown">
+              <li
+                v-for="d in ['LEFT', 'RIGHT']"
+                :key="d"
+                :class="{ highlight: d === direction }"
+                @click="handleChangeDirection(i, d)"
+              >{{ d }}</li>
+            </ul>
+            </template>
+          </label><!--
+       --><label
+            ref="next-state-label"
             tabindex="1"
             :title="stateDescriptions.get(nextState)"
             :class="{
               highlight: isNull(nextState),
               unavailable: !isNull(nextState) && !availableStates.has(nextState),
             }"
+            @blur="handleUncheckToggler('next-state-toggler', i)"
           >
             <span>{{ isNull(nextState) ? 'HALT' : nextState }}</span>
+          
+            <template v-if="editing">
+            <input type="checkbox" ref="next-state-toggler" />
+            <ul class="dropdown">
+              <li
+                v-for="s in Array.from(availableStates)"
+                :key="s"
+                :class="{ highlight: s === nextState }"
+                @click="handleChangeNextState(i, s)"
+              >{{ s }}</li>
+            </ul>
+            </template>
           </label>
         </div>
       </div>
@@ -140,9 +203,33 @@ export default {
         }
       }
     },
+
     handleChangeCurrentState(index, state) {
-      this.$emit('change-current-state', { index, state });
+      this.$emit('change', { key: 'state', index, value: state });
+      this.$refs['current-value-label'][index].click();
     },
+    handleChangeCurrentValue(index, value) {
+      this.$emit('change', { key: 'currentValue', index, value });
+      this.$refs['write-value-label'][index].click();
+    },
+    handleChangeWriteValue(index, value) {
+      this.$emit('change', { key: 'writeValue', index, value });
+      this.$refs['direction-label'][index].click();
+    },
+    handleChangeDirection(index, direction) {
+      this.$emit('change', { key: 'direction', index, value: direction })
+      this.$refs['next-state-label'][index].click();
+    },
+    handleChangeNextState(index, state) {
+      this.$emit('change', { key: 'nextState', index, value: state });
+      const $el = this.$refs['current-state-label'][index + 1];
+      if ($el) {
+        $el.click();
+      } else {
+        /* New Rule */
+      }
+    },
+
     handleDeleteRule(index) {
       this.$emit('delete-rule', index);
     },
@@ -301,6 +388,10 @@ div.rules
               padding: 0 10pt
               &:hover
                 background-color: #444
+
+              &.highlight
+                color: $yellow-500
+                font-style: italic
 
           > input[type="checkbox"]:not(:checked) + ul
             display: none
