@@ -31,11 +31,17 @@
     </div>
 
     <rules
+      ref="rules"
       :rules="rules"
+      :execute-state="executeState"
       :matched-rule-index="matchedRuleIndex"
       :state-descriptions="stateDescriptions"
       :available-states="availableStates"
       :available-values="availableValues"
+      @edit="handleEditRules"
+      @edit-complete="executeState = Execute.READY"
+      @change-current-state="handleRuleCurrentStateChange"
+      @delete-rule="handleDeleteRule"
     />
 
     <advanced-config
@@ -44,7 +50,7 @@
       :available-values="availableValues"
       :available-states="availableStates"
       :state-descriptions="stateDescriptions"
-      @edit="executeState = Execute.EDITING"
+      @edit="handleEditConfig"
       @edit-complete="executeState = Execute.READY"
       @append-available-value="handleAppendAvailableValue"
       @delete-available-value="handleDeleteAvailableValue"
@@ -226,6 +232,23 @@ export default {
       }, this.delay);
     },
 
+    handleEditRules() {
+      this.executeState = Execute.EDITING;
+      this.$refs.advancedConfig.resetFlagsAndInputs();
+    },
+    handleEditConfig() {
+      this.executeState = Execute.EDITING;
+      this.$refs.rules.resetFlagsAndInputs();
+    },
+
+    handleRuleCurrentStateChange(params) {
+      const { index, state } = params;
+      const { rules } = this;
+
+      rules[index].state = state;
+      this.rules = [...rules];
+    },
+
     handleAppendAvailableValue(input) {
       this.availableValues = new Set([...this.availableValues, input]);
     },
@@ -237,6 +260,11 @@ export default {
 
       this.availableStates = new Set([..._AS]);
       this.stateDescriptions = new Map(_SD);
+    },
+    handleDeleteRule(index) {
+      const { rules: r } = this;
+      r.splice(index, 1);
+      this.rules = [...r];
     },
     handleDeleteAvailableValue(input) {
       const { availableValues: av } = this;
