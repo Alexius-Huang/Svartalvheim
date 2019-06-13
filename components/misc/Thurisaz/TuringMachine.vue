@@ -42,6 +42,7 @@
       @edit-complete="executeState = Execute.READY"
       @change="handleRuleChange"
       @delete-rule="handleDeleteRule"
+      @append-new-rule-empty="handleAppendNewRuleEmpty"
     />
 
     <advanced-config
@@ -261,6 +262,20 @@ export default {
       this.availableStates = new Set([..._AS]);
       this.stateDescriptions = new Map(_SD);
     },
+    handleAppendNewRuleEmpty() {
+      const { rules } = this;
+      this.rules = [
+        ...rules,
+        {
+          state: undefined,
+          currentValue: undefined,
+          writeValue: undefined,
+          nextState: undefined,
+          direction: undefined,
+        },
+      ];
+    },
+
     handleDeleteRule(index) {
       const { rules: r } = this;
       r.splice(index, 1);

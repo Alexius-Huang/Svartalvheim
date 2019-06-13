@@ -50,7 +50,7 @@
             :title="stateDescriptions.get(state)"
             @blur="handleUncheckToggler('current-state-toggler', i)"
           >
-            <span>{{ state }}</span>
+            <span>{{ isUndefined(state) ? 'Undefined' : state }}</span>
 
             <template v-if="editing">
             <input type="checkbox" ref="current-state-toggler" />
@@ -71,16 +71,21 @@
             :class="{ unavailable: !isNull(currentValue) && !availableValues.has(currentValue) }"
             @blur="handleUncheckToggler('current-value-toggler', i)"
           >
-            <span>{{ isNull(currentValue) ? 'Any' : currentValue }}</span>
+            <span>
+              {{
+                isNull(currentValue) ? 'Ignored' :
+                isUndefined(currentValue) ? 'Undefined' : currentValue
+              }}
+            </span>
 
             <template v-if="editing">
             <input type="checkbox" ref="current-value-toggler" />
             <ul class="dropdown">
               <li
-                v-for="v in Array.from(availableValues)"
+                v-for="v in [...Array.from(availableValues), 'Ignored']"
                 :key="v"
-                :class="{ highlight: v === currentValue }"
-                @click="handleChangeCurrentValue(i, v)"
+                :class="{ highlight: v === currentValue || (v === 'Ignored' && isNull(currentValue)) }"
+                @click="handleChangeCurrentValue(i, v === 'Ignored' ? null : v)"
               >{{ v }}</li>
             </ul>
             </template>
@@ -92,7 +97,7 @@
             :class="{ unavailable: !isNull(writeValue) && !availableValues.has(writeValue) }"
             @blur="handleUncheckToggler('write-value-toggler', i)"
           >
-            <span>{{ writeValue }}</span>
+            <span>{{ isUndefined(writeValue) ? 'Undefined' : writeValue }}</span>
 
             <template v-if="editing">
             <input type="checkbox" ref="write-value-toggler" />
@@ -109,18 +114,24 @@
        --><label
             ref="direction-label"
             tabindex="1"
+            :class="{ unavailable: isUndefined(direction) }"
             @blur="handleUncheckToggler('direction-toggler', i)"
           >
-            <span>{{ isNull(direction) ? 'No Move' : direction }}</span>
+            <span>
+              {{
+                isNull(direction) ? 'No Move' :
+                isUndefined(direction) ? 'Undefined' : direction
+              }}
+            </span>
 
             <template v-if="editing">
             <input type="checkbox" ref="direction-toggler" />
             <ul class="dropdown">
               <li
-                v-for="d in ['LEFT', 'RIGHT']"
+                v-for="d in ['LEFT', 'RIGHT', 'No Move']"
                 :key="d"
-                :class="{ highlight: d === direction }"
-                @click="handleChangeDirection(i, d)"
+                :class="{ highlight: d === direction || (d === 'No Move' && isNull(direction)) }"
+                @click="handleChangeDirection(i, d === 'No Move' ? null : d)"
               >{{ d }}</li>
             </ul>
             </template>
@@ -135,21 +146,32 @@
             }"
             @blur="handleUncheckToggler('next-state-toggler', i)"
           >
-            <span>{{ isNull(nextState) ? 'HALT' : nextState }}</span>
+            <span>
+              {{
+                isNull(nextState) ? 'HALT' :
+                isUndefined(nextState) ? 'Undefined' : nextState
+              }}
+            </span>
           
             <template v-if="editing">
             <input type="checkbox" ref="next-state-toggler" />
             <ul class="dropdown">
               <li
-                v-for="s in Array.from(availableStates)"
+                v-for="s in [...Array.from(availableStates), 'HALT']"
                 :key="s"
-                :class="{ highlight: s === nextState }"
-                @click="handleChangeNextState(i, s)"
+                :class="{ highlight: s === nextState || (s === 'HALT' && isNull(nextState)) }"
+                @click="handleChangeNextState(i, s === 'HALT' ? null : s)"
               >{{ s }}</li>
             </ul>
             </template>
           </label>
         </div>
+
+        <button
+          v-if="executeState === Execute.EDITING"
+          class="add-rule-btn"
+          @click="handleAddEmptyNewRuleField"
+        >+ Add New Rule</button>
       </div>
     </div>
   </div>
@@ -190,6 +212,7 @@ export default {
   },
   methods: {
     isNull(value) { return value === null; },
+    isUndefined(value) { return value === undefined; },
     handleRulesEdit() {
       this.$emit('edit');
       this.editing = true;
@@ -206,28 +229,61 @@ export default {
 
     handleChangeCurrentState(index, state) {
       this.$emit('change', { key: 'state', index, value: state });
-      this.$refs['current-value-label'][index].click();
+      const $el = this.$refs['current-value-label'][index];
+      window.setImmediate(() => {
+        $el.focus();
+        $el.click();
+      });
     },
     handleChangeCurrentValue(index, value) {
       this.$emit('change', { key: 'currentValue', index, value });
-      this.$refs['write-value-label'][index].click();
+      const $el = this.$refs['write-value-label'][index];
+      window.setImmediate(() => {
+        $el.focus();
+        $el.click();
+      });
     },
     handleChangeWriteValue(index, value) {
       this.$emit('change', { key: 'writeValue', index, value });
-      this.$refs['direction-label'][index].click();
+      const $el = this.$refs['direction-label'][index];
+      window.setImmediate(() => {
+        $el.focus();
+        $el.click();
+      });
     },
     handleChangeDirection(index, direction) {
       this.$emit('change', { key: 'direction', index, value: direction })
-      this.$refs['next-state-label'][index].click();
+      const $el = this.$refs['next-state-label'][index];
+      window.setImmediate(() => {
+        $el.focus();
+        $el.click();
+      });
     },
     handleChangeNextState(index, state) {
       this.$emit('change', { key: 'nextState', index, value: state });
       const $el = this.$refs['current-state-label'][index + 1];
       if ($el) {
-        $el.click();
+        window.setImmediate(() => {
+          $el.focus();
+          $el.click();
+        });
       } else {
-        /* New Rule */
+        this.handleAddEmptyNewRuleField();
       }
+    },
+
+    handleAddEmptyNewRuleField() {
+      this.$emit('append-new-rule-empty');
+
+      window.setImmediate(() => {
+        const { rules } = this;
+        const index = rules.length - 1;
+        const $el = this.$refs['current-state-label'][index];
+        if ($el) {
+          $el.focus();
+          $el.click();
+        }
+      });
     },
 
     handleDeleteRule(index) {
@@ -305,8 +361,18 @@ div.rules
         font-family: $base-font-family
         font-size: 14pt
         color: $yellow-500
+
+
     > div.tbody
       margin-top: 5pt
+      > button.add-rule-btn
+        @include btn-reset
+        margin-top: 10pt
+        font-size: 14pt
+        height: 18pt
+        line-height: 18pt
+        color: $yellow-500
+
       > div.row
         transition: background-color .25s
         position: relative
@@ -395,6 +461,5 @@ div.rules
 
           > input[type="checkbox"]:not(:checked) + ul
             display: none
-
 </style>
 
