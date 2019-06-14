@@ -126,7 +126,7 @@ export default {
   ],
   data() {
     return {
-      keypressEvent: null,
+      keydownEvent: null,
 
       Execute,
       availableValuesEditing: false,
@@ -234,16 +234,26 @@ export default {
   },
 
   mounted() {
-    this.keypressEvent = window.addEventListener('keypress', (e) => {
-      const { keyCode: k } = e;
+    this.keydownEvent = window.addEventListener('keydown', (e) => {
+      if (this.availableValuesEditing) {
+        const { keyCode: k } = e;
 
-      if (k === 13) /* ENTER Key */ {
-        this.handleNewAvailableStateEnterKeypress();
+        if (k === 13) /* ENTER Key */ {
+          this.handleNewAvailableStateEnterKeypress();
+        } else if (k === 8) /* DELETE Key */ {
+          const { availableValues } = this;
+          if (availableValues.size === 1) {
+            return;
+          }
+
+          const arr = Array.from(availableValues);
+          this.handleDeleteAvailableValue(arr[arr.length - 1]);
+        }
       }
     });
   },
   beforeDestroy() {
-    window.removeEventListener('keypress', this.keypressEvent);
+    window.removeEventListener('keydown', this.keydownEvent);
   },
 };
 </script>

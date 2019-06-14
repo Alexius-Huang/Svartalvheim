@@ -61,6 +61,7 @@ const Execute = {
 export default {
   props: [
     'cells',
+    'initialCells',
     'executeState',
     'initialPosition',
     'position',
@@ -108,7 +109,7 @@ export default {
       const { value } = $el;
       const { cells } = this.inputs;
 
-      if (!this.availableValues.has(e.target.value)) {
+      if (!this.availableValues.has(value)) {
         cells[index] = '';
         this.inputs.cells = [...cells];
       } else {
@@ -117,7 +118,7 @@ export default {
         if ($nextEl) {
           $nextEl.focus();
         }
-        this.$emit('update-cells', cells);
+        this.$emit('update-cell', { index, value });
       }
     },
 
@@ -127,7 +128,6 @@ export default {
     },
     resetFlagsAndInputs() {
       this.editing = false;
-      this.inputs.cells = [...this.cells];
     },
   },
   watch: {

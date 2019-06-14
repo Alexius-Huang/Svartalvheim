@@ -6,12 +6,13 @@
       ref="tape"
       :initial-position="initialPosition"
       :position="position"
+      :initial-cells="initialCells"
       :cells="cells"
       :execute-state="executeState"
       :available-values="availableValues"
       @edit="handleEditCells"
       @edit-complete="executeState = Execute.READY"
-      @update-cells="handleUpdateCells"
+      @update-cell="handleUpdateCell"
     />
 
     <div class="control">
@@ -102,7 +103,7 @@ export default {
       position: null,
       state: null,
       executeState: Execute.READY,
-      delay: 1000,
+      delay: 67.66,
       stepTimeoutObject: null,
       matchedRuleIndex: NaN,
     };
@@ -275,8 +276,12 @@ export default {
       ];
     },
 
-    handleUpdateCells(cells) {
-      this.initialCells = cells;
+    handleUpdateCell(payload) {
+      const { index, value } = payload;
+      const { initialCells } = this;
+      initialCells[index] = value;
+      this.initialCells = [...initialCells];
+      this.cells = [...initialCells];
     },
 
     handleDeleteRule(index) {
