@@ -2,26 +2,17 @@
   <section class="turing-machine">
     <h2>Turing Machine</h2>
 
-    <div class="tape">
-      <span class="cell add-cell" />
-      <span
-        v-for="(cell, i) in cells"
-        class="cell"
-        :class="{
-          active: i === position,
-          error: executeState === Execute.ERROR,
-        }"
-        :key="i"
-      >
-        <span class="tag" v-if="i === initialPosition">
-          Initial Position
-        </span>
-        <span class="thumbtack" />
-
-        {{ cell }}
-      </span>
-      <span class="cell add-cell" />
-    </div>
+    <tape
+      ref="tape"
+      :initial-position="initialPosition"
+      :position="position"
+      :cells="cells"
+      :execute-state="executeState"
+      :available-values="availableValues"
+      @edit="handleEditCells"
+      @edit-complete="executeState = Execute.READY"
+      @update-cells="handleUpdateCells"
+    />
 
     <div class="control">
       <button
@@ -62,6 +53,7 @@
 </template>
 
 <script>
+import Tape from './turing-machine/Tape';
 import Rules from './turing-machine/Rules';
 import AdvancedConfig from './turing-machine/AdvancedConfig';
 import example from './turing-machine/example.json';
@@ -94,7 +86,7 @@ const Execute = {
 };
 
 export default {
-  components: { Rules, AdvancedConfig },
+  components: { Tape, Rules, AdvancedConfig },
   data() {
     return {
       Execute,
@@ -233,12 +225,19 @@ export default {
       }, this.delay);
     },
 
+    handleEditCells() {
+      this.executeState = Execute.EDITING;
+      this.$refs.rules.resetFlagsAndInputs();
+      this.$refs.advancedConfig.resetFlagsAndInputs();
+    },
     handleEditRules() {
       this.executeState = Execute.EDITING;
+      this.$refs.tape.resetFlagsAndInputs();
       this.$refs.advancedConfig.resetFlagsAndInputs();
     },
     handleEditConfig() {
       this.executeState = Execute.EDITING;
+      this.$refs.tape.resetFlagsAndInputs();
       this.$refs.rules.resetFlagsAndInputs();
     },
 
@@ -276,6 +275,10 @@ export default {
       ];
     },
 
+    handleUpdateCells(cells) {
+      this.initialCells = cells;
+    },
+
     handleDeleteRule(index) {
       const { rules: r } = this;
       r.splice(index, 1);
@@ -303,78 +306,14 @@ export default {
 @import '../../../sass/shared.sass'
 @import '../../../sass/helpers.sass'
 
-$cell-size: 50pt
-
 section.turing-machine
   > h2
     color: $yellow-500
     font-family: $base-font-family
     text-decoration: underline
 
-  > div.tape
-    margin-top: 25pt
-    width: 100%
-    height: 120pt
-    text-align: center
-    overflow-x: scroll
-    overflow-y: hidden
-    white-space: nowrap
-    > span.cell
-      position: relative
-      display: inline-block
-      vertical-align: top
-      border-radius: 2.5pt
-      font-size: 25pt
-      text-align: center
-      line-height: $cell-size
-      width: $cell-size
-      height: $cell-size
-      border: 1pt solid $yellow-500
-      color: white
-      font-family: $default-font-family
-      font-weight: 500
-      transition: color background-color .25s
-      + span.cell
-        margin-left: 5pt
-
-      &.add-cell
-        border-color: transparentize($yellow-500, 0.5)
-
-      > span.tag
-        position: absolute
-        white-space: normal
-        text-align: center
-        line-height: normal
-        bottom: -55pt
-        left: 0
-        display: block
-        width: $cell-size
-        height: 25pt
-        font-size: 10pt
-        font-family: $base-font-family
-        color: $yellow-500
- 
-      > span.thumbtack
-        position: absolute
-        display: none
-        left: calc(50% - 6pt)
-        bottom: -20pt
-        margin: auto 0
-
-      &.active > span.thumbtack
-        display: inline-block
-        @include triangle('top', 6pt, 9pt)
-      &.active
-        color: #222
-        background-color: $yellow-500
-        transition: .25s
-        &.error
-          background-color: $red-500
-          border-color: $red-500
-
   > div.control
     margin-top: 20pt
-    padding-right: 10pt
     text-align: right
     > button.control-btn
       @include btn-reset

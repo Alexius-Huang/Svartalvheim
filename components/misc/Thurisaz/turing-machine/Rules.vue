@@ -207,7 +207,7 @@ export default {
       return (
         this.executeState === Execute.READY   ||
         this.executeState === Execute.EDITING
-      ) ? 'Edit' : 'Cannot Edit While Running Program ...';
+      ) ? 'Edit' : 'Executing ...';
     },
   },
   methods: {

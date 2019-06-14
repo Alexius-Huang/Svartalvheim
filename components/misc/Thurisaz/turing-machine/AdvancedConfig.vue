@@ -145,7 +145,7 @@ export default {
       return (
         this.executeState === Execute.READY   ||
         this.executeState === Execute.EDITING
-      ) ? 'Edit' : 'Cannot Edit While Running Program ...';
+      ) ? 'Edit' : 'Executing ...';
     },
   },
   methods: {
@@ -252,16 +252,7 @@ export default {
 @import '../../../../sass/colors.sass'
 @import '../../../../sass/shared.sass'
 @import '../../../../sass/helpers.sass'
-
-@keyframes shaking
-  0%
-    transform: rotate(0deg)
-  5%
-    transform: rotate(10deg)
-  10%
-    transform: rotate(-10deg)
-  15%
-    transform: rotate(0deg)
+@import '../../../../sass/animation.sass'
 
 div.advanced-config
   box-sizing: border-box
