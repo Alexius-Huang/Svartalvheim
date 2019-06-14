@@ -24,6 +24,7 @@
       :class="{
         active: i === position,
         error: executeState === Execute.ERROR,
+        unavailable: !availableValues.has(cell),
       }"
       :key="i"
     >
@@ -255,4 +256,9 @@ div.tape
       &.error
         background-color: $red-500
         border-color: $red-500
+
+    &.unavailable
+      background-color: $red-500
+      border-color: $red-500
+
 </style>

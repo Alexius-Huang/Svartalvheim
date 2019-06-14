@@ -25,7 +25,7 @@
      --><span>New State</span>
       </div>
 
-      <div class="tbody">
+      <div class="tbody" ref="table-body">
         <div
           v-for="({
             state,
@@ -168,7 +168,7 @@
         </div>
 
         <button
-          v-if="executeState === Execute.EDITING"
+          v-if="executeState === Execute.EDITING && editing"
           class="add-rule-btn"
           @click="handleAddEmptyNewRuleField"
         >+ Add New Rule</button>

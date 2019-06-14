@@ -205,6 +205,8 @@ export default {
       if (adding && !!name && !!description) {
         this.$emit('append-available-state', { name, description });
         this.newAvailableStateInput = { name: '', description: '' };
+
+        this.$refs.availableStateNameInput.focus();
       }
     },
     handleDeleteAvailableState(input) {
@@ -235,20 +237,20 @@ export default {
 
   mounted() {
     this.keydownEvent = window.addEventListener('keydown', (e) => {
-      if (this.availableValuesEditing) {
-        const { keyCode: k } = e;
+      const { keyCode: k } = e;
 
-        if (k === 13) /* ENTER Key */ {
+      if (this.availableStatesEditing && k === 13) /* ENTER Key */ {
           this.handleNewAvailableStateEnterKeypress();
-        } else if (k === 8) /* DELETE Key */ {
-          const { availableValues } = this;
-          if (availableValues.size === 1) {
-            return;
-          }
+      }
 
-          const arr = Array.from(availableValues);
-          this.handleDeleteAvailableValue(arr[arr.length - 1]);
+      if (this.availableValuesEditing && k === 8) /* DELETE Key */ {
+        const { availableValues } = this;
+        if (availableValues.size === 1) {
+          return;
         }
+
+        const arr = Array.from(availableValues);
+        this.handleDeleteAvailableValue(arr[arr.length - 1]);
       }
     });
   },

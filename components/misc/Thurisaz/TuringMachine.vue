@@ -17,7 +17,20 @@
 
     <div class="control">
       <button
+        v-if="
+          executeState === Execute.EXECUTING ||
+          executeState === Execute.PAUSE
+        "
+        class="control-btn reset-btn"
+        @click="reset"
+      >Reset</button>
+
+      <label class="delay">
+        Step Delay <input type="text" v-model.number="delay" /> ms
+      </label>
+      <button
         class="control-btn"
+        :disabled="!executable"
         @click="handleControlBtn"
       >{{ controlBtnText }}</button>
     </div>
@@ -103,9 +116,10 @@ export default {
       position: null,
       state: null,
       executeState: Execute.READY,
-      delay: 67.66,
+      delay: 500,
       stepTimeoutObject: null,
       matchedRuleIndex: NaN,
+      executable: false,
     };
   },
   computed: {
@@ -147,11 +161,7 @@ export default {
         s === Execute.HALT  ||
         s === Execute.ERROR
       ) {
-        this.executeState = Execute.READY;
-        this.cells = this.initialCells;
-        this.position = null;
-        this.state = null;
-        this.matchedRuleIndex = NaN;
+        this.reset();
       } else {
         console.error(`Unregistered state: ${this.executeState}`);
       }
@@ -248,10 +258,12 @@ export default {
 
       rules[index][key] = value;
       this.rules = [...rules];
+      this.checkExecutability();
     },
 
     handleAppendAvailableValue(input) {
       this.availableValues = new Set([...this.availableValues, input]);
+      this.checkExecutability();
     },
     handleAppendAvailableState(input) {
       const { name, description } = input;
@@ -261,6 +273,7 @@ export default {
 
       this.availableStates = new Set([..._AS]);
       this.stateDescriptions = new Map(_SD);
+      this.checkExecutability();
     },
     handleAppendNewRuleEmpty() {
       const { rules } = this;
@@ -274,6 +287,7 @@ export default {
           direction: undefined,
         },
       ];
+      this.executable = false;
     },
 
     handleUpdateCell(payload) {
@@ -282,17 +296,20 @@ export default {
       initialCells[index] = value;
       this.initialCells = [...initialCells];
       this.cells = [...initialCells];
+      this.checkExecutability();
     },
 
     handleDeleteRule(index) {
       const { rules: r } = this;
       r.splice(index, 1);
       this.rules = [...r];
+      this.checkExecutability();
     },
     handleDeleteAvailableValue(input) {
       const { availableValues: av } = this;
       av.delete(input);
       this.availableValues = new Set([...av]);
+      this.checkExecutability();
     },
     handleDeleteAvailableState(input) {
       const { availableStates: as, stateDescriptions: sd } = this;
@@ -301,7 +318,31 @@ export default {
 
       this.availableStates = new Set([...as]);
       this.stateDescriptions = new Map(sd);
+      this.checkExecutability();
     },
+
+    reset() {
+      window.clearTimeout(this.stepTimeoutObject);
+      this.stepTimeoutObject = null;
+      this.executeState = Execute.READY;
+      this.cells = this.initialCells;
+      this.position = null;
+      this.state = null;
+      this.matchedRuleIndex = NaN;
+    },
+
+    checkExecutability() {
+      window.setImmediate(() => {
+        const { rules: $r, tape: $t } = this.$refs;
+        this.executable = !(
+          $r.$el.querySelector('.unavailable') ||
+          $t.$el.querySelector('.unavailable')
+        );
+      });
+    },
+  },
+  mounted() {
+    this.checkExecutability();
   },
 };
 </script>
@@ -320,6 +361,24 @@ section.turing-machine
   > div.control
     margin-top: 20pt
     text-align: right
+
+    > label.delay
+      font-size: 12pt
+      height: 30pt
+      line-height: 30pt
+      color: $yellow-500
+      margin-right: 15pt
+      > input
+        @include input-text-reset
+        width: 50pt
+        font-size: 12pt
+        text-align: center
+        border-bottom: 1pt solid $yellow-500
+        font-family: $default-font-family
+
+        &:focus
+          border-bottom-width: 2pt
+
     > button.control-btn
       @include btn-reset
       border: 0pt solid #222
@@ -337,4 +396,18 @@ section.turing-machine
         transition: .25s
       &:active
         background-color: #ddd
+
+      &:disabled
+        background-color: $red-500
+        opacity: .5
+
+      &.reset-btn
+        border: 1pt solid $yellow-500
+        color: $yellow-500
+        background-color: #222
+        float: left
+        margin-left: 20pt
+        &:hover
+          background-color: $yellow-500
+          color: #222
 </style>
