@@ -20,7 +20,7 @@
     </g>
 
     <g class="scores-group">
-      <score
+      <!-- <score
         v-for="i in scoresContained"
         :key="i"
         :offset-x="firstScoreOffset + (i - 1) * scoreWidth"
@@ -28,6 +28,17 @@
         :tab-row-height="tabRowHeight"
         :note-as-beat="noteAsBeat"
         :beats-per-score="beatsPerScore"
+      /> -->
+
+      <score
+        v-for="(notes, i) in scoresData"
+        :key="i"
+        :offset-x="firstScoreOffset + i * scoreWidth"
+        :width="scoreWidth"
+        :tab-row-height="tabRowHeight"
+        :note-as-beat="noteAsBeat"
+        :beats-per-score="beatsPerScore"
+        :notes-data="notes"
       />
     </g>
   </g>
@@ -38,19 +49,24 @@ import Score from './Score';
 
 export default {
   components: { Score },
-  props: ['num', 'noteAsBeat', 'beatsPerScore'],
+  props: ['num', 'noteAsBeat', 'beatsPerScore', 'scoresData'],
   data() {
     return {
       lineBetweenGap: 10,
       rowBetweenGap: 70,
       horizontalGap: 50,
       offsetFromTop: 200,
-      scoresContained: 3,
+      minScoresContained: 3,
       beginningPaddingWidth: 30,
       beatNoteSpaceWidth: 30,
     };
   },
   computed: {
+    scoresContained() {
+      const { minScoresContained, scoresData } = this;
+      const scoresCount = scoresData.length;
+      return scoresCount > minScoresContained ? scoresCount : minScoresContained;
+    },
     tabRowHeight() {
       const { lineBetweenGap: lbg } = this;
       return lbg * 4;
