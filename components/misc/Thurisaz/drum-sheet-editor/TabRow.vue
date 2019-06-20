@@ -20,16 +20,6 @@
     </g>
 
     <g class="scores-group">
-      <!-- <score
-        v-for="i in scoresContained"
-        :key="i"
-        :offset-x="firstScoreOffset + (i - 1) * scoreWidth"
-        :width="scoreWidth"
-        :tab-row-height="tabRowHeight"
-        :note-as-beat="noteAsBeat"
-        :beats-per-score="beatsPerScore"
-      /> -->
-
       <score
         v-for="(notes, i) in scoresData"
         :key="i"
