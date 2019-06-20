@@ -39,8 +39,8 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../../sass/colors.sass'
-@import '../../../sass/helpers.sass'
+@import '../../../../sass/colors.sass'
+@import '../../../../sass/helpers.sass'
 
 div.diamond
   width: 200pt

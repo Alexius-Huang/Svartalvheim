@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import Jumbotron from '@/components/misc/MaxwellAlexius.Jumbotron';
-import Introduction from '@/components/misc/MaxwellAlexius.Introduction';
-import CareerExperience from '@/components/misc/MaxwellAlexius.CareerExperience';
-import SkillSet from '@/components/misc/MaxwellAlexius.SkillSet';
-import PublicSpeech from '@/components/misc/MaxwellAlexius.PublicSpeech';
-import Contact from '@/components/misc/MaxwellAlexius.Contact';
+import Jumbotron from '@/components/misc/Home/Jumbotron';
+import Introduction from '@/components/misc/Home/Introduction';
+import CareerExperience from '@/components/misc/Home/CareerExperience';
+import SkillSet from '@/components/misc/Home/SkillSet';
+import PublicSpeech from '@/components/misc/Home/PublicSpeech';
+import Contact from '@/components/misc/Home/Contact';
 
 export default {
   components: {

@@ -22,8 +22,8 @@ export default {
 
 <style scoped lang="sass">
 @import url('https://fonts.googleapis.com/css?family=Staatliches')
-@import '../../sass/colors.sass'
-@import '../../sass/helpers.sass'
+@import '../../../sass/colors.sass'
+@import '../../../sass/helpers.sass'
 
 section.jumbotron
   width: 100vw

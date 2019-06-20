@@ -165,7 +165,7 @@ import HaskellLangIcon from '@/assets/icons/haskell-lang-icon.png';
 import DatabaseIcon from '@/assets/icons/database.png';
 import CodeIcon from '@/assets/icons/code.png';
 
-import Diamond from './MaxwellAlexius.SkillSet/Diamond';
+import Diamond from './SkillSet/Diamond';
 
 export default {
   components: { Diamond },
@@ -229,8 +229,8 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../sass/colors.sass'
-@import '../../sass/helpers.sass'
+@import '../../../sass/colors.sass'
+@import '../../../sass/helpers.sass'
 
 section.skill-set
   position: relative
