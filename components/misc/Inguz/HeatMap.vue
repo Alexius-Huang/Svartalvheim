@@ -5,38 +5,10 @@
     </div>
 
     <article class="infos">
-      <h2 class="title">What?</h2>
-      <p>
-        A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors.
-        "Heat map" is a newer term but <em>shading matrices</em> have existed for over a century.
-        Referenced from <a href="https://en.wikipedia.org/wiki/Heat_map" target="_blank">Wikipedia</a>
-      </p>
-
-      <h2 class="title">Which?</h2>
-      <p>
-        <b>Biology heat maps</b> are typically used in <em>molecular biology</em> to represent the level of expression of many genes across a number of comparable samples (e.g. cells in different states, samples from different patients) as they are obtained from DNA microarrays.
-      </p>
-      <p>
-        The <a href="https://en.wikipedia.org/wiki/Tree_map" target="_blank">tree map</a> is a <b>2D hierarchical partitioning</b> of data that visually resembles a heat map.
-      </p>
-      <p>
-        A <a href="https://en.wikipedia.org/wiki/Mosaic_plot" target="_blank">mosaic plot</a> is a tiled heat map for representing a two-way or higher-way table of data.
-      </p>
-
-      <h2 class="title">When?</h2>
-      <p>Visualizing <b>2D structured data arrays</b> with elements are quantitative, e.g. visualizing Gaussian-Distribution mathematical model or human population density in worldwide.</p>
-      <p>Not only 2D structured data arrays can be used with heat map, it can also be visualizing different <b>region's</b> result such as visualizing the election results in U.S. map.</p>
-
-      <h2 class="title">How?</h2>
-      <p>
-        Select color scheme properly depends on which kind of data you are visualizing:
-        <br />
-        Discrete categories can use various colors to visualize.
-        <br />
-        Same categories with levels of different quantitative values, you can use monochromatic color varying with shades.
-      </p>
-      <p>Each numerical range between different shade should be even.</p>
-      <p>Heat map doesn't necessarily need to draw each elements in square or a 2D matrix. For instance, visualizing regions with different shades in a map.</p>
+      <template v-for="({ title: t, content: c }) in chartInfo">
+        <h2 class="title" :key="t">{{ t }}</h2>
+        <p  v-for="(paragraph, j) in c" :key="`${t}-${j}`" v-html="paragraph" />
+      </template>
 
       <p>
         <span class="tag">Enery Consumption</span> Monthly Electricity Consumption in Taiwan from 2008 - 2017,
@@ -93,10 +65,12 @@
 
 <script>
 import electricityConsumption from '@/resources/inguz/electricity-consumption.json';
+import { heatMap as chartInfo } from './info.json';
 
 export default {
   data() {
     return {
+      chartInfo,
       electricityConsumption: electricityConsumption.reduce((acc, d) => {
         if (acc.has(d.year)) {
           acc.get(d.year).push(d);
@@ -119,6 +93,18 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+@import '../../../sass/colors.sass'
+section.heat-map
+  > article.infos > p > a:link
+    color: $yellow-500
+    font-weight: bold
+    &:visited
+      color: $yellow-700
+    &:hover
+      color: $yellow-300
+</style>
 
 <style scoped lang="sass">
 @import '../../../sass/helpers.sass'
@@ -154,14 +140,6 @@ section.heat-map
         color: $grey-900
         padding: 0 10pt
         margin-right: 5pt
-
-      > a
-        color: $yellow-500
-        font-weight: bold
-        &:visited
-          color: $yellow-700
-        &:hover
-          color: $yellow-300
 
       + h2.title
         margin-top: 18pt

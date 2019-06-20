@@ -5,14 +5,10 @@
     </div>
 
     <article class="infos">
-      <h2 class="title">What?</h2>
-      <p></p>
-
-      <h2 class="title">Which?</h2>
-      <p></p>
-
-      <h2 class="title">How?</h2>
-      <p></p>
+      <template v-for="({ title: t, content: c }) in chartInfo">
+        <h2 class="title" :key="t">{{ t }}</h2>
+        <p v-for="(paragraph, j) in c" :key="`${t}-${j}`" v-html="paragraph" />
+      </template>
 
       <p>
         <span class="tag">Crime</span> Intentional homicide rate per 100,000 inhabitants in different countries,
@@ -74,13 +70,13 @@
 <script>
 import homicideRate from '@/resources/inguz/homicide-rate.json';
 import murderIcon from '@/assets/icons/custom/murder-main.svg';
+import { pictogramChart as chartInfo } from './info.json';
 
 export default {
   data() {
     return {
-      icons: {
-        murder: murderIcon,
-      },
+      chartInfo,
+      icons: { murder: murderIcon },
       homicideRate,
     };
   },
@@ -91,6 +87,18 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+@import '../../../sass/colors.sass'
+section.pictogram-chart
+  > article.infos > p > a:link
+    color: $yellow-500
+    font-weight: bold
+    &:visited
+      color: $yellow-700
+    &:hover
+      color: $yellow-300
+</style>
 
 <style scoped lang="sass">
 @import '../../../sass/helpers.sass'
@@ -126,14 +134,6 @@ section.pictogram-chart
         color: $grey-900
         padding: 0 10pt
         margin-right: 5pt
-
-      > a
-        color: $yellow-500
-        font-weight: bold
-        &:visited
-          color: $yellow-700
-        &:hover
-          color: $yellow-300
 
       + h2.title
         margin-top: 18pt

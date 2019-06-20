@@ -5,27 +5,10 @@
     </div>
 
     <article class="infos">
-      <h2 class="title">What?</h2>
-      <p>
-        A donut chart is a variant of the pie chart,
-        with a blank center allowing for additional information about the data as a whole to be included.
-        Donut charts are similar to pie charts in that their aim is to illustrate proportions.
-        This type of circular graph can support multiple statistics at once and it provides a better data intensity ratio to standard pie charts.
-        It does not have to contain information in the center.
-        Referenced from <a href="https://en.wikipedia.org/wiki/Pie_chart">Wikipedia</a>
-      </p>
-
-      <h2 class="title">When?</h2>
-      <p><b>Less data categories</b> comparison.</p>
-      <p><b>Huge value variation</b>.</p>
-      <p>Human eye loves <b>circular visual effect</b> which gives us harmony.</p>
-      <p>Generally, <b>it can be replaced by histogram / bar chart</b> ... etc.</p>
-
-      <h2 class="title">How?</h2>
-      <p>Keep the number of slices to minimum.</p>
-      <p>Don't use 3D pie chart / donut chart.</p>
-      <p>When data values are too close to compare, consider using bar chart or histogram.</p>
-      <p>Don't put legends in the section of the donut chart, put it outside.</p>
+      <template v-for="({ title: t, content: c }) in chartInfo">
+        <h2 class="title" :key="t">{{ t }}</h2>
+        <p v-for="(paragraph, j) in c" :key="`${t}-${j}`" v-html="paragraph" />
+      </template>
 
       <p><span class="tag">Sociology</span> Racial and ethnic categories in U.S. in 2010</p>
 
@@ -67,10 +50,12 @@
 
 <script>
 import T from '@tweenjs/tween.js';
+import { donutChart as chartInfo } from './info.json';
 
 export default {
   data() {
     return {
+      chartInfo,
       r: (100 / (2 * Math.PI)),
       ethnicity: [
         { name: 'White', value: 0.724, color: '#F9A825' },
@@ -134,6 +119,18 @@ export default {
 };
 </script>
 
+<style lang="sass">
+@import '../../../sass/colors.sass'
+section.donut-chart
+  > article.infos > p > a:link
+    color: $yellow-500
+    font-weight: bold
+    &:visited
+      color: $yellow-700
+    &:hover
+      color: $yellow-300
+</style>
+
 <style scoped lang="sass">
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
@@ -167,14 +164,6 @@ section.donut-chart
         color: $grey-900
         padding: 0 10pt
         margin-right: 5pt
-
-      > a
-        color: $yellow-500
-        font-weight: bold
-        &:visited
-          color: $yellow-700
-        &:hover
-          color: $yellow-300
 
       + h2.title
         margin-top: 18pt

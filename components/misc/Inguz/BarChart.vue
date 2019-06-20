@@ -5,19 +5,10 @@
     </div>
 
     <article class="infos">
-      <h2 class="title">What?</h2>
-      <p>A bar chart or bar graph is a chart or graph that presents <b>categorical data</b> with rectangular bars with heights or lengths proportional to the values that they represent. The bars can be plotted vertically or horizontally. A vertical bar chart is sometimes called a line graph.</p>
-      <p>A bar graph shows comparisons among discrete categories. One axis of the chart shows the specific categories being compared, and the other axis represents a measured value. Some bar graphs present bars clustered in groups of more than one, showing the values of more than one measured variable.</p>
-
-      <h2 class="title">When?</h2>
-      <p>Comparing <b>categorical data</b> such as months, years, size, region ... etc.</p>
-      <p>Categories are usually <b>qualitative</b>.</p>
-
-      <h2 class="title">How?</h2>
-      <p>Can be easily compared by the height of the bar (when y-axis represents the value of the category) or the width of the bar (when x-axis represents the value of the category)</p>
-      <p>Can be arranged in orders from the highest to the lowest vice-versa.</p>
-      <p>When label is too long to display or the number of categories is large (over 10 might be a threshold), it is recommended to make horizontal bar chart</p>
-      <p>Scales can be changed from <b>linear</b> to <b>logarithmic</b> if quantity of different categories have huge difference.</p>
+      <template v-for="({ title: t, content: c }) in chartInfo">
+        <h2 class="title" :key="t">{{ t }}</h2>
+        <p v-for="(paragraph, j) in c" :key="`${t}-${j}`" v-html="paragraph" />
+      </template>
 
       <p>
         <span class="tag">Military Trade</span> U.S. Conventional Arms Sales to Taiwan from 1990 to 2010,
@@ -94,11 +85,13 @@
 
 <script>
 import AppSwitch from '@/components/AppSwitch';
+import { barChart as chartInfo } from './info.json';
 
 export default {
   components: { AppSwitch },
   data() {
     return {
+      chartInfo,
       militaryTradeData: [
         { year: 2010, value: 1.25 * Math.pow(10, 9), display: '$1.25 B' },
         { year: 2009, value: 3.17 * Math.pow(10, 9), display: '$3.17 B' },
@@ -172,6 +165,18 @@ export default {
 };
 </script>
 
+<style lang="sass">
+@import '../../../sass/colors.sass'
+section.bar-chart
+  > article.infos > p > a:link
+    color: $yellow-500
+    font-weight: bold
+    &:visited
+      color: $yellow-700
+    &:hover
+      color: $yellow-300
+</style>
+
 <style scoped lang="sass">
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
@@ -205,14 +210,6 @@ section.bar-chart
         color: $grey-900
         padding: 0 10pt
         margin-right: 5pt
-
-      > a
-        color: $yellow-500
-        font-weight: bold
-        &:visited
-          color: $yellow-700
-        &:hover
-          color: $yellow-300
 
       + h2.title
         margin-top: 18pt

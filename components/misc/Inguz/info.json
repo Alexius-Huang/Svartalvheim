@@ -1,0 +1,117 @@
+{
+  "lineChart": [
+    {
+      "title": "What?",
+      "content": [
+        "A line chart or line graph is a type of chart which displays information as a series of data points called 'markers' connected by straight line segments. It is a basic type of chart common in many fields. Referenced from <a href=\"https://en.wikipedia.org/wiki/Line_chart\" target=\"_blank\">Wikipedia</a>"
+      ]
+    },
+    {
+      "title": "When?",
+      "content": [
+        "<b>Data changes over time</b>, e.g. stock prices / daily visitors of the site / yearly changes in any kind of subjects</p>",
+        "<b>Tendencies based on periodic values</b>, e.g. temporatues / ages / distance in mathematical model</p>"
+      ]
+    },
+    {
+      "title": "How?",
+      "content": []
+    }
+  ],
+  "barChart": [
+    {
+      "title": "What?",
+      "content": [
+        "A bar chart or bar graph is a chart or graph that presents <b>categorical data</b> with rectangular bars with heights or lengths proportional to the values that they represent. The bars can be plotted vertically or horizontally. A vertical bar chart is sometimes called a line graph.",
+        "A bar graph shows comparisons among discrete categories. One axis of the chart shows the specific categories being compared, and the other axis represents a measured value. Some bar graphs present bars clustered in groups of more than one, showing the values of more than one measured variable."
+      ]
+    },
+    {
+      "title": "When?",
+      "content": [
+        "Comparing <b>categorical data</b> such as months, years, size, region ... etc.",
+        "Categories are usually <b>qualitative</b>."  
+      ]
+    },
+    {
+      "title": "How?",
+      "content": [
+        "Can be easily compared by the height of the bar (when y-axis represents the value of the category) or the width of the bar (when x-axis represents the value of the category)",
+        "Can be arranged in orders from the highest to the lowest vice-versa.",
+        "When label is too long to display or the number of categories is large (over 10 might be a threshold), it is recommended to make horizontal bar chart.",
+        "Scales can be changed from <b>linear</b> to <b>logarithmic</b> if quantity of different categories have huge difference."
+      ]
+    }
+  ],
+  "donutChart": [
+    {
+      "title": "What?",
+      "content": [
+        "A donut chart is a variant of the pie chart, with a blank center allowing for additional information about the data as a whole to be included. Donut charts are similar to pie charts in that their aim is to illustrate proportions. This type of circular graph can support multiple statistics at once and it provides a better data intensity ratio to standard pie charts. It does not have to contain information in the center. Referenced from <a href=\"https://en.wikipedia.org/wiki/Pie_chart\" target=\"_blank\">Wikipedia</a>"
+      ]
+    },
+    {
+      "title": "When?",
+      "content": [
+        "<b>Less data categories</b> comparison.",
+        "<b>Huge value variation</b>.",
+        "Human eye loves <b>circular visual effect</b> which gives us harmony.",
+        "Generally, <b>it can be replaced by histogram / bar chart</b> ... etc."
+      ]
+    },
+    {
+      "title": "How?",
+      "content": [
+        "Keep the number of slices to minimum.",
+        "Don't use 3D pie chart / donut chart.",
+        "When data values are too close to compare, consider using bar chart or histogram.",
+        "Don't put legends in the section of the donut chart, put it outside."
+      ]
+    }
+  ],
+  "heatMap": [
+    {
+      "title": "What?",
+      "content": [
+        "A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors. \"Heat map\" is a newer term but <em>shading matrices</em> have existed for over a century. Referenced from <a href=\"https://en.wikipedia.org/wiki/Heat_map\" target=\"_blank\">Wikipedia</a>"
+      ]
+    },
+    {
+      "title": "Which?",
+      "content": [
+        "<b>Biology heat maps</b> are typically used in <em>molecular biology</em> to represent the level of expression of many genes across a number of comparable samples (e.g. cells in different states, samples from different patients) as they are obtained from DNA microarrays.",
+        "The <a href=\"https://en.wikipedia.org/wiki/Tree_map\" target=\"_blank\">tree map</a> is a <b>2D hierarchical partitioning</b> of data that visually resembles a heat map.",
+        "A <a href=\"https://en.wikipedia.org/wiki/Mosaic_plot\" target=\"_blank\">mosaic plot</a> is a tiled heat map for representing a two-way or higher-way table of data."
+      ]
+    },
+    {
+      "title": "When?",
+      "content": [
+        "Visualizing <b>2D structured data arrays</b> with elements are quantitative, e.g. visualizing Gaussian-Distribution mathematical model or human population density in worldwide.",
+        "Not only 2D structured data arrays can be used with heat map, it can also be visualizing different <b>region's</b> result such as visualizing the election results in U.S. map."
+      ]
+    },
+    {
+      "title": "How?",
+      "content": [
+        "Select color scheme properly depends on which kind of data you are visualizing: <br /> Discrete categories can use various colors to visualize. <br /> Same categories with levels of different quantitative values, you can use monochromatic color varying with shades.",
+        "Each numerical range between different shade should be even.",
+        "Heat map doesn't necessarily need to draw each elements in square or a 2D matrix. For instance, visualizing regions with different shades in a map."
+      ]
+    }
+  ],
+  "pictogramChart": [
+    {
+      "title": "What?",
+      "content": [""]
+    },
+    {
+      "title": "When?",
+      "content": [""]
+    },
+    {
+      "title": "How?",
+      "content": [""]
+    }
+  ]
+}

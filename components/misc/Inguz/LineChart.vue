@@ -5,17 +5,11 @@
     </div>
 
     <article class="infos">
-      <h2 class="title">What?</h2>
-      <p>
-        A line chart or line graph is a type of chart which displays information as a series of data points called 'markers' connected by straight line segments. It is a basic type of chart common in many fields.
-        Referenced from <a href="https://en.wikipedia.org/wiki/Line_chart">Wikipedia</a>
-      </p>
+      <template v-for="({ title: t, content: c }) in chartInfo">
+        <h2 class="title" :key="t">{{ t }}</h2>
+        <p v-for="(paragraph, j) in c" :key="`${t}-${j}`" v-html="paragraph" />
+      </template>
 
-      <h2 class="title">When?</h2>
-      <p><b>Data changes over time</b>, e.g. stock prices / daily visitors of the site / yearly changes in any kind of subjects</p>
-      <p><b>Tendencies based on periodic values</b>, e.g. temporatues / ages / distance in mathematical model</p>
-
-      <h2 class="title">How?</h2>
       <p><span class="tag">Physics</span> Describes the distance of travelling with respect to the velocity and with respect to the acceleration of a vehicle.</p>
       <div class="charts physics-example">
         <div class="chart">
@@ -117,10 +111,12 @@
 
 <script>
 import curve from '@/utils/curve';
+import { lineChart as chartInfo } from './info.json';
 
 export default {
   data() {
     return {
+      chartInfo,
       accelerationData: [
         [0, 2],
         [1, 2],
@@ -199,6 +195,18 @@ export default {
 };
 </script>
 
+<style lang="sass">
+@import '../../../sass/colors.sass'
+section.line-chart
+  > article.infos > p > a:link
+    color: $yellow-500
+    font-weight: bold
+    &:visited
+      color: $yellow-700
+    &:hover
+      color: $yellow-300
+</style>
+
 <style scoped lang="sass">
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
@@ -232,14 +240,6 @@ section.line-chart
         color: $grey-900
         padding: 0 10pt
         margin-right: 5pt
-
-      > a
-        color: $yellow-500
-        font-weight: bold
-        &:visited
-          color: $yellow-700
-        &:hover
-          color: $yellow-300
 
       + h2.title
         margin-top: 18pt
