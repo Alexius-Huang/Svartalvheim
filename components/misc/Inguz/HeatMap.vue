@@ -110,87 +110,52 @@ section.heat-map
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
 @import '../../../sass/shared.sass'
+@import './_shared.sass'
 
-section.heat-map
-  @include title-style
-  overflow-x: hidden
-
-  > article.infos
-    margin-top: 24pt
-    > h2.title
-      font-size: 24pt
-      letter-spacing: .7pt
-      color: white
-      font-family: $base-font-family
-      + p
-        margin-top: 6pt
-
-    > p
-      font-size: 12pt
-      letter-spacing: .5pt
-      color: white
-      line-height: 1.7
-      + p
-        margin-top: 8pt
-
-      > span.tag
-        background-color: $yellow-500
-        font-family: $base-font-family
-        display: inline-block
-        color: $grey-900
-        padding: 0 10pt
-        margin-right: 5pt
-
-      + h2.title
-        margin-top: 18pt
-
-      + .charts
-        margin-top: 24pt
 
 $heat-levels: $yellow-50 $yellow-100 $yellow-200 $yellow-300 $yellow-400 $yellow-500 $yellow-600 $yellow-700 $yellow-800 $yellow-900 $red-400 $red-500 $red-600 $red-700 $red-800 $red-900
 
-.chart
-  &.energy-consumption-example
-    margin-top: 48pt
-    > .caption
-      > h2
-        font-size: 18pt
-        font-family: $base-font-family
-        color: white
-        text-decoration: underline
-        letter-spacing: .7pt
-        text-align: center
-
-    > .heat-map-wrapper
-      margin-top: 18pt
+.chart.energy-consumption-example
+  margin-top: 48pt
+  > .caption
+    > h2
+      font-size: 18pt
+      font-family: $base-font-family
+      color: white
+      text-decoration: underline
+      letter-spacing: .7pt
       text-align: center
-      > .rows
-        width: 450pt
-        display: inline-block
-      > .color-level-labels
-        margin-left: 10pt
-        width: 120pt
-        display: inline-block
-        vertical-align: top
 
-        > span.label
-          vertical-align: top
-          font-size: 10pt
-          line-height: 20pt
-          height: 20pt
+  > .heat-map-wrapper
+    margin-top: 18pt
+    text-align: center
+    > .rows
+      width: 450pt
+      display: inline-block
+    > .color-level-labels
+      margin-left: 10pt
+      width: 120pt
+      display: inline-block
+      vertical-align: top
+
+      > span.label
+        vertical-align: top
+        font-size: 10pt
+        line-height: 20pt
+        height: 20pt
+        display: inline-block
+        width: 100%
+        color: white
+        &:before
+          content: ''
           display: inline-block
-          width: 100%
-          color: white
-          &:before
-            content: ''
-            display: inline-block
-            width: 10pt
-            height: 10pt
-            border-radius: 2pt
-            vertical-align: middle
-          @each $level in $heat-levels
-            &:nth-child(#{17 - index($heat-levels, $level)}):before
-              background-color: $level
+          width: 10pt
+          height: 10pt
+          border-radius: 2pt
+          vertical-align: middle
+        @each $level in $heat-levels
+          &:nth-child(#{17 - index($heat-levels, $level)}):before
+            background-color: $level
 
 .rows
   > .row

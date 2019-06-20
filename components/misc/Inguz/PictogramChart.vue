@@ -104,42 +104,7 @@ section.pictogram-chart
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
 @import '../../../sass/shared.sass'
-
-section.pictogram-chart
-  @include title-style
-  overflow-x: hidden
-
-  > article.infos
-    margin-top: 24pt
-    > h2.title
-      font-size: 24pt
-      letter-spacing: .7pt
-      color: white
-      font-family: $base-font-family
-      + p
-        margin-top: 6pt
-
-    > p
-      font-size: 12pt
-      letter-spacing: .5pt
-      color: white
-      line-height: 1.7
-      + p
-        margin-top: 8pt
-
-      > span.tag
-        background-color: $yellow-500
-        font-family: $base-font-family
-        display: inline-block
-        color: $grey-900
-        padding: 0 10pt
-        margin-right: 5pt
-
-      + h2.title
-        margin-top: 18pt
-
-      + .charts
-        margin-top: 24pt
+@import './_shared.sass'
 
 .chart
   &.crime-example

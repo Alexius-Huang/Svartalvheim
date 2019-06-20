@@ -1,5 +1,5 @@
 <template>
-  <section class="line-chart">
+  <section class="chart line-chart">
     <div class="title-wrapper">
       <h1 class="title">Line Chart</h1>
     </div>
@@ -211,41 +211,7 @@ section.line-chart
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
 @import '../../../sass/shared.sass'
-
-section.line-chart
-  @include title-style
-
-  > article.infos
-    margin-top: 24pt
-    > h2.title
-      font-size: 24pt
-      letter-spacing: .7pt
-      color: white
-      font-family: $base-font-family
-      + p
-        margin-top: 6pt
-
-    > p
-      font-size: 12pt
-      letter-spacing: .5pt
-      color: white
-      line-height: 1.7
-      + p
-        margin-top: 8pt
-
-      > span.tag
-        background-color: $yellow-500
-        font-family: $base-font-family
-        display: inline-block
-        color: $grey-900
-        padding: 0 10pt
-        margin-right: 5pt
-
-      + h2.title
-        margin-top: 18pt
-
-      + .charts
-        margin-top: 24pt
+@import './_shared.sass'
 
 .charts
   font-size: 0

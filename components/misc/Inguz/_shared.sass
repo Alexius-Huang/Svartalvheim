@@ -4,6 +4,7 @@
 
 section.chart
   @include title-style
+  overflow-x: hidden
 
   > article.infos
     margin-top: 24pt
@@ -20,6 +21,8 @@ section.chart
       letter-spacing: .5pt
       color: white
       line-height: 1.7
+      + p
+        margin-top: 8pt
 
       > span.tag
         background-color: $yellow-500
@@ -28,14 +31,6 @@ section.chart
         color: $grey-900
         padding: 0 10pt
         margin-right: 5pt
-
-      > a
-        color: $yellow-500
-        font-weight: bold
-        &:visited
-          color: $yellow-700
-        &:hover
-          color: $yellow-300
 
       + h2.title
         margin-top: 18pt

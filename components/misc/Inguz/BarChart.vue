@@ -14,6 +14,7 @@
         <span class="tag">Military Trade</span> U.S. Conventional Arms Sales to Taiwan from 1990 to 2010,
         referenced from <a href="https://www.armscontrol.org/factsheets/taiwanarms">Arms Control Association</a>
       </p>
+
       <div class="chart trade-example">
         <div class="main-title">
           <h2>U.S. Arms Sales to Taiwan 1990 - 2010 according to U.S. Government Arms Agreement</h2>
@@ -181,140 +182,105 @@ section.bar-chart
 @import '../../../sass/helpers.sass'
 @import '../../../sass/colors.sass'
 @import '../../../sass/shared.sass'
+@import './_shared.sass'
 
-section.bar-chart
-  @include title-style
-
-  > article.infos
+div.chart.trade-example
+  margin-top: 48pt
+  > div.main-title
+    > h2
+      font-family: $base-font-family
+      font-size: 16pt
+      text-decoration: underline
+      color: white
+      letter-spacing: .7pt
+      text-align: center
+  > div.app-switch-wrapper
     margin-top: 24pt
-    > h2.title
-      font-size: 24pt
+    > .app-switch
+      display: inline-block
+      margin-right: 12pt
+      vertical-align: middle
+    > span.scale
+      vertical-align: middle
+      font-size: 12pt
       letter-spacing: .7pt
       color: white
       font-family: $base-font-family
-      + p
-        margin-top: 6pt
-
-    > p
-      font-size: 12pt
-      letter-spacing: .5pt
-      color: white
-      line-height: 1.7
-      + p
-        margin-top: 8pt
-
-      > span.tag
-        background-color: $yellow-500
-        font-family: $base-font-family
-        display: inline-block
-        color: $grey-900
-        padding: 0 10pt
-        margin-right: 5pt
-
-      + h2.title
-        margin-top: 18pt
-
-      + .charts
-        margin-top: 24pt
-
-div.chart
-  &.trade-example
-    margin-top: 48pt
-    > div.main-title
-      > h2
-        font-family: $base-font-family
-        font-size: 16pt
-        text-decoration: underline
-        color: white
-        letter-spacing: .7pt
-        text-align: center
-    > div.app-switch-wrapper
-      margin-top: 24pt
-      > .app-switch
-        display: inline-block
-        margin-right: 12pt
-        vertical-align: middle
-      > span.scale
-        vertical-align: middle
+      display: inline-block
+  > div.chart-wrapper
+    margin-top: 24pt
+    width: 100%
+    font-size: 0
+    > div.chart-legends
+      width: 50pt
+      vertical-align: top
+      display: inline-block
+      > span.legend
+        display: block
+        height: 30pt
+        line-height: 30pt
+        width: 100%
+        text-align: right
         font-size: 12pt
-        letter-spacing: .7pt
         color: white
-        font-family: $base-font-family
-        display: inline-block
-    > div.chart-wrapper
-      margin-top: 24pt
-      width: 100%
-      font-size: 0
-      > div.chart-legends
-        width: 50pt
-        vertical-align: top
-        display: inline-block
-        > span.legend
-          display: block
+        padding-right: 12pt
+        box-sizing: border-box
+        font-family: $mono-font-family
+    > div.chart-bars-wrapper
+      width: calc(100% - 50pt)
+      display: inline-block
+      position: relative
+      > span.legend
+        display: block
+        height: 30pt
+        @include vertical-align
+
+        > span.bar
+          text-align: left
+          display: inline-block
+          height: 12.5pt
+          box-sizing: border-box
+          background-color: $yellow-500
+          transition: width 1.5s
+
+        > span.value
+          color: white
+          font-size: 12pt
+          font-family: $base-font-family
+          margin-left: 5pt
+          letter-spacing: .7pt
+          display: inline-block
+          height: 20pt
+          line-height: 20pt
+
+      > span.y-axis
+        position: absolute
+        top: 0
+        height: 100%
+        border-right: 1px solid rgba(255, 255, 255, .12)
+        opacity: 1
+        transition: opacity 1.5s
+        z-index: -1
+
+        &.hide
+          opacity: 0
+          transition: opacity 1.5s
+
+        &.highlight
+          border-right: 2px solid rgba(255, 255, 255, .24)
+          transform: translateX(-1px)
+
+        > span.label-value
+          position: absolute
+          font-size: 10pt
+          color: white
+          bottom: -30pt
+          width: 50pt
           height: 30pt
           line-height: 30pt
-          width: 100%
-          text-align: right
-          font-size: 12pt
-          color: white
-          padding-right: 12pt
-          box-sizing: border-box
-          font-family: $mono-font-family
-      > div.chart-bars-wrapper
-        width: calc(100% - 50pt)
-        display: inline-block
-        position: relative
-        > span.legend
-          display: block
-          height: 30pt
-          @include vertical-align
-
-          > span.bar
-            text-align: left
-            display: inline-block
-            height: 12.5pt
-            box-sizing: border-box
-            background-color: $yellow-500
-            transition: width 1.5s
-
-          > span.value
-            color: white
-            font-size: 12pt
-            font-family: $base-font-family
-            margin-left: 5pt
-            letter-spacing: .7pt
-            display: inline-block
-            height: 20pt
-            line-height: 20pt
- 
-        > span.y-axis
-          position: absolute
-          top: 0
-          height: 100%
-          border-right: 1px solid rgba(255, 255, 255, .12)
-          opacity: 1
-          transition: opacity 1.5s
-          z-index: -1
-
-          &.hide
-            opacity: 0
-            transition: opacity 1.5s
-
-          &.highlight
-            border-right: 2px solid rgba(255, 255, 255, .24)
-            transform: translateX(-1px)
-
-          > span.label-value
-            position: absolute
-            font-size: 10pt
-            color: white
-            bottom: -30pt
-            width: 50pt
-            height: 30pt
-            line-height: 30pt
-            left: -25pt
-            text-align: center
-            display: inline-block
+          left: -25pt
+          text-align: center
+          display: inline-block
 
 @media screen and (max-width: 769px)
   div.chart.trade-example
