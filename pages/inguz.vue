@@ -6,35 +6,14 @@
       </div>
     </section><!--
 
- --><section class="chart-grid">
-      <!-- <div
+ --><section class="inguz-chart-grid chart-grid">
+      <div
         class="chart"
-        v-for="chart in charts"
-        :key="chart"
+        v-for="chart in charts" :key="chart"
         @click="inspectChartDetail(chart)"
       >
-        <img :src="imgs[chart]" :alt="label[chart]" />
-        <span class="label">label[chart] <img class="icon" :src="icons.chevronRight" /></span>
-      </div> -->
-      <div class="chart" @click="inspectChartDetail('line-chart')">
-        <img class="chart-bg" :src="imgs['line-chart']" alt="Line Chart" />
-        <span class="label">Line Chart <img class="icon" :src="icons.chevronRight" /></span>
-      </div><!--
-   --><div class="chart" @click="inspectChartDetail('donut-chart')">
-        <img class="chart-bg" :src="imgs['donut-chart']" alt="Donut Chart" />
-        <span class="label">Donut Chart <img class="icon" :src="icons.chevronRight" /></span>
-      </div><!--
-   --><div class="chart" @click="inspectChartDetail('bar-chart')">
-        <img class="chart-bg" :src="imgs['bar-chart']" alt="Bar Chart" />
-        <span class="label">Bar Chart <img class="icon" :src="icons.chevronRight" /></span>
-      </div><!--
-   --><div class="chart" @click="inspectChartDetail('heat-map')">
-        <img class="chart-bg" :src="imgs['heat-map']" alt="Heat Map" />
-        <span class="label">Heat Map <img class="icon" :src="icons.chevronRight" /></span>
-      </div><!--
-   --><div class="chart" @click="inspectChartDetail('pictogram-chart')">
-        <img class="chart-bg" :src="imgs['pictogram-chart']" alt="Pictogram Chart" />
-        <span class="label">Pictogram Chart <img class="icon" :src="icons.chevronRight" /></span>
+        <img class="chart-bg" :src="imgs[chart]" :alt="label[chart]" />
+        <span class="label">{{ label[chart] }} <img class="icon" :src="icons.chevronRight" /></span>
       </div>
     </section>
 
@@ -123,7 +102,29 @@ main
       position: relative
       overflow: hidden
 
-      &:after
+      > img.chart-bg
+        width: 100%
+        height: 100%
+        object-fit: cover
+        opacity: .72
+        transition: .25s
+
+      > span.label
+        display: inline-block
+        font-family: $base-font-family
+        font-size: 24pt
+        color: white
+        position: absolute
+        right: -100%
+        bottom: 10pt
+        transition: .25s
+        > img.icon
+          width: 24pt
+          height: 24pt
+          vertical-align: middle
+          display: inline-block
+
+      &::after
         content: ''
         position: absolute
         width: 100%
@@ -134,27 +135,6 @@ main
         background-image: linear-gradient(to top, transparentize($yellow-500, .88) 0%, transparent 33.3%)
         transition: .25s
 
-      > img.chart-bg
-        width: 100%
-        height: 100%
-        object-fit: cover
-        opacity: .72
-        transition: .25s
-      > span.label
-        position: absolute
-        display: inline-block
-        font-family: $base-font-family
-        font-size: 24pt
-        color: white
-        right: -100%
-        bottom: 10pt
-        transition: .25s
-        > img.icon
-          width: 24pt
-          height: 24pt
-          vertical-align: middle
-          display: inline-block
-
       &:hover
         > img.chart-bg
           opacity: .48
@@ -162,7 +142,7 @@ main
         > span.label
           right: 10pt
           transition: .25s
-      &:hover:after
+      &:hover::after
         opacity: 1
         transition: .25s
 
@@ -191,6 +171,7 @@ main
           opacity: .48
           transition: .25s
         > span.label
+          font-size: 18pt
           right: 10pt
           transition: .25s
         &:after
@@ -201,12 +182,10 @@ main
   main
     width: 100vw
     box-sizing: border-box
-    > section.left
-      > div.title-wrapper
-        > h1.title
-          height: 40pt
-          line-height: 40pt
-          font-size: 30pt
+    > section.left > div.title-wrapper > h1.title
+      height: 40pt
+      line-height: 40pt
+      font-size: 30pt
     > section.chart-grid
       > .chart
         width: 50%
@@ -215,15 +194,13 @@ main
 
 @media screen and (max-width: 426px)
   main
-    > section.left
-      > div.title-wrapper
-        > h1.title
-          height: 30pt
-          line-height: 30pt
-          font-size: 24pt
+    > section.left > div.title-wrapper > h1.title
+      height: 30pt
+      line-height: 30pt
+      font-size: 24pt
     > section.chart-grid
       > .chart
         height: 150pt
         > span.label
-          font-size: 16pt
+          font-size: 14pt
 </style>
