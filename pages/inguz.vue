@@ -7,21 +7,34 @@
     </section><!--
 
  --><section class="chart-grid">
+      <!-- <div
+        class="chart"
+        v-for="chart in charts"
+        :key="chart"
+        @click="inspectChartDetail(chart)"
+      >
+        <img :src="imgs[chart]" :alt="label[chart]" />
+        <span class="label">label[chart] <img class="icon" :src="icons.chevronRight" /></span>
+      </div> -->
       <div class="chart" @click="inspectChartDetail('line-chart')">
-        <img class="chart-bg" :src="imgs.lineChart" alt="Line Chart" />
+        <img class="chart-bg" :src="imgs['line-chart']" alt="Line Chart" />
         <span class="label">Line Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div><!--
    --><div class="chart" @click="inspectChartDetail('donut-chart')">
-        <img class="chart-bg" :src="imgs.donutChart" alt="Donut Chart" />
+        <img class="chart-bg" :src="imgs['donut-chart']" alt="Donut Chart" />
         <span class="label">Donut Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div><!--
    --><div class="chart" @click="inspectChartDetail('bar-chart')">
-        <img class="chart-bg" :src="imgs.barChart" alt="Bar Chart" />
+        <img class="chart-bg" :src="imgs['bar-chart']" alt="Bar Chart" />
         <span class="label">Bar Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div><!--
    --><div class="chart" @click="inspectChartDetail('heat-map')">
-        <img class="chart-bg" :src="imgs.heatMap" alt="Heat Map" />
+        <img class="chart-bg" :src="imgs['heat-map']" alt="Heat Map" />
         <span class="label">Heat Map <img class="icon" :src="icons.chevronRight" /></span>
+      </div><!--
+   --><div class="chart" @click="inspectChartDetail('pictogram-chart')">
+        <img class="chart-bg" :src="imgs['pictogram-chart']" alt="Pictogram Chart" />
+        <span class="label">Pictogram Chart <img class="icon" :src="icons.chevronRight" /></span>
       </div>
     </section>
 
@@ -34,20 +47,28 @@ import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
 import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
 import barChartImg from '@/assets/inguz/bar-chart-bg.gif';
 import heatMapImg from '@/assets/inguz/heat-map-bg.gif';
+import pictogramChartImg from '@/assets/inguz/pictogram-chart-bg.gif';
 import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 
 export default {
   data() {
     return {
+      charts: ['line-chart', 'donut-chart', 'bar-chart', 'heat-map', 'pictogram-chart'],
       imgs: {
-        lineChart: lineChartImg,
-        donutChart: donutChartImg,
-        barChart: barChartImg,
-        heatMap: heatMapImg,
+        'line-chart': lineChartImg,
+        'donut-chart': donutChartImg,
+        'bar-chart': barChartImg,
+        'heat-map': heatMapImg,
+        'pictogram-chart': pictogramChartImg,
       },
-      icons: {
-        chevronRight,
+      label: {
+        'line-chart': 'Line Chart',
+        'donut-chart': 'Donut Chart',
+        'bar-chart': 'Bar Chart',
+        'heat-map': 'Heat Map',
+        'pictogram-chart': 'Pictogram Chart',
       },
+      icons: { chevronRight },
     };
   },
   methods: {

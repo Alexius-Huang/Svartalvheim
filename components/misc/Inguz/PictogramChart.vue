@@ -206,26 +206,13 @@ section.pictogram-chart
 
 @keyframes shake
   0%
-    opacity: .85
-    transform: rotate(0) scale(1)
-  95%
-    opacity: .85
-    transform: rotate(0) scale(1)
-  96%
-    opacity: 1
-    transform: rotate(10deg) scale(.9)
-  97%
-    opacity: 1
-    transform: rotate(0) scale(.9)
-  98%
-    opacity: 1
-    transform: rotate(-10deg) scale(.9)
-  99%
-    opacity: .85
-    transform: rotate(0) scale(1)
+    transform: scale(0)
+  10%
+    transform: scale(0)
+  15%
+    transform: scale(1)
   100%
-    opacity: .85
-    transform: rotate(0) scale(1)
+    transform: scale(1)
 
 @media screen and (max-width: 768px)
   section.pictogram-chart > div.title-wrapper
