@@ -1,24 +1,33 @@
 <template>
   <section class="chart-wrapper" :class="{ hide: !chartType }">
     <div class="inner-wrapper">
-      <line-chart      v-if="chartType === 'line-chart'"           />
-      <donut-chart     v-else-if="chartType === 'donut-chart'"     />
+      <area-chart      v-if="chartType === 'area-chart'"           />
       <bar-chart       v-else-if="chartType === 'bar-chart'"       />
+      <donut-chart     v-else-if="chartType === 'donut-chart'"     />
       <heat-map        v-else-if="chartType === 'heat-map'"        />
+      <line-chart      v-else-if="chartType === 'line-chart'"      />
       <pictogram-chart v-else-if="chartType === 'pictogram-chart'" />
     </div>
   </section>
 </template>
 
 <script>
-import LineChart from '@/components/misc/Inguz/LineChart';
-import DonutChart from '@/components/misc/Inguz/DonutChart';
+import AreaChart from '@/components/misc/Inguz/AreaChart';
 import BarChart from '@/components/misc/Inguz/BarChart';
+import DonutChart from '@/components/misc/Inguz/DonutChart';
 import HeatMap from '@/components/misc/Inguz/HeatMap';
+import LineChart from '@/components/misc/Inguz/LineChart';
 import PictogramChart from '@/components/misc/Inguz/PictogramChart';
 
 export default {
-  components: { LineChart, DonutChart, BarChart, HeatMap, PictogramChart },
+  components: {
+    AreaChart,
+    BarChart,
+    DonutChart,
+    HeatMap,
+    LineChart,
+    PictogramChart,
+  },
   computed: {
     chartType() { return this.$route.params.chart },
   },

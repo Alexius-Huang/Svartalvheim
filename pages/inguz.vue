@@ -32,7 +32,14 @@ import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 export default {
   data() {
     return {
-      charts: ['line-chart', 'donut-chart', 'bar-chart', 'heat-map', 'pictogram-chart'],
+      /* Sort in alphebetical order */
+      charts: [
+        'bar-chart',
+        'donut-chart',
+        'heat-map',
+        'line-chart',
+        'pictogram-chart',
+      ],
       imgs: {
         'line-chart': lineChartImg,
         'donut-chart': donutChartImg,
