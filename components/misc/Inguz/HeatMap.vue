@@ -86,7 +86,6 @@ export default {
   computed: {},
   methods: {
     determineConsumptionLevel(value) {
-      console.log(value);
       const level = Math.floor(value / 1000) - 12;
       return `level-${level}`;
     },

@@ -103,15 +103,25 @@
   "pictogramChart": [
     {
       "title": "What?",
-      "content": [""]
+      "content": [
+        "A pictogram, or so-called <b>pictograph</b> is an <a href=\"https://www.wikiwand.com/en/Ideogram\" target=\"_blank\">Ideogram</a> that conveys its meaning through its pictorial resemblance to a physical object.",
+        "Pictographs are often used in writing and graphic systems in which the characters are to a considerable extent pictorial in appearance. A pictogram may also be used in subjects such as leisure, tourism, and geography."
+      ]
     },
     {
       "title": "When?",
-      "content": [""]
+      "content": [
+        "Pictograms can come in handy quite often when visualizing data in <b>infographics</b>, <b>reports</b>, <b>presentations</b>.",
+        "You can use a pictogram whenever you want to make simple data more visually interesting, more memorable, or more engaging."
+      ]
     },
     {
       "title": "How?",
-      "content": [""]
+      "content": [
+        "It can be used to present values such as ratings or scores. However, to visualize it in a good way, you need to make sure <b>the icon is simple and meaningful</b>. Remember the icons you choose should be relevent to the subject matter of your data.",
+        "<b>Stick with rows of 5 or 10 icons for maximum readability</b>, it is intuitive enough to count the number of data by counting the rows of the icons.",
+        "More info can be found at <a href=\"https://venngage.com/blog/pictogram/\" target=\"_target\">here.</a>"
+      ]
     }
   ]
 }

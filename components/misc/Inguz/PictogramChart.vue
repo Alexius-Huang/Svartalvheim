@@ -26,6 +26,7 @@
               <span class="country-name">{{ country }}</span>
               <!-- {{ rate }} -->
             </span><!--
+
          --><span class="pictogram-cluster">
               <span v-for="i in Math.ceil(rate / 10)" :key="`${c}-${i}`" class="row">
                 <template v-if="i !== Math.ceil(rate / 10)">
@@ -51,14 +52,14 @@
                       width: `${20 * (rate % 1)}pt`,
                       overflow: 'hidden'
                     }"
-                  >
-                    <img :src="icons.murder" />
-                  </span>
+                  ><img :src="icons.murder" /></span>
                 </template>
               </span>
             </span><!--
-         --><span class="value-rate">
-              {{ rate }} <small> Per 100,000 People</small>
+
+         --><span :style="deriveLineHeightFromRate(rate)" class="value-rate">
+              <span :style="deriveFontSizeFromRate(rate)">{{ rate }}</span>
+              <small> Per 100,000 People</small>
             </span>
           </li>
         </ul>
@@ -83,7 +84,14 @@ export default {
   methods: {
     getNationFlag(code) {
       return require(`../../../assets/national-flags/${code}.svg`);
-    }
+    },
+    deriveFontSizeFromRate(rate) {
+      return { 'font-size': `${(rate / 2.5) + 12}pt` };
+    },
+    deriveLineHeightFromRate(rate) {
+      const height = `${rate / 2.5 + 12}pt`;
+      return { height, 'line-height': height };
+    },
   },
 };
 </script>
@@ -125,7 +133,6 @@ section.pictogram-chart
         display: block
         width: 100%
         height: auto
-        // border-bottom: 1px dotted $yellow-500
         padding: 16pt 0
         > span.country
           display: inline-block
@@ -183,10 +190,9 @@ section.pictogram-chart
           position: relative
           display: inline-block
           vertical-align: bottom
-          font-size: 32pt
           width: 100pt
-          height: 30pt
-          line-height: 30pt
+          height: 40pt
+          line-height: 40pt
           color: $yellow-500
           text-align: right
           font-family: $base-font-family
@@ -220,4 +226,73 @@ section.pictogram-chart
   100%
     opacity: .85
     transform: rotate(0) scale(1)
+
+@media screen and (max-width: 768px)
+  section.pictogram-chart > div.title-wrapper
+    height: 40pt
+    > h1.title
+      line-height: 40pt
+      font-size: 24pt
+
+  div.chart.crime-example
+    text-align: center
+
+  div.chart.crime-example > ul.list > li
+    position: relative
+    padding-top: 30pt
+    margin-bottom: 50pt
+
+    > span.country
+      width: 300pt
+      position: absolute
+      text-align: left
+      top: 0
+      left: 0
+      right: 0
+      margin: 0 auto
+
+    > span.pictogram-cluster > span.row
+        text-align: left
+
+    > span.value-rate
+      width: 300pt
+      position: absolute
+      right: 0
+      left: 0
+      bottom: -25pt
+      margin: 0 auto
+      padding-right: 30pt
+      > small
+        padding-right: 30pt
+
+@media screen and (max-width: 425px)
+  div.chart.crime-example
+    > div.caption > h2
+      font-size: 16pt
+      text-align: left
+
+    > ul.list
+      width: 100%
+
+    > ul.list  > li
+      width: 100%
+      > span.pictogram-cluster
+        width: 100%
+
+      > span.pictogram-cluster > span.row
+        height: 20pt
+        width: 100%
+        > img,
+        > span.partial-pictogram > img
+          width: 12pt
+          height: 12pt
+
+        > span.partial-pictogram
+          height: 12pt
+
+      > span.value-rate
+        width: 100%
+        padding-right: 0
+        > small
+          padding-right: 0
 </style>
