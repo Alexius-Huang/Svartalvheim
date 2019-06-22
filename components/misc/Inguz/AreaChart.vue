@@ -16,6 +16,73 @@
       </p>
 
       <div class="chart finance-accounting-example">
+        <div class="svg-wrapper">
+          <svg :width="svg.width" :height="svg.height">
+            <g
+              class="axis-group"
+              :transform="`translate(${axis.translation})`"
+            >
+              <!-- Render Main Base Axis -->
+              <line
+                class="axis main-axis"
+                x1="0"
+                :y1="axis.height"
+                :x2="axis.width"
+                :y2="axis.height"
+              />
+
+              <!-- Render the y-direction scales indicate time -->
+              <line
+                v-for="i in totalQuarters" :key="i"
+                class="axis" :class="{ 'annual-axis': i % 4 === 0 }"
+                :x1="(axis.width / (totalQuarters - 1)) * (i - 1)"
+                :y1="axis.height"
+                :x2="(axis.width / (totalQuarters - 1)) * (i - 1)"
+                y2="0"
+              />
+
+              <!-- Render the x-direction scales indicate values -->
+              <line
+                v-for="i in 10" :key="i"
+                class="axis"
+                x1="0"
+                :y1="(axis.height / 10) * (i - 1)"
+                :x2="axis.width"
+                :y2="(axis.height / 10) * (i - 1)"
+              />
+            </g>
+
+            <g
+              class="label-group"
+              :transform="`translate(${label.translation})`"
+            >
+              <text
+                v-for="i in 11" :key="i"
+                class="vertical-label"
+                :x="axis.translation[0] - label.gapFromAxis[0]"
+                :y="(axis.height / 10) * (11 - i)"
+              >{{ i - 1 }}</text>
+
+              <!-- Need to do label rotation which wraps the text again with <g> tag -->
+              <template v-for="({ year, ...rest }, i) in data">
+                <g
+                  class="horizontal-label-wrapper"
+                  v-for="(quarter, j) in Object.keys(rest)"
+                  :key="`${year}-${quarter}`"
+                  :transform="`translate(${[
+                    axis.translation[0] + ((axis.width / (totalQuarters - 1)) * (i * 4 + j)),
+                    axis.height + label.gapFromAxis[1]
+                  ]})`"
+                >
+                  <text
+                    :class="{ 'annual-label': quarter === 'Q4' }"
+                    class="horizontal-label"
+                  >{{ year }} {{ quarter }}</text>
+                </g>
+              </template>
+            </g>
+          </svg>
+        </div>
       </div>
     </article>
   </section>
@@ -51,9 +118,26 @@ const decapitalize = ([cap, ...rest]) => `${cap.toLowerCase()}${rest.join('')}`;
 
 export default {
   data() {
+    const shownFrom = 2012;
+    const shownTo = 2018;
+    const totalYears = (shownTo - shownFrom) + 1;
+    const totalQuarters = totalYears * 4;
+
     return {
       chartInfo,
       data,
+
+      shownFrom,
+      shownTo,
+      totalYears,
+      totalQuarters,
+
+      mode: 'iPhone',           // [Products || 'All']
+      timeInterval: 'Annual',   // ['Annual' || 'Quarter']
+
+      svg: { width: 960, height: 600 },
+      axis: { width: 800, height: 400, translation: [100, 75] },
+      label: { translation: [0, 75], gapFromAxis: [10, 20] },
     };
   },
   computed: {
@@ -88,11 +172,12 @@ export default {
     },
   },
   mounted() {
+    // Examples:
     // console.log(this.iPhoneRevenueEachQuarter);
     // console.log(this.iPhoneRevenueEachYear);
-    console.log(this.data);
-    console.log(this.totalRevenueEachQuarter);
-    console.log(this.totalRevenueEachYear);
+    // console.log(this.data);
+    // console.log(this.totalRevenueEachQuarter);
+    // console.log(this.totalRevenueEachYear);
   },
 };
 </script>
@@ -114,4 +199,49 @@ section.bar-chart
 @import '../../../sass/colors.sass'
 @import '../../../sass/shared.sass'
 @import './_shared.sass'
+
+div.chart.finance-accounting-example
+  margin-top: 50pt
+  > div.svg-wrapper
+    display: block
+    text-align: center
+  > div.svg-wrapper > svg
+    display: inline-block
+    border: 1px solid $yellow-500
+
+    > g.axis-group
+      > line.axis
+        fill: none
+        stroke-width: 1
+        stroke: #444
+
+        &.annual-axis
+          stroke: #555
+          stroke-dasharray: 3, 3
+
+        &:not(.annual-axis):not(.main-axis)
+          stroke-dasharray: 1, 5
+
+        &.main-axis
+          stroke: #555
+          stroke-width: 2
+
+    > g.label-group
+      > text,
+      > g.horizontal-label-wrapper > text
+        font-size: 12pt
+        font-family: $default-font-family
+        font-style: italic
+        fill: #777
+        dominant-baseline: middle
+        text-anchor: end
+
+      // > text.vertical-label
+      > g.horizontal-label-wrapper > text
+          transform: rotate(-35deg)
+          font-size: 8pt
+
+          &.annual-label
+            font-size: 10pt
+            fill: #aaa
 </style>
