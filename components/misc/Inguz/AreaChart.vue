@@ -66,13 +66,25 @@
               :transform="`translate(${label.translation})`"
             >
               <text
+                id="label-caption"
+                :x="axis.translation[0] + (area.width / 2)"
+                :y="-caption.offsetFromChart"
+              >{{ caption.title }}</text>
+
+              <text
                 v-for="i in 11" :key="`y-label-${i}`"
                 class="vertical-label"
                 :x="axis.translation[0] - label.gapFromAxis[0]"
                 :y="(axis.height / 10) * (11 - i)"
+                :fill-opacity="0.3 + (i * (0.7 / 11))"
               >{{ (i - 1) * label.incomeLabel.delta }}{{ label.incomeLabel.unit }}</text>
 
-              <!-- Need to do label rotation which wraps the text again with <g> tag -->
+              <text
+                id="y-label-descriptor" class="label-descriptor"
+                :x="axis.translation[0] - label.gapFromAxis[0]"
+                y="-25"
+              >Revenue</text>
+
               <template v-for="({ year, ...rest }, i) in data">
                 <g
                   class="horizontal-label-wrapper"
@@ -89,6 +101,12 @@
                   >{{ year }} {{ quarter }}</text>
                 </g>
               </template>
+
+              <text
+                id="x-label-descriptor" class="label-descriptor"
+                :x="axis.translation[0] + axis.width + 10"
+                :y="axis.height"
+              >Time</text>
             </g>
 
             <g
@@ -99,7 +117,8 @@
               <g
                 v-for="product in products" :key="`${product}-income-area`"
                 :id="`${product}-area-group`"
-                class="area-group" :class="{ [product]: true }"
+                class="area-group"
+                :class="{ [product]: true, hide: !focusedProducts.includes(product) }"
               />
             </g>
           </svg>
@@ -181,16 +200,16 @@ export default {
       timeInterval: 'Quarter',   // ['Annual' || 'Quarter']
 
       svg: { width: 960, height: 600 },
-      axis: { ...chartSize, translation: [100, 75] },
-      area: { ...chartSize, translation: [100, 75] },
+      axis: { ...chartSize, translation: [100, 100] },
+      area: { ...chartSize, translation: [100, 100] },
       label: {
-        translation: [0, 75],
+        translation: [0, 100],
         gapFromAxis: [10, 15],
         incomeLabel: { delta: 10, unit: 'M $' }, // Million U.S. dollar
       },
-      animationSettings: {
-        // easing: mina.easeinout,
-        duration: 500,
+      caption: {
+        title: 'Apple Inc. Unaudited Revenue Summary Data From 2012 to 2018',
+        offsetFromChart: 45,
       },
 
       nulledPoints: nulledPoints,
@@ -275,15 +294,15 @@ export default {
     setTimeout(() => {
       this.focusedProducts = ['iPhone'];
     }, 1000);
-    setTimeout(() => {
-      this.focusedProducts = ['iPhone', 'iPad'];
-    }, 2000);
-    setTimeout(() => {
-      this.focusedProducts = ['iPhone', 'Mac', 'iPad'];
-    }, 3000);
-    setTimeout(() => {
-      this.focusedProducts = ['iPhone', 'Mac', 'iPad', 'Other'];
-    }, 4000);
+    // setTimeout(() => {
+    //   this.focusedProducts = ['iPhone', 'iPad'];
+    // }, 2000);
+    // setTimeout(() => {
+    //   this.focusedProducts = ['iPhone', 'Mac', 'iPad'];
+    // }, 3000);
+    // setTimeout(() => {
+    //   this.focusedProducts = ['iPhone', 'Mac', 'iPad', 'Other'];
+    // }, 4000);
   },
 
   watch: {
@@ -293,7 +312,6 @@ export default {
         $areaPolylines,
         products,
         areaBoundries: AB,
-        animationSettings: { /* easing, */ duration },
       } = this;
 
       products.forEach((product) => {
@@ -301,8 +319,8 @@ export default {
         const $areaPolyline = $areaPolylines[product];
         const points = AB[product];
 
-        $areaPolygon.animate({ points: this.polygonize(points) }, duration, mina.easeinout);
-        $areaPolyline.animate({ points }, duration, mina.easeinout);
+        $areaPolygon.animate({ points: this.polygonize(points) }, 500, mina.easeinout);
+        $areaPolyline.animate({ points }, 500, mina.easeinout);
       });
     },
   },
@@ -319,7 +337,6 @@ section.bar-chart
       color: $yellow-700
     &:hover
       color: $yellow-300
-
 
 svg#area-chart > g.area-visualization-group > g.area-group
   > polyline
@@ -351,6 +368,10 @@ svg#area-chart > g.area-visualization-group > g.area-group
       stroke: $blue-900
     > polygon
       fill: url(#Other-area-gradient)
+
+  &.hide > polygon,
+  &.hide > polyline
+    display: none
 
 #iPhone-area-gradient
   --iPhone-color-start: #FFEB3B // Equivalent to $yellow-500
@@ -411,7 +432,22 @@ div.chart.finance-accounting-example
         dominant-baseline: middle
         text-anchor: end
 
-      // > text.vertical-label
+      > text.label-descriptor
+        font: normal bolder 12pt $base-font-family
+        letter-spacing: .5pt
+        fill: $yellow-600
+
+      > text#x-label-descriptor
+        text-anchor: start
+
+      > text#label-caption
+        text-anchor: middle
+        font: normal 16pt $base-font-family
+        fill: $yellow-500
+
+      > text.vertical-label
+        fill: $yellow-700
+
       > g.horizontal-label-wrapper > text
           transform: rotate(-35deg)
           font-size: 8pt
