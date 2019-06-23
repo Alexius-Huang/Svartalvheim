@@ -17,7 +17,7 @@
 
       <div class="chart finance-accounting-example">
         <div class="svg-wrapper">
-          <svg :width="svg.width" :height="svg.height">
+          <svg id="area-chart" :width="svg.width" :height="svg.height">
             <!-- Define Gradients -->
             <defs v-for="product in products" :key="`${product}-linear-gradient`">
               <linearGradient :id="`${product}-area-gradient`" gradientTransform="rotate(90)">
@@ -94,16 +94,12 @@
               class="area-visualization-group"
               :transform="`translate(${area.translation})`"
             >
+              <!-- Using SnapSVG to control the animation -->
               <g
                 v-for="product in products" :key="`${product}-income-area`"
+                :id="`${product}-area-group`"
                 class="area-group" :class="{ [product]: true }"
-              >
-                <polygon
-                  :points="areaPolygonized[product]"
-                  ref="product-polygon" />
-                <polyline :points="areaPathized[product]">
-                </polyline>
-              </g>
+              />
             </g>
           </svg>
         </div>
@@ -115,6 +111,14 @@
 <script>
 import { areaChart as chartInfo } from './info.json';
 import data from '@/resources/inguz/apple-income-statistic.json';
+
+let snapsvg, mina;
+if (process.browser) {
+  snapsvg = Snap;
+  mina = window.mina;
+}
+
+console.log(mina);
 
 const _roundDigits = 100;
 const _round = num => Math.round(num * _roundDigits) / _roundDigits;
@@ -165,12 +169,17 @@ export default {
     ].join(' ');
 
     /* Default animate state */
-    // const preAnimateState = products.reduce((state, product) =>
-    //   Object.assign(state, {
-    //     [product]: { polyline: nulledPolyline, polygon: nulledPolygon }
-    //   }), {});
+    const preAnimateState = products.reduce((state, product) =>
+      Object.assign(state, {
+        [product]: { polyline: nulledPolyline, polygon: nulledPolygon }
+      }), {});
 
     return {
+      $svg: null,
+      $areaGroups: {},
+      $areaPolygons: {},
+      $areaPolylines: {},
+
       chartInfo,
       products,
       data,
@@ -192,21 +201,7 @@ export default {
         incomeLabel: { delta: 10, unit: 'M $' }, // Million U.S. dollar
       },
 
-      nulled: {
-        points: nulledPoints,
-        // polyline: nulledPolyline,
-        // polygon: nulledPolygon,
-      },
-      // preAnimateState,
-      // animationDefaultAttributes: {
-      //   attributeName: 'points',
-      //   dur: '1000ms',
-      //   repeatCount: '1',
-      //   keyTimes: '0; 1',
-      //   keySplines: '0 .75 .25 1',
-      //   calcMode: 'spline',
-      //   fill: 'freeze',
-      // },
+      nulledPoints: nulledPoints,
 
       ...PREQ,
       ...PREY,
@@ -221,7 +216,7 @@ export default {
         totalQuarters,
         area: { width, height },
         label: { incomeLabel: { delta } },
-        nulled,
+        nulledPoints,
       } = this;
 
       return products.reduce((boundries, product) =>
@@ -235,20 +230,7 @@ export default {
                   const x = _round((width / (totalQuarters - 1)) * i);
                   return [x, y];
                 })
-            ) : nulled.points
-        }), {});
-    },
-
-    areaPolygonized() {
-      const { areaBoundries: AB, products: P } = this;
-      return P.reduce((result, product) => Object.assign(result, {
-          [product]: this.polygonize(AB[product]),
-        }), {});
-    },
-    areaPathized() {
-      const { areaBoundries: AB, products: P } = this;
-      return P.reduce((result, product) => Object.assign(result, {
-          [product]: this.pathize(AB[product]),
+            ) : nulledPoints
         }), {});
     },
   },
@@ -260,7 +242,7 @@ export default {
     },
     polygonize(points) {
       const { area: { width: w, height: h } } = this;
-      return `0 ${h} ${this.pathize(points)} ${w} ${h}`;
+      return [[0, h], ...points, [w, h]];
     },
   },
   mounted() {
@@ -269,12 +251,61 @@ export default {
     // console.log(this.iPhoneREQ);
     // console.log(this.iPhoneREY);
 
+    this.$svg = snapsvg('#area-chart');
+    const { products, $svg, nulledPoints } = this;
+
+    const $areaGroups = {};
+    const $areaPolygons = {};
+    const $areaPolylines = {};
+
+    products.reverse().forEach((product) => {
+      const $areaGroup = $svg.select(`g#${product}-area-group`);
+      const $areaPolygon = $svg.polygon(this.polygonize(nulledPoints));
+      const $areaPolyline = $svg.polyline(nulledPoints);
+
+      $areaPolygon.addClass('product-polygon');
+      $areaPolyline.addClass('product-polyline');
+      $areaGroup.append($areaPolygon);
+      $areaGroup.append($areaPolyline);
+
+      Object.assign($areaGroups, { [product]: $areaGroup });
+      Object.assign($areaPolygons, { [product]: $areaPolygon });
+      Object.assign($areaPolylines, { [product]: $areaPolyline });
+    });
+
+    this.$areaGroups = $areaGroups;
+    this.$areaPolygons = $areaPolygons;
+    this.$areaPolylines = $areaPolylines;
+
     setTimeout(() => {
       this.focusedProducts = ['iPhone'];
     }, 1000);
-    // setTimeout(() => {
-    //   this.focusedProducts = ['iPad'];
-    // }, 2000);
+    setTimeout(() => {
+      this.focusedProducts = ['iPad'];
+    }, 2000);
+    setTimeout(() => {
+      this.focusedProducts = ['Other', 'Mac'];
+    }, 3000);
+  },
+
+  watch: {
+    focusedProducts() {
+      const {
+        $areaPolygons,
+        $areaPolylines,
+        products,
+        areaBoundries: AB,
+      } = this;
+
+      products.forEach((product) => {
+        const $areaPolygon = $areaPolygons[product];
+        const $areaPolyline = $areaPolylines[product];
+        const points = AB[product];
+
+        $areaPolygon.animate({ points: this.polygonize(points) }, 500, mina.easeinout);
+        $areaPolyline.animate({ points }, 500, mina.easeinout);
+      });
+    },
   },
 };
 </script>
@@ -289,6 +320,54 @@ section.bar-chart
       color: $yellow-700
     &:hover
       color: $yellow-300
+
+
+svg#area-chart > g.area-visualization-group > g.area-group
+  > polyline
+    fill: none
+    stroke-width: 3
+    stroke-linejoin: round
+
+  > polyline,
+  > polygon
+    transition: points .25s
+
+  &.iPhone
+    > polyline
+      stroke: $yellow-700
+    > polygon
+      fill: url(#iPhone-area-gradient)
+  &.iPad
+    > polyline
+      stroke: $light-green-700
+    > polygon
+      fill: url(#iPad-area-gradient)
+  &.Mac
+    > polyline
+      stroke: $teal-700
+    > polygon
+      fill: url(#Mac-area-gradient)
+  &.Other
+    > polyline
+      stroke: $blue-700
+    > polygon
+      fill: url(#Other-area-gradient)
+
+#iPhone-area-gradient
+  --iPhone-color-start: #FFEB3B // Equivalent to $yellow-500
+  --iPhone-color-end: white
+
+#iPad-area-gradient
+  --iPad-color-start: #8BC34A // Equivalent to $light-green-500
+  --iPad-color-end: white
+
+#Mac-area-gradient
+  --Mac-color-start: #009688 // Equivalent to $teal-500
+  --Mac-color-end: white
+
+#Other-area-gradient
+  --Other-color-start: #4FC3F7 // Equivalent to $blue-300
+  --Other-color-end: white
 </style>
 
 <style scoped lang="sass">
@@ -341,51 +420,4 @@ div.chart.finance-accounting-example
           &.annual-label
             font-size: 10pt
             fill: #aaa
-
-    > g.area-visualization-group > g.area-group
-      > polyline
-        fill: none
-        stroke-width: 3
-        stroke-linejoin: round
-
-      > polyline,
-      > polygon
-        transition: points .25s
-
-      &.iPhone
-        > polyline
-          stroke: $yellow-700
-        > polygon
-          fill: url(#iPhone-area-gradient)
-      &.iPad
-        > polyline
-          stroke: $light-green-700
-        > polygon
-          fill: url(#iPad-area-gradient)
-      &.Mac
-        > polyline
-          stroke: $teal-700
-        > polygon
-          fill: url(#Mac-area-gradient)
-      &.Other
-        > polyline
-          stroke: $blue-700
-        > polygon
-          fill: url(#Other-area-gradient)
-
-#iPhone-area-gradient
-  --iPhone-color-start: #FFEB3B // Equivalent to $yellow-500
-  --iPhone-color-end: white
-
-#iPad-area-gradient
-  --iPad-color-start: #8BC34A // Equivalent to $light-green-500
-  --iPad-color-end: white
-
-#Mac-area-gradient
-  --Mac-color-start: #009688 // Equivalent to $teal-500
-  --Mac-color-end: white
-
-#Other-area-gradient
-  --Other-color-start: #4FC3F7 // Equivalent to $blue-300
-  --Other-color-end: white
 </style>

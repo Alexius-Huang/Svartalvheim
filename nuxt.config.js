@@ -18,6 +18,9 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,500|Staatliches' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Mono|Share+Tech+Mono' }
+    ],
+    script: [
+      { type: 'text/javascript', src: 'https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js' }
     ]
   },
   /*
