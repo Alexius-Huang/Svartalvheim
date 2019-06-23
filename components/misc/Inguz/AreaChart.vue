@@ -22,6 +22,7 @@
             <defs v-for="product in products" :key="`${product}-linear-gradient`">
               <linearGradient :id="`${product}-area-gradient`" gradientTransform="rotate(90)">
                 <stop offset="0"    :stop-color="`var(--${product}-color-start)`" stop-opacity="1" />
+                <stop offset="25%"  :stop-color="`var(--${product}-color-start)`"   stop-opacity="0.5" />
                 <stop offset="100%" :stop-color="`var(--${product}-color-end)`"   stop-opacity="0" />
               </linearGradient>
             </defs>
@@ -161,19 +162,6 @@ export default {
       nulledPoints.push(chartSize.height);
     }
 
-    const nulledPolyline = nulledPoints.join(' ');
-    const nulledPolygon = [
-      0, chartSize.height,
-      ...nulledPoints,
-      chartSize.width, chartSize.height,
-    ].join(' ');
-
-    /* Default animate state */
-    const preAnimateState = products.reduce((state, product) =>
-      Object.assign(state, {
-        [product]: { polyline: nulledPolyline, polygon: nulledPolygon }
-      }), {});
-
     return {
       $svg: null,
       $areaGroups: {},
@@ -200,6 +188,10 @@ export default {
         gapFromAxis: [10, 15],
         incomeLabel: { delta: 10, unit: 'M $' }, // Million U.S. dollar
       },
+      animationSettings: {
+        // easing: mina.easeinout,
+        duration: 500,
+      },
 
       nulledPoints: nulledPoints,
 
@@ -219,27 +211,30 @@ export default {
         nulledPoints,
       } = this;
 
-      return products.reduce((boundries, product) =>
-        Object.assign(boundries, {
-          [product]:
-            focusedProducts.includes(product) ? (
-              this[`${_decapitalize(product)}REQ`]
-                .flatMap(({ result }) => result)
-                .map((value, i) => {
-                  const y = _round(height - ((value / delta) * (height / 10)));
-                  const x = _round((width / (totalQuarters - 1)) * i);
-                  return [x, y];
-                })
-            ) : nulledPoints
+      const cumulationCache = Array.from(Array(nulledPoints.length)).map(_ => 0);
+
+      return products.reduce((boundries, product, i) =>
+        Object.assign(boundries, { [product]:
+          focusedProducts.includes(product) ? (
+            this[`${_decapitalize(product)}REQ`]
+              .flatMap(({ result }) => result)
+              .map((value, j) => {
+                const cumulatedYDelta = cumulationCache[j];
+                const currentYDelta = (value / delta) * (height / 10);
+                const y = _round(height - (currentYDelta + cumulatedYDelta));
+                const x = _round((width / (totalQuarters - 1)) * j);
+                const point = [x, y];
+
+                cumulationCache[j] += currentYDelta;
+
+                return point;
+              })
+          ) : nulledPoints
         }), {});
     },
   },
   methods: {
-    pathize(points) {
-      const { area: { width: w, height: h } } = this;
-      if (!points.flat) return `0 ${h} ${w} ${h}`;
-      return points.flat().join(' ');
-    },
+    /* Polygon requires the left-bottom and the right bottom corner points in the chart */
     polygonize(points) {
       const { area: { width: w, height: h } } = this;
       return [[0, h], ...points, [w, h]];
@@ -281,11 +276,14 @@ export default {
       this.focusedProducts = ['iPhone'];
     }, 1000);
     setTimeout(() => {
-      this.focusedProducts = ['iPad'];
+      this.focusedProducts = ['iPhone', 'iPad'];
     }, 2000);
     setTimeout(() => {
-      this.focusedProducts = ['Other', 'Mac'];
+      this.focusedProducts = ['iPhone', 'Mac', 'iPad'];
     }, 3000);
+    setTimeout(() => {
+      this.focusedProducts = ['iPhone', 'Mac', 'iPad', 'Other'];
+    }, 4000);
   },
 
   watch: {
@@ -295,6 +293,7 @@ export default {
         $areaPolylines,
         products,
         areaBoundries: AB,
+        animationSettings: { /* easing, */ duration },
       } = this;
 
       products.forEach((product) => {
@@ -302,8 +301,8 @@ export default {
         const $areaPolyline = $areaPolylines[product];
         const points = AB[product];
 
-        $areaPolygon.animate({ points: this.polygonize(points) }, 500, mina.easeinout);
-        $areaPolyline.animate({ points }, 500, mina.easeinout);
+        $areaPolygon.animate({ points: this.polygonize(points) }, duration, mina.easeinout);
+        $areaPolyline.animate({ points }, duration, mina.easeinout);
       });
     },
   },
@@ -339,17 +338,17 @@ svg#area-chart > g.area-visualization-group > g.area-group
       fill: url(#iPhone-area-gradient)
   &.iPad
     > polyline
-      stroke: $light-green-700
+      stroke: $light-green-800
     > polygon
       fill: url(#iPad-area-gradient)
   &.Mac
     > polyline
-      stroke: $teal-700
+      stroke: $teal-800
     > polygon
       fill: url(#Mac-area-gradient)
   &.Other
     > polyline
-      stroke: $blue-700
+      stroke: $blue-900
     > polygon
       fill: url(#Other-area-gradient)
 
@@ -399,7 +398,7 @@ div.chart.finance-accounting-example
           stroke-dasharray: 1, 5
 
         &.main-axis
-          stroke: #555
+          stroke: #444
           stroke-width: 2
 
     > g.label-group
