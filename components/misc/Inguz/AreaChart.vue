@@ -31,33 +31,20 @@
               class="axis-group"
               :transform="`translate(${axis.translation})`"
             >
-              <!-- Render Main Base Axis -->
-              <line
-                class="axis main-axis"
-                x1="0"
-                :y1="axis.height"
-                :x2="axis.width"
-                :y2="axis.height"
-              />
+              <line class="axis main-axis" v-bind="mainAxisAttributes" />
 
-              <!-- Render the y-direction scales indicate time -->
+              <!-- Render the x-direction scales indicate time -->
               <line
                 v-for="i in totalQuarters" :key="`y-${i}`"
                 class="axis" :class="{ 'annual-axis': i % 4 === 0 }"
-                :x1="(axis.width / (totalQuarters - 1)) * (i - 1)"
-                :y1="axis.height"
-                :x2="(axis.width / (totalQuarters - 1)) * (i - 1)"
-                y2="0"
+                v-bind="deriveTimeScaleFromIndex(i)"
               />
 
-              <!-- Render the x-direction scales indicate values -->
+              <!-- Render the y-direction scales indicate values -->
               <line
                 v-for="i in 10" :key="`x-${i}`"
                 class="axis"
-                x1="0"
-                :y1="(axis.height / 10) * (i - 1)"
-                :x2="axis.width"
-                :y2="(axis.height / 10) * (i - 1)"
+                v-bind="deriveRevenueScaleFromIndex(i)"
               />
             </g>
 
@@ -219,6 +206,10 @@ export default {
     };
   },
   computed: {
+    mainAxisAttributes() {
+      const { axis: { width: w, height: h } } = this;
+      return { x1: 0, y1: h, x2: w, y2: h };
+    },
     areaBoundries() {
       const {
         timeInterval,
@@ -253,6 +244,17 @@ export default {
     },
   },
   methods: {
+    /* Hint: v-for i in N index starts from 1 instead of 0 */
+    deriveTimeScaleFromIndex(i) {
+      const { totalQuarters: TQ, axis: { width: w, height: h } } = this;
+      const x = (w / (TQ - 1)) * (i - 1);
+      return { x1: x, y1: h, x2: x, y2: 0 };
+    },
+    deriveRevenueScaleFromIndex(i) {
+      const { axis: { width: w, height: h } } = this;
+      const y = (h / 10) * (i - 1);
+      return { x1: 0, y1: y, x2: w, y2: y };
+    },
     /* Polygon requires the left-bottom and the right bottom corner points in the chart */
     polygonize(points) {
       const { area: { width: w, height: h } } = this;
@@ -294,15 +296,6 @@ export default {
     setTimeout(() => {
       this.focusedProducts = ['iPhone'];
     }, 1000);
-    // setTimeout(() => {
-    //   this.focusedProducts = ['iPhone', 'iPad'];
-    // }, 2000);
-    // setTimeout(() => {
-    //   this.focusedProducts = ['iPhone', 'Mac', 'iPad'];
-    // }, 3000);
-    // setTimeout(() => {
-    //   this.focusedProducts = ['iPhone', 'Mac', 'iPad', 'Other'];
-    // }, 4000);
   },
 
   watch: {
