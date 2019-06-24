@@ -22,10 +22,11 @@
 </template>
 
 <script>
-import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
-import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
+import areaChartImg from '@/assets/inguz/area-chart-bg.gif';
 import barChartImg from '@/assets/inguz/bar-chart-bg.gif';
+import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
 import heatMapImg from '@/assets/inguz/heat-map-bg.gif';
+import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
 import pictogramChartImg from '@/assets/inguz/pictogram-chart-bg.gif';
 import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 
@@ -34,6 +35,7 @@ export default {
     return {
       /* Sort in alphebetical order */
       charts: [
+        'area-chart',
         'bar-chart',
         'donut-chart',
         'heat-map',
@@ -41,6 +43,7 @@ export default {
         'pictogram-chart',
       ],
       imgs: {
+        'area-chart': areaChartImg,
         'line-chart': lineChartImg,
         'donut-chart': donutChartImg,
         'bar-chart': barChartImg,
@@ -48,6 +51,7 @@ export default {
         'pictogram-chart': pictogramChartImg,
       },
       label: {
+        'area-chart': 'Area Chart',
         'line-chart': 'Line Chart',
         'donut-chart': 'Donut Chart',
         'bar-chart': 'Bar Chart',
