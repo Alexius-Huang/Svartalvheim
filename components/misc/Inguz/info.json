@@ -27,7 +27,7 @@
       "content": [
         "<b>Colors</b> in the area chart should be <b>distinguishable</b>. If you are using standard area chart, it is <b>strongly recommend to use color with transparency</b>.",
         "Because colored area in chart represents the quantity which appears to the human as solid value which is non-negligeble, <b>the vertical axis' base value should start at 0</b>.",
-        "It is recommended <b>not to show too much quantities</b> in a single area chart (5 to 10 atmost)."
+        "It is recommended <b>not to show too much quantities</b> in a single area chart (5 to 10 atmost, but 3 - 5 atmost if in standard area chart)."
       ]
     }
   ],
