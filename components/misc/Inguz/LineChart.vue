@@ -111,7 +111,7 @@
 
 <script>
 import curve from '@/utils/curve';
-import { lineChart as chartInfo } from './info.json';
+import { lineChart as chartInfo } from '@/resources/inguz/info.json';
 
 export default {
   data() {

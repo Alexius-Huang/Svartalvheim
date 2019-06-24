@@ -71,7 +71,7 @@
 <script>
 import homicideRate from '@/resources/inguz/homicide-rate.json';
 import murderIcon from '@/assets/icons/custom/murder-main.svg';
-import { pictogramChart as chartInfo } from './info.json';
+import { pictogramChart as chartInfo } from '@/resources/inguz/info.json';
 
 export default {
   data() {

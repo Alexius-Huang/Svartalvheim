@@ -50,7 +50,7 @@
 
 <script>
 import T from '@tweenjs/tween.js';
-import { donutChart as chartInfo } from './info.json';
+import { donutChart as chartInfo } from '@/resources/inguz/info.json';
 
 export default {
   data() {

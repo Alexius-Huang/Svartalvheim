@@ -86,7 +86,7 @@
 
 <script>
 import AppSwitch from '@/components/AppSwitch';
-import { barChart as chartInfo } from './info.json';
+import { barChart as chartInfo } from '@/resources/inguz/info.json';
 
 export default {
   components: { AppSwitch },

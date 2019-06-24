@@ -176,7 +176,7 @@
 </template>
 
 <script>
-import { areaChart as chartInfo } from './info.json';
+import { areaChart as chartInfo } from '@/resources/inguz/info.json';
 import data from '@/resources/inguz/apple-income-statistic.json';
 
 let snapsvg, mina;

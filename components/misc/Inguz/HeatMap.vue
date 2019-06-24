@@ -65,7 +65,7 @@
 
 <script>
 import electricityConsumption from '@/resources/inguz/electricity-consumption.json';
-import { heatMap as chartInfo } from './info.json';
+import { heatMap as chartInfo } from '@/resources/inguz/info.json';
 
 export default {
   data() {

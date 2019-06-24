@@ -4,6 +4,17 @@
       <div class="title-wrapper">
         <h1 class="title">Visualizations</h1>
       </div>
+
+      <p class="main-description desktop-version">
+        Hover through different chart to view its properties and click to see the detailed animations.
+      </p>
+
+      <div id="inguz-chart-info" class="info-section" v-if="chartInfo !== null">
+        <template v-for="({ title: t, content: c }) in chartInfo">
+          <h2 class="sub-title" :key="t">{{ t }}</h2>
+          <p v-for="(paragraph, j) in c" :key="`${t}-${j}`" class="content" v-html="paragraph" />
+        </template>
+      </div>
     </section><!--
 
  --><section class="inguz-chart-grid chart-grid">
@@ -13,7 +24,10 @@
         @click="inspectChartDetail(chart)"
       >
         <img class="chart-bg" :src="imgs[chart]" :alt="label[chart]" />
-        <span class="label">{{ label[chart] }} <img class="icon" :src="icons.chevronRight" /></span>
+        <span
+          class="label"
+          @mouseover="handleShowInfo(chart)"
+        >{{ label[chart] }} <img class="icon" :src="icons.chevronRight" /></span>
       </div>
     </section>
 
@@ -22,6 +36,7 @@
 </template>
 
 <script>
+import chartInfos from '@/resources/inguz/info.json';
 import areaChartImg from '@/assets/inguz/area-chart-bg.gif';
 import barChartImg from '@/assets/inguz/bar-chart-bg.gif';
 import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
@@ -33,6 +48,8 @@ import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
 export default {
   data() {
     return {
+      chartInfos,
+      chartInfo: null,
       /* Sort in alphebetical order */
       charts: [
         'area-chart',
@@ -42,6 +59,14 @@ export default {
         'line-chart',
         'pictogram-chart',
       ],
+      chartsCamelCased: {
+        'area-chart': 'areaChart',
+        'bar-chart': 'barChart',
+        'donut-chart': 'donutChart',
+        'heat-map': 'heatMap',
+        'line-chart': 'lineChart',
+        'pictogram-chart': 'pictogramChart',
+      },
       imgs: {
         'area-chart': areaChartImg,
         'line-chart': lineChartImg,
@@ -68,9 +93,25 @@ export default {
         params: { chart: type },
       });
     },
+    handleShowInfo(chart) {
+      const { chartInfos, chartsCamelCased } = this;
+      this.chartInfo = chartInfos[chartsCamelCased[chart]];
+    },
   },
 };
 </script>
+
+<style lang="sass">
+@import '../sass/colors.sass'
+
+div#inguz-chart-info > p.content > a:link
+  color: $yellow-500
+  font-weight: bold
+  &:visited
+    color: $yellow-700
+  &:hover
+    color: $yellow-300
+</style>
 
 <style scoped lang="sass">
 @import '../sass/colors.sass'
@@ -89,10 +130,31 @@ main
     font-size: 0
     width: calc(100% - 720px)
     height: 100vh
-    padding: 24pt 24pt 0 24pt
+    padding: 24pt
     box-sizing: border-box
     overflow-y: auto
     @include title-style
+
+    > p.main-description
+      font: lighter 10pt/16pt $default-font-family
+      letter-spacing: 1px
+      color: white
+      margin-top: 12pt
+
+    > div.info-section
+      margin-top: 24pt
+      > h2.sub-title
+        color: $yellow-500
+        font: 16pt $base-font-family
+      > p.content
+        color: white
+        font: lighter 10pt/16pt $default-font-family
+        letter-spacing: 1px
+        + p.content
+          margin-top: 6pt
+
+      > p.content + h2.sub-title
+        margin-top: 18pt
 
   > section.chart-grid
     position: absolute
@@ -121,19 +183,32 @@ main
         transition: .25s
 
       > span.label
-        display: inline-block
+        display: block
+        text-align: right
+        width: 100%
         font-family: $base-font-family
         font-size: 24pt
-        color: white
+        color: #aaa
         position: absolute
         right: -100%
         bottom: 10pt
         transition: .25s
+
         > img.icon
           width: 24pt
           height: 24pt
           vertical-align: middle
           display: inline-block
+          transition: .25s
+
+        &:hover
+          color: white
+          transition: .25s
+
+        &:hover > img.icon
+          width: 30pt
+          height: 30pt
+          transition: .25s
 
       &::after
         content: ''
@@ -143,6 +218,7 @@ main
         left: 0
         top: 0
         opacity: 0
+        pointer-events: none
         background-image: linear-gradient(to top, transparentize($yellow-500, .88) 0%, transparent 33.3%)
         transition: .25s
 
@@ -168,6 +244,10 @@ main
       width: 100%
       height: auto
       display: inline-block
+      > p.main-description.desktop-version
+        display: none
+      > div.info-section
+        display: none
     > section.chart-grid
       position: relative
       display: inline-block
