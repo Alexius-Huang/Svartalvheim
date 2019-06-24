@@ -3,25 +3,31 @@
     {
       "title": "What?",
       "content": [
-        ""
+        "Area charts are one way to visually represent <b>quantities that change over time</b>. They can show how just one quantity changes, or show the <b>changes in many quantities</b> (so-called <b>stacked area chart</b>).",
+        "Area chart is similar to the line chart, both of them can communicate the overall trend of the data. However, it emphasizes the data by <b>colored area</b>. Both line chart and area chart can show the trend in similar way, but <b>stacked area chart can also show the trend of total amount of multiple quantities stacked together</b>."
       ]
     },
     {
       "title": "When?",
       "content": [
-        ""
+        "Area charts can show a trend over time, but aren't as concerned with showing exact values. Namely, you can estimated by the colored area in the chart.",
+        "When you want to show <b>the whole picture of multiple quantities together</b>, you can use <b>stacked area chart</b>. It shows how much each part contributes to the whole in particular time. (In the following example below, the stacked area chart shows how much each Apple Inc. product contributes to the revenue quarterly or annually.)"
       ]
     },
     {
       "title": "Which?",
       "content": [
-        ""
+        "Normally, <b>standard area chart</b> represents quantities value by drawing the line chart version of the data and then color the area between the line and the bottom axis. In this case, <b>cumulation of the quanitity isn't important</b>. Plotting multiple quantity in area chart may results areas are overlapping each other mutually. It should concern the color choices and colors are recommended to apply with transparency in case data may appear to be completely overlapped by larger quantity area. Inspecting the standard area chart, it is best to show which quantity <b>contributes the most in specific time during the overall trend</b>.",
+        "<b>Stacked area chart</b> represents quantities <i>stacked</i> into one graph. It shows the <b>cumulative total</b> in best way. However, compared to standard area chart, although stacked area chart can show cumulative total clearly, it can sometimes hardly distinguish which part of the contribution to the total cumulation the most.",
+        "<b>Percentage area chart</b>, although similar to stacked area chart, is a rectangular chart with the area instead of divided by the exact value, it is <b>divided by the percentage of the total cumulation</b>. In this case, the whole chart is always filled with different area. It is best used when <b>not really concerned about the actual quantity but the distribution</b>."
       ]
     },
     {
       "title": "How?",
       "content": [
-        ""
+        "<b>Colors</b> in the area chart should be <b>distinguishable</b>. If you are using standard area chart, it is <b>strongly recommend to use color with transparency</b>.",
+        "Because colored area in chart represents the quantity which appears to the human as solid value which is non-negligeble, <b>the vertical axis' base value should start at 0</b>.",
+        "It is recommended <b>not to show too much quantities</b> in a single area chart (5 to 10 atmost)."
       ]
     }
   ],

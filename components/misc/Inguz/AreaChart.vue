@@ -135,6 +135,7 @@
           <span class="label-group-title">Product Type</span>
           <template v-for="product in products">
             <input
+              :disabled="loading"
               :key="`${product}-toggle-input`" :id="`${product}-toggler`"
               type="checkbox" v-model="focusedProducts" :value="product"
             />
@@ -249,6 +250,8 @@ export default {
 
       ...PREQ,
       ...PREY,
+
+      loading: true,
     };
   },
   computed: {
@@ -353,10 +356,10 @@ export default {
     },
   },
   mounted() {
-    // Examples:
-    // console.log(this.data);
-    // console.log(this.iPhoneREQ);
-    console.log(this.iPhoneREY);
+    setTimeout(() => {
+      this.focusedProducts = ['iPhone'];
+      this.loading = false;
+    }, 1000);
 
     this.$svg = snapsvg('#area-chart');
     const { products, $svg, nulledPoints } = this;
@@ -584,6 +587,11 @@ div.chart.finance-accounting-example
 
     > label + span.label-group-title
       margin-left: 12pt
+
+    > input[type="checkbox"]:disabled,
+    > input[type="radio"]:disabled
+      + label
+        opacity: .25
 
     > input[type="checkbox"]:checked,
     > input[type="radio"]:checked
