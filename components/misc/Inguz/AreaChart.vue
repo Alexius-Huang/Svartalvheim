@@ -110,6 +110,21 @@
             </g>
           </svg>
         </div>
+
+        <div class="btn-group">
+          <h3 class="title">Visualization Config.</h3>
+
+          <template v-for="product in products">
+            <input
+              :key="`${product}-toggle-input`" :id="`${product}-toggler`"
+              type="checkbox" v-model="focusedProducts" :value="product"
+            />
+            <label :for="`${product}-toggler`" :key="`${product}-label`">
+              <span class="text">{{ product }}</span>
+              <span class="order">{{ focusedProducts.indexOf(product) + 1 }}</span>
+            </label>
+          </template>
+        </div>
       </div>
     </article>
   </section>
@@ -223,7 +238,12 @@ export default {
 
       const cumulationCache = Array.from(Array(nulledPoints.length)).map(_ => 0);
 
-      return products.reduce((boundries, product, i) =>
+      const sortedProducts = [...focusedProducts];
+      products
+        .filter(p => !focusedProducts.includes(p))
+        .forEach((product) => { sortedProducts.push(product); });
+
+      return sortedProducts.reverse().reduce((boundries, product, i) =>
         Object.assign(boundries, { [product]:
           focusedProducts.includes(product) ? (
             this[`${_decapitalize(product)}REQ`]
@@ -292,10 +312,6 @@ export default {
     this.$areaGroups = $areaGroups;
     this.$areaPolygons = $areaPolygons;
     this.$areaPolylines = $areaPolylines;
-
-    setTimeout(() => {
-      this.focusedProducts = ['iPhone'];
-    }, 1000);
   },
 
   watch: {
@@ -364,7 +380,8 @@ svg#area-chart > g.area-visualization-group > g.area-group
 
   &.hide > polygon,
   &.hide > polyline
-    display: none
+    opacity: 0
+    transition: .25s
 
 #iPhone-area-gradient
   --iPhone-color-start: #FFEB3B // Equivalent to $yellow-500
@@ -396,7 +413,6 @@ div.chart.finance-accounting-example
     text-align: center
   > div.svg-wrapper > svg
     display: inline-block
-    border: 1px solid transparentize($yellow-500, 0.95)
 
     > g.axis-group
       > line.axis
@@ -448,4 +464,66 @@ div.chart.finance-accounting-example
           &.annual-label
             font-size: 10pt
             fill: #aaa
+
+  > div.btn-group
+    margin-top: 24pt
+    > h3.title
+      font: 14pt $base-font-family
+      color: $yellow-500
+      margin-bottom: 12pt
+
+    > input[type="checkbox"],
+    > label > span.order
+      text-align: center
+      display: none
+      width: 20pt
+      height: 20pt
+      line-height: 30pt
+      border-radius: 10pt
+      font: 14pt $base-font-family
+      background-color: #333
+      margin-left: 5pt
+
+    > label
+      @include vertical-align
+      display: inline-block
+      margin-right: 8pt
+      font: 12pt $default-font-family
+      color: #888
+      box-sizing: border-box
+      border: 1pt solid #888
+      border-radius: 1pt
+      padding: 0 8pt
+      height: 30pt
+      line-height: 30pt
+      transition: .25s
+      cursor: pointer
+
+    > input[type="checkbox"]:checked
+      + label
+        transition: .25s
+        color: #333
+      + label > span.order
+        display: inline-block
+
+      &#iPhone-toggler + label
+        border-color: $yellow-500
+        background-color: $yellow-500
+        > span.order
+          color: $yellow-500
+      &#iPad-toggler + label
+        border-color: $light-green-500
+        background-color: $light-green-500
+        > span.order
+          color: $light-green-500
+      &#Mac-toggler + label
+        border-color: $teal-500
+        background-color: $teal-500
+        > span.order
+          color: $teal-500
+      &#Other-toggler + label
+        border-color: $blue-300
+        background-color: $blue-300
+        > span.order
+          color: $blue-300
 </style>
