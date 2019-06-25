@@ -263,6 +263,7 @@ main
           transition: .25s
         > span.label
           font-size: 18pt
+          color: white
           right: 10pt
           transition: .25s
         &:after

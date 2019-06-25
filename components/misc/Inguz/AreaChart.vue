@@ -16,6 +16,8 @@
       </p>
 
       <div class="chart finance-accounting-example">
+        <p class="warn">It is recommended to view the visualization in desktop version. Responsive version is currently under development.</p>
+
         <div class="svg-wrapper">
           <svg id="area-chart" :width="svg.width" :height="svg.height">
             <!-- Define Gradients -->
@@ -209,21 +211,6 @@ export default {
           })),
       }), {});
 
-    /* Total Revenue Each Quarter - a map between year-quarters and total revenue */
-    // const TREQ = new Map(Array.from(Array(totalYears))
-    //   .map((_, i) => ([shownFrom + i, [0, 0, 0, 0]])));
-    // products.forEach((product) => {
-    //   const productREQ = PREQ[`${_decapitalize(product)}REQ`];
-    //   productREQ.forEach(({ year, result }) => {
-    //     const cumulatedTotal = TREQ.get(year);
-    //     for (let j = 0; j < 4; j += 1) {
-    //       cumulatedTotal[j] = _round(cumulatedTotal[j] + result[j]);
-    //     }
-
-    //     TREQ.set(year, cumulatedTotal);
-    //   });
-    // });
-
     /* Product Revenue Each Year */
     const PREY = products.reduce((_prey, product) =>
       Object.assign(_prey, {
@@ -232,16 +219,6 @@ export default {
             ({ year, result }) => ({ year, result: _sum(result) })
           )
       }), {});
-
-    /* Total Revenue Each Year - a map between year and total revenue */
-    // const TREY = new Map(Array.from(Array(totalYears))
-    //   .map((_, i) => ([shownFrom + i, 0])));
-    // products.forEach((product) => {
-    //   const productREY = PREY[`${_decapitalize(product)}REY`];
-    //   productREY.forEach(({ year, result }) => {
-    //     TREY.set(year, _round(TREY.get(year) + result));
-    //   });
-    // });
 
     /* Nulled point represent pre-animated state */
     const nulledPoints = [];
@@ -328,6 +305,7 @@ export default {
       return sortedProducts;
     },
 
+    /* Total Revenue Each Quarter - a map between year-quarters and total revenue */
     TREQ() {
       const { shownFrom, focusedProducts: products, totalYears } = this;
 
@@ -347,6 +325,8 @@ export default {
 
       return TREQ;
     },
+
+    /* Total Revenue Each Year - a map between year and total revenue */
     TREY() {
       const { shownFrom, focusedProducts: products, totalYears } = this;
 
@@ -703,12 +683,17 @@ svg#area-chart > g.area-visualization-group > g.area-group
 $product-color-map: ('iPhone': $yellow-500, 'iPad': $light-green-500, 'Mac': $teal-500, 'Other': $blue-300)
 
 div.chart.finance-accounting-example
-  margin-top: 50pt
+  margin-top: 5pt
+
+  > p.warn
+    display: none
+
   > div.svg-wrapper
     display: block
     text-align: center
+    overflow-x: auto
   > div.svg-wrapper > svg
-    display: inline-block
+    display: block
 
     > g.axis-group
       > line.axis
@@ -840,4 +825,12 @@ div.chart.finance-accounting-example
           background-color: $product-color
           > span.order
             color: $product-color
+
+@media screen and (max-width: 769px)
+  div.chart.finance-accounting-example
+    > p.warn
+      display: block
+      font: 12pt/20pt $base-font-family
+      letter-spacing: 1pt
+      color: $red-500
 </style>
