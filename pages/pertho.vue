@@ -3,66 +3,91 @@
     <jumbotron
       :valknut="img.valknut"
       ref="jumbotron"
-      @start="navigateTo('ui')"
+      @start="navigateTo('menu')"
     />
 
-    <section class="ui-section" ref="ui">
-      <div class="ui-section-wrapper">
-        <h2 class="title">What do you seek for?</h2>
-
-        <div class="selection-group">
-          <button>
-            <span class="img-wrapper">
-              <img :src="img.valknutSmall" alt="Daily Rune - Valknut" />
-            </span>
-            <span class="text">Daily Rune</span>
-          </button><!--
-       --><button>
-            <span class="img-wrapper">
-              <img :src="img.raven" alt="Divination - Raven" />
-            </span>
-            <span class="text">Divination</span>
-          </button><!--
-       --><button>
-            <span class="img-wrapper">
-              <img :src="img.vikingHelmet" alt="Lores of Rune - Odin" />
-            </span>
-            <span class="text">Lores of Rune</span>
-          </button>
-        </div>
-      </div>
-    </section>
+    <menu-section
+      ref="menu"
+      @daily-rune="handleStartDailyRuneMode"
+    />
 
     <template v-if="!loading">
       <runes-gallery ref="gallery" v-bind="{ runeImages, attes, attesTypes}" />
     </template>
+
+    <section
+      v-if="!loading"
+      class="card-shuffle-area"
+      :class="{ 'daily-rune': mode === 'Daily Rune' }"
+    >
+      <h2 class="sub-title">Shuffle Runes</h2>
+
+      <div class="shuffle-section" :class="{ animating }">
+        <rune
+          v-for="({
+            flipped,
+            order,
+            name,
+            left,
+            top,
+            rotateDegree,
+          }) in deck" :key="name"
+          v-bind="{ flipped, order }"
+          :rune-image="runeImages[name]"
+          class="rune"
+          :style="{
+            left: `${left}px`,
+            top: `${top}px`,
+            transform: runeRotate(rotateDegree),
+          }"
+        />
+      </div>
+    </section>
   </main>
 </template>
 
 <script>
 import Jumbotron from '@/components/misc/Pertho/Jumbotron';
+import MenuSection from '@/components/misc/Pertho/MenuSection';
 import RunesGallery from '@/components/misc/Pertho/RunesGallery';
+import Rune from '@/components/misc/Pertho/Rune';
 import valknut from '@/assets/icons/pertho/valknut.svg';
 import valknutSmall from '@/assets/icons/pertho/valknut-small.svg';
-import vikingHelmet from '@/assets/icons/pertho/viking-helmet.svg';
-import raven from '@/assets/icons/pertho/raven.svg';
 
 export default {
-  components: { Jumbotron, RunesGallery },
+  components: { Jumbotron, MenuSection, RunesGallery, Rune },
   data() {
+    /* Default width and height */
+    let width = 1440;
+    let height = 1080;
+
+    if (process.browser) {
+      const { innerWidth, innerHeight } = window;
+      [width, height] = [innerWidth, innerHeight];
+    }
     return {
-      img: { valknut, valknutSmall, vikingHelmet, raven },
+      img: { valknut, valknutSmall },
       attesTypes: ['Freyr', 'Heimdallr', 'Tyr'],
+      width,
+      height,
     };
   },
   computed: {
     state() { return this.$store.state.pertho; },
     loading() { return this.state.loading; },
+    animating() { return this.state.animating; },
     runeImages() { return this.state.runeImages; },
     runes() { return this.state.runes; },
+    runeWidth() { return this.state.runeWidth; },
+    runeHeight() { return this.state.runeHeight; },
     attes() { return this.getters('attes'); },
+    deck() { return this.state.deck; },
+    mode() { return this.state.mode; },
 
-    $ui() { return this.$refs.ui; },
+    $menu() {
+      const { menu } = this.$refs;
+      return menu ? menu.$el : null;
+    },
     $jumbotron() {
       const { jumbotron } = this.$refs;
       return jumbotron ? jumbotron.$el : null;
@@ -71,20 +96,53 @@ export default {
       const { gallery } = this.$refs;
       return gallery ? gallery.$el : null;
     },
+    runesInitialPosition() {
+      const {
+        width: w,
+        height: h,
+        runeWidth: rw,
+        runeHeight: rh,
+        runes,
+      } = this;
+      const gapBetweenCards = 30;
+
+      return {
+        top: (height / 2),
+        left: ((width - (30 * runes.length)) / 2),
+      };
+    },
   },
   methods: {
     getters(prop) {
       return this.$store.getters[`pertho/${prop}`];
+    },
+    commit(localMutation, payload) {
+      this.$store.commit(`pertho/${localMutation}`, payload);
+    },
+    dispatch(localAction, payload) {
+      this.$store.dispatch(`pertho/${localAction}`, payload);
+    },
+    animate(animateAction, payload) {
+      this.$store.dispatch(`pertho/animation/${animateAction}`, payload);
+    },
+    runeRotate(degree) {
+      const { runeWidth: rw, runeHeight: rh } = this;
+      return `translate(${-rw / 2}px, ${-rh / 2}px) rotate(${degree}deg)`;
     },
     navigateTo(section) {
       const $el = this[`$${section}`];
       const { top } = $el.getBoundingClientRect();
       window.scrollTo({ top, left: 0, behavior: 'smooth' });
     },
+
+    async handleStartDailyRuneMode() {
+      this.commit('set-mode', 'Daily Rune');
+
+      await this.animate('showoff-deck');
+    },
   },
   async mounted() {
-    const { commit, dispatch } = this.$store;
-    await dispatch('pertho/initialize');
+    await this.dispatch('initialize');
   },
 }
 </script>
@@ -98,55 +156,45 @@ main
   height: 100vh
   width: 100vw
 
-main > section.ui-section
-  height: 100vh
+// Rune Size
+$width-height-ratio: 174.18 / 104.94
+$width: 100px
+$height: $width * $width-height-ratio
+
+main > section.card-shuffle-area
+  pointer-events: none
+  position: fixed
+  left: 0
+  top: 0
   width: 100vw
-  @include vertical-align
-  > div.ui-section-wrapper
-    width: 100%
-    height: auto
-    display: inline-block
+  height: 100vh
+  background-color: #222
+  opacity: 0
+  font: 12pt $base-font-family
+  color: $yellow-500
+
+  &.daily-rune
+    opacity: 1
+    pointer-events: visible
+    transition: .25s
+
+  > h2.sub-title
     text-align: center
+    margin: auto 0
+    margin: 24pt 0
+    font: 24pt $base-font-family
+    color: $yellow-500
 
-    > h2.title
-      font: 18pt/24pt $base-font-family
-      color: white
-
-    > div.selection-group
-      margin-top: 50pt
-    > div.selection-group > button
-      @include btn-reset
-      width: 150pt
-      height: auto
-      background-color: transparent
-      border: 1pt solid transparentize($yellow-500, 0.7)
-      border-radius: 3pt
-      padding: 50pt 0
-      opacity: .7
-      transition: .25s
-
-      + button
-        margin-left: 16pt
-
-      &:hover
-        opacity: 1
-        box-shadow: 0pt 0pt 5pt $yellow-500
-        transition: .25s
-
-    > div.selection-group > button > span.img-wrapper
-      display: block
-
-    > div.selection-group > button > span.img-wrapper > img
-      height: 100pt
-      width: 100pt
-      object-fit: contain
-
-    > div.selection-group > button > span.text
-      line-height: 28pt
-      font-size: 20pt
-
-@media screen and (max-width: 769px)
-  main > section.ui-section
-    > div.ui-section-wrapper > div.selection-group > button
-      opacity: 1
+  > div.shuffle-section
+    width: 100vw
+    height: 100vh
+    position: absolute
+    left: 0
+    top: 0
+    &.animating
+      pointer-events: none
+    > .rune
+      position: absolute
+      transform: translate(-$width / 2, -$height / 2)
+      transition: left .25s, top .25s
 </style>

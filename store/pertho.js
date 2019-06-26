@@ -1,21 +1,24 @@
 import runes from '@/resources/pertho/runes.json';
+import _shuffle from '@/utils/shuffle';
 
-const Stages = {
-  VIEWING: 1,
-};
-
-const Pages = {
-  MAIN: 1,
-  UI: 2,
-  ATTE: 3,
-};
+const availableMode = new Set(['None', 'Divination', 'Daily Rune']);
+const runeWidthHeightRatio = 174.18 / 104.94;
+const defaultRuneWidth = 100;
 
 export const state = () => ({
   loading: true,
   runes,
   runeImages: {},
-  currentStage: Stages.VIEWING,
-  currentPage: Pages.MAIN,
+
+  width: 1440,
+  height: 1080,
+
+  runeWidth: defaultRuneWidth,
+  runeHeight: defaultRuneWidth * runeWidthHeightRatio,
+
+  animating: false,
+  mode: 'None',
+  deck: [],
 });
 
 export const getters = {
@@ -33,17 +36,54 @@ export const getters = {
 };
 
 export const mutations = {
-  ['fetch-complete'](state) {
+  ['load-complete'](state) {
     state.loading = false;
+  },
+  ['animating'](state) {
+    state.animating = true;
+  },
+  ['animate-complete'](state) {
+    state.animating = false;
+  },
+  ['set-width'](state, payload) {
+    state.width = payload;
+  },
+  ['set-height'](state, payload) {
+    state.height = payload;
+  },
+  ['adjust-dimension'](state) {
+    let width = 1440;
+    let height = 1080;
+    if (process.browser) {
+      width = window.innerWidth;
+      height = window.innerHeight;
+    }
+
+    state.width = width;
+    state.height = height;
   },
   ['set-rune-images'](state, payload) {
     state.runeImages = { ...payload };
   },
+  ['set-mode'](state, payload) {
+    if (availableMode.has(payload)) {
+      state.mode = payload;
+    } else {
+      throw new Error(`Mode \`${payload}\` didn't exist`);
+    }
+  },
+  ['set-deck'](state, payload) {
+    state.deck = payload;
+  }
 };
 
 export const actions = {
-  async initialize({ dispatch }) {
+  async initialize({ dispatch, commit }) {
+    commit('adjust-dimension');
+
     await dispatch('fetch-rune-images');
+    await dispatch('randomize-deck');
+    commit('load-complete');
   },
   async ['fetch-rune-images']({ state, commit }) {
     const { runes } = state;
@@ -60,6 +100,24 @@ export const actions = {
       );
 
     commit('set-rune-images', runeImages);
-    commit('fetch-complete');
+  },
+  async ['randomize-deck']({ state, commit }) {
+    const { runes, width, height } = state;
+    const deepClonedRunes = runes.map(rune => ({ ...rune }));
+
+    const shuffledRunes = _shuffle(deepClonedRunes);
+    const deck = shuffledRunes.map(
+      (rune, i) => Object.assign(rune, {
+        flipped: true,
+
+        /* Position */
+        order: i + 1,
+        left: (width / 2),
+        top: (height / 2),
+        rotateDegree: 0,
+      })
+    );
+
+    commit('set-deck', deck);
   },
 };

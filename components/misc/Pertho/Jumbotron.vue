@@ -43,7 +43,7 @@ main > section.custom-title-wrapper
         background-color: transparent
         height: 100%
         width: auto
-        border: 1pt solid transparentize($yellow-500, 0.7)
+        border: 3pt double transparentize($yellow-500, 0.7)
         border-radius: 3pt
 
     > h1.title

@@ -42,9 +42,10 @@ section.runes-gallery
 
   > div.runes-section > span.rune-wrapper
     display: inline-block
+    box-sizing: border-box
     width: $rune-width
     margin-right: $rune-between-gap
-    border: 1pt solid transparentize($yellow-500, .5)
+    border: 3pt double transparentize($yellow-500, .5)
     border-radius: 3pt
     margin-top: $row-between-gap
     position: relative
