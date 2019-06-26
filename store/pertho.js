@@ -4,11 +4,18 @@ const Stages = {
   VIEWING: 1,
 };
 
+const Pages = {
+  MAIN: 1,
+  UI: 2,
+  ATTE: 3,
+};
+
 export const state = () => ({
   loading: true,
   runes,
   runeImages: {},
   currentStage: Stages.VIEWING,
+  currentPage: Pages.MAIN,
 });
 
 export const getters = {
@@ -35,12 +42,15 @@ export const mutations = {
 };
 
 export const actions = {
+  async initialize({ dispatch }) {
+    await dispatch('fetch-rune-images');
+  },
   async ['fetch-rune-images']({ state, commit }) {
     const { runes } = state;
 
     const runeImages = await Promise.all(
         runes.map(
-         ({ name }) => require(`@/assets/icons/elder-futhark/${name}.svg`)
+         ({ name }) => require(`@/assets/icons/pertho/elder-futhark/${name}.svg`)
         )
       )
       .then(result => 

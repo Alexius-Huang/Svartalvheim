@@ -7,7 +7,7 @@
       <h1 class="title">Nordic Runes</h1>
       <h2 class="sub-title">Discover Your Inner Spirit</h2>
 
-      <p class="hint">Scroll Down</p>
+      <p class="hint" @click="$emit('start', $event)">Start</p>
     </div>
   </section>
 </template>
@@ -56,8 +56,8 @@ main > section.custom-title-wrapper
       color: $yellow-500
 
     > p.hint
-      font: bolder 12pt/20pt $default-font-family
-      color: #aaa
+      font: bolder 14pt/20pt $default-font-family
+      color: #ccc
       position: relative
       margin-top: 24pt
       &:after
