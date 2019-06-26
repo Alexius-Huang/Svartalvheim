@@ -196,7 +196,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../../sass/colors.sass'
+@import '~/sass/colors.sass'
 section.line-chart
   > article.infos > p > a:link
     color: $yellow-500
@@ -208,9 +208,9 @@ section.line-chart
 </style>
 
 <style scoped lang="sass">
-@import '../../../sass/helpers.sass'
-@import '../../../sass/colors.sass'
-@import '../../../sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 @import './_shared.sass'
 
 .charts

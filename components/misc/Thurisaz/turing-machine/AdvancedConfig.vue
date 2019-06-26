@@ -261,10 +261,10 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../../../sass/colors.sass'
-@import '../../../../sass/shared.sass'
-@import '../../../../sass/helpers.sass'
-@import '../../../../sass/animation.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/animation.sass'
 
 div.advanced-config
   box-sizing: border-box

@@ -17,9 +17,9 @@ export default { props: ['valknut'] };
 </script>
 
 <style scoped lang="sass">
-@import '../../../sass/colors.sass'
-@import '../../../sass/shared.sass'
-@import '../../../sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
+@import '~/sass/helpers.sass'
 
 main > section.custom-title-wrapper
   height: 100vh

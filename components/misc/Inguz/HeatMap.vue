@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../../sass/colors.sass'
+@import '~/sass/colors.sass'
 section.heat-map
   > article.infos > p > a:link
     color: $yellow-500
@@ -106,9 +106,9 @@ section.heat-map
 </style>
 
 <style scoped lang="sass">
-@import '../../../sass/helpers.sass'
-@import '../../../sass/colors.sass'
-@import '../../../sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 @import './_shared.sass'
 
 

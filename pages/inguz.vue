@@ -102,7 +102,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../sass/colors.sass'
+@import '~/sass/colors.sass'
 
 div#inguz-chart-info > p.content > a:link
   color: $yellow-500
@@ -114,9 +114,9 @@ div#inguz-chart-info > p.content > a:link
 </style>
 
 <style scoped lang="sass">
-@import '../sass/colors.sass'
-@import '../sass/helpers.sass'
-@import '../sass/shared.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/shared.sass'
 
 main
   position: relative

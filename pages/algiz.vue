@@ -83,9 +83,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../sass/colors.sass'
-@import '../sass/helpers.sass'
-@import '../sass/shared.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/shared.sass'
 
 // main
 //   padding-bottom: 50vh
@@ -206,5 +206,5 @@ section.fenrir
       > p
         font-size: 10pt
 
-@import '../sass/algiz/fenrir.sass'
+@import '~/sass/algiz/fenrir.sass'
 </style>

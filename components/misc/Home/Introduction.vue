@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../../sass/colors.sass'
+@import '~/sass/colors.sass'
 
 section.introduction
   width: 80vw

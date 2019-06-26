@@ -623,7 +623,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../../sass/colors.sass'
+@import '~/sass/colors.sass'
 section.bar-chart
   > article.infos > p > a:link
     color: $yellow-500
@@ -675,9 +675,9 @@ svg#area-chart > g.area-visualization-group > g.area-group
 </style>
 
 <style scoped lang="sass">
-@import '../../../sass/helpers.sass'
-@import '../../../sass/colors.sass'
-@import '../../../sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 @import './_shared.sass'
 
 $product-color-map: ('iPhone': $yellow-500, 'iPad': $light-green-500, 'Mac': $teal-500, 'Other': $blue-300)

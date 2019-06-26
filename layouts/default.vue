@@ -23,8 +23,8 @@ export default {
 
 
 <style lang="sass">
-@import '../sass/colors.sass'
-@import '../sass/shared.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 
 html
   font-family: $default-font-family

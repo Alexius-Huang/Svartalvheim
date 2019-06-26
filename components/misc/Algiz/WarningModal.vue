@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../../sass/colors.sass'
-@import '../../../sass/shared.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 
 section.warning-modal
   position: fixed

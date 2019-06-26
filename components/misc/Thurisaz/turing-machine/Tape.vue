@@ -143,10 +143,10 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../../../sass/colors.sass'
-@import '../../../../sass/shared.sass'
-@import '../../../../sass/helpers.sass'
-@import '../../../../sass/animation.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/animation.sass'
 
 $cell-size: 50pt
 $font-size: 25pt

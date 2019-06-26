@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../../sass/colors.sass'
+@import '~/sass/colors.sass'
 section.donut-chart
   > article.infos > p > a:link
     color: $yellow-500
@@ -132,9 +132,9 @@ section.donut-chart
 </style>
 
 <style scoped lang="sass">
-@import '../../../sass/helpers.sass'
-@import '../../../sass/colors.sass'
-@import '../../../sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 @import './_shared.sass'
 
 div.sociology-example.chart

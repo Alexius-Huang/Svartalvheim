@@ -87,8 +87,8 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../../sass/colors.sass'
-@import '../../../sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/helpers.sass'
 
 section.contact
   height: 50vh

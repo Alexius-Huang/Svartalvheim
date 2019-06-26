@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../sass/colors.sass'
+@import '~/sass/colors.sass'
 
 .app-switch
   > input[type="checkbox"]

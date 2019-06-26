@@ -35,9 +35,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../sass/helpers.sass'
-@import '../../sass/colors.sass'
-@import '../../sass/shared.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 
 section.chart-wrapper
   background-color: $grey-900

@@ -216,9 +216,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
-@import '../../sass/shared.sass'
-@import '../../sass/colors.sass'
-@import '../../sass/helpers.sass'
+@import '~/sass/shared.sass'
+@import '~/sass/colors.sass'
+@import '~/sass/helpers.sass'
 
 section.weight-status
   max-width: 750px
