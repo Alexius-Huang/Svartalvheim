@@ -1,0 +1,152 @@
+[
+  {
+    "name": "fehu",
+    "number": 1,
+    "atteName": "Freyr",
+    "atteNumber": 1
+  },
+  {
+    "name": "uruz",
+    "number": 2,
+    "atteName": "Freyr",
+    "atteNumber": 2
+  },
+  {
+    "name": "thurisaz",
+    "number": 3,
+    "atteName": "Freyr",
+    "atteNumber": 3
+  },
+  {
+    "name": "ansuz",
+    "number": 4,
+    "atteName": "Freyr",
+    "atteNumber": 4
+  },
+  {
+    "name": "raido",
+    "number": 5,
+    "atteName": "Freyr",
+    "atteNumber": 5
+  },
+  {
+    "name": "kaunan",
+    "number": 6,
+    "atteName": "Freyr",
+    "atteNumber": 6
+  },
+  {
+    "name": "gebo",
+    "number": 7,
+    "atteName": "Freyr",
+    "atteNumber": 7
+  },
+  {
+    "name": "wunjo",
+    "number": 8,
+    "atteName": "Freyr",
+    "atteNumber": 8
+  },
+  {
+    "name": "hagalaz",
+    "number": 9,
+    "atteName": "Heimdallr",
+    "atteNumber": 1
+  },
+  {
+    "name": "naudiz",
+    "number": 10,
+    "atteName": "Heimdallr",
+    "atteNumber": 2
+  },
+  {
+    "name": "isa",
+    "number": 11,
+    "atteName": "Heimdallr",
+    "atteNumber": 3
+  },
+  {
+    "name": "jera",
+    "number": 12,
+    "atteName": "Heimdallr",
+    "atteNumber": 4
+  },
+  {
+    "name": "eihaz",
+    "number": 13,
+    "atteName": "Heimdallr",
+    "atteNumber": 5
+  },
+  {
+    "name": "pertho",
+    "number": 14,
+    "atteName": "Heimdallr",
+    "atteNumber": 6
+  },
+  {
+    "name": "algiz",
+    "number": 15,
+    "atteName": "Heimdallr",
+    "atteNumber": 7
+  },
+  {
+    "name": "sowulo",
+    "number": 16,
+    "atteName": "Heimdallr",
+    "atteNumber": 8
+  },
+  {
+    "name": "tiwaz",
+    "number": 17,
+    "atteName": "Tyr",
+    "atteNumber": 1
+  },
+  {
+    "name": "berkana",
+    "number": 18,
+    "atteName": "Tyr",
+    "atteNumber": 2
+  },
+  {
+    "name": "eiwaz",
+    "number": 19,
+    "atteName": "Tyr",
+    "atteNumber": 3
+  },
+  {
+    "name": "mannaz",
+    "number": 20,
+    "atteName": "Tyr",
+    "atteNumber": 4
+  },
+  {
+    "name": "laguz",
+    "number": 21,
+    "atteName": "Tyr",
+    "atteNumber": 5
+  },
+  {
+    "name": "ingwaz",
+    "number": 22,
+    "atteName": "Tyr",
+    "atteNumber": 6
+  },
+  {
+    "name": "dagaz",
+    "number": 23,
+    "atteName": "Tyr",
+    "atteNumber": 7
+  },
+  {
+    "name": "othalan",
+    "number": 24,
+    "atteName": "Tyr",
+    "atteNumber": 8
+  },
+  {
+    "name": "wyrd",
+    "number": 0,
+    "atteName": null,
+    "atteNumber": null
+  }
+]
