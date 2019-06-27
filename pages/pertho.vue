@@ -22,26 +22,25 @@
     >
       <h2 class="sub-title">Shuffle Runes</h2>
 
-      <div class="shuffle-section" :class="{ animating }">
+      <shuffle-section />
+
+      <!-- <div
+        class="shuffle-section"
+        :class="{ animating }"
+        @mousedown="handleShuffleSectionMousedown"
+      >
         <rune
-          v-for="({
-            flipped,
-            order,
-            name,
-            left,
-            top,
-            rotateDegree,
-          }) in deck" :key="name"
-          v-bind="{ flipped, order }"
-          :rune-image="runeImages[name]"
+          v-for="rune in deck" :key="rune.name"
+          v-bind="{ flipped: rune.flipped, order: rune.order, name: rune.name }"
+          :rune-image="runeImages[rune.name]"
           class="rune"
           :style="{
-            left: `${left}px`,
-            top: `${top}px`,
-            transform: runeRotate(rotateDegree),
+            left: `${rune.left}px`,
+            top: `${rune.top}px`,
+            transform: runeRotate(rune.rotateDegree),
           }"
         />
-      </div>
+      </div> -->
     </section>
   </main>
 </template>
@@ -50,12 +49,12 @@
 import Jumbotron from '@/components/misc/Pertho/Jumbotron';
 import MenuSection from '@/components/misc/Pertho/MenuSection';
 import RunesGallery from '@/components/misc/Pertho/RunesGallery';
-import Rune from '@/components/misc/Pertho/Rune';
+import ShuffleSection from '@/components/misc/Pertho/ShuffleSection';
 import valknut from '@/assets/icons/pertho/valknut.svg';
 import valknutSmall from '@/assets/icons/pertho/valknut-small.svg';
 
 export default {
-  components: { Jumbotron, MenuSection, RunesGallery, Rune },
+  components: { Jumbotron, MenuSection, RunesGallery, ShuffleSection },
   data() {
     /* Default width and height */
     let width = 1440;
@@ -96,21 +95,6 @@ export default {
       const { gallery } = this.$refs;
       return gallery ? gallery.$el : null;
     },
-    runesInitialPosition() {
-      const {
-        width: w,
-        height: h,
-        runeWidth: rw,
-        runeHeight: rh,
-        runes,
-      } = this;
-      const gapBetweenCards = 30;
-
-      return {
-        top: (height / 2),
-        left: ((width - (30 * runes.length)) / 2),
-      };
-    },
   },
   methods: {
     getters(prop) {
@@ -124,10 +108,6 @@ export default {
     },
     animate(animateAction, payload) {
       this.$store.dispatch(`pertho/animation/${animateAction}`, payload);
-    },
-    runeRotate(degree) {
-      const { runeWidth: rw, runeHeight: rh } = this;
-      return `translate(${-rw / 2}px, ${-rh / 2}px) rotate(${degree}deg)`;
     },
     navigateTo(section) {
       const $el = this[`$${section}`];
@@ -156,10 +136,10 @@ main
   height: 100vh
   width: 100vw
 
-// Rune Size
-$width-height-ratio: 174.18 / 104.94
-$width: 100px
-$height: $width * $width-height-ratio
+// // Rune Size
+// $width-height-ratio: 174.18 / 104.94
+// $width: 100px
+// $height: $width * $width-height-ratio
 
 main > section.card-shuffle-area
   pointer-events: none
@@ -172,12 +152,13 @@ main > section.card-shuffle-area
   opacity: 0
   font: 12pt $base-font-family
   color: $yellow-500
+  pointer-events: none
 
   &.daily-rune
-    opacity: 1
     pointer-events: visible
+    opacity: 1
     transition: .25s
-
+  
   > h2.sub-title
     text-align: center
     margin: auto 0
@@ -185,16 +166,20 @@ main > section.card-shuffle-area
     font: 24pt $base-font-family
     color: $yellow-500
 
-  > div.shuffle-section
-    width: 100vw
-    height: 100vh
-    position: absolute
-    left: 0
-    top: 0
-    &.animating
-      pointer-events: none
-    > .rune
-      position: absolute
-      transform: translate(-$width / 2, -$height / 2)
-      transition: left .25s, top .25s
+  // > div.shuffle-section
+  //   width: 100vw
+  //   height: 100vh
+  //   position: absolute
+  //   left: 0
+  //   top: 0
+  //   // pointer-events: none
+
+  //   > .rune
+  //     position: absolute
+  //     transform: translate(-$width / 2, -$height / 2)
+  //     transition: left .25s, top .25s
+  //     pointer-events: visible
+
+  //   // &.animating > .rune
+  //   //   pointer-events: none
 </style>

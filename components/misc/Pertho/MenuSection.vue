@@ -88,6 +88,7 @@ section.menu-section
     > div.selection-group > button > span.img-wrapper > img
       height: 100pt
       width: 100pt
+      pointer-events: none
       object-fit: contain
 
     > div.selection-group > button > span.text

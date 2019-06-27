@@ -10,6 +10,8 @@ export const actions = {
     commit('pertho/set-deck', deck, { root: true });
   },
   async ['showoff-deck']({ rootState, commit, dispatch }) {
+    commit('pertho/animate-start', undefined, { root: true });
+
     const {
       deck: preClonedDeck,
       runes,

@@ -9,7 +9,7 @@
         <img :src="img.valknutSmall" />
       </div>
       <div class="rune-face back">
-        <img :src="runeImage" />
+        <img :src="runeImages[name]" />
       </div>
     </div>
   </div>
@@ -19,11 +19,16 @@
 import valknutSmall from '@/assets/icons/pertho/valknut-small.svg';
 
 export default {
-  props: ['flipped', 'runeImage', 'order'],
+  props: ['flipped', 'name', 'order'],
   data() {
     return {
       img: { valknutSmall },
     };
+  },
+  computed: {
+    state() { return this.$store.state.pertho; },
+    animating() { return this.state.animating; },
+    runeImages() { return this.state.runeImages; },
   },
 };
 </script>
@@ -42,6 +47,7 @@ div.rune-wrapper
   width: $width
   height: $height
   perspective: 500px
+  pointer-events: visible
 
   > div.rune
     width: 100%
@@ -49,6 +55,7 @@ div.rune-wrapper
     position: relative
     transition: transform 1s
     transform-style: preserve-3d
+    pointer-events: none
     &.flipped
       transform: rotateY(180deg)
 

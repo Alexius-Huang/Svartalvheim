@@ -39,7 +39,7 @@ export const mutations = {
   ['load-complete'](state) {
     state.loading = false;
   },
-  ['animating'](state) {
+  ['animate-start'](state) {
     state.animating = true;
   },
   ['animate-complete'](state) {
@@ -74,7 +74,21 @@ export const mutations = {
   },
   ['set-deck'](state, payload) {
     state.deck = payload;
-  }
+  },
+
+  ['place-rune-to-top'](state, payload) {
+    const { deck: preClonedDeck } = state;
+    const deck = Array.from(preClonedDeck).map(rune => ({ ...rune }));
+    deck.unshift(deck.splice(payload, 1)[0]);
+    state.deck = deck;
+  },
+  ['move-top-rune-position'](state, payload) {
+    const { deck: preClonedDeck } = state;
+    const deck = Array.from(preClonedDeck).map(rune => ({ ...rune }));
+    deck[0].top = payload.top;
+    deck[0].left = payload.left;
+    state.deck = deck;
+  },
 };
 
 export const actions = {
@@ -107,11 +121,10 @@ export const actions = {
 
     const shuffledRunes = _shuffle(deepClonedRunes);
     const deck = shuffledRunes.map(
-      (rune, i) => Object.assign(rune, {
+      rune => Object.assign(rune, {
         flipped: true,
 
         /* Position */
-        order: i + 1,
         left: (width / 2),
         top: (height / 2),
         rotateDegree: 0,
