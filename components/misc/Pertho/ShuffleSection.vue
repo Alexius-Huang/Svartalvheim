@@ -13,12 +13,16 @@
       }"
       class="rune" :class="{ holding }"
       :data-deck-index="index"
+      :enable-rotate="!animating"
       :style="{
         left: `${rune.left}px`,
         top: `${rune.top}px`,
         transform: runeRotate(rune.rotateDegree),
         transition: holding ? 'none' : 'left .25s, top .25s',
       }"
+      ref="runes"
+
+      @rotate-start="handleRotateStart($event, index)"
     />
   </div>
 </template>
@@ -32,8 +36,11 @@ export default {
   data() {
     return {
       holding: false,
+      rotating: false,
 
       previousPosition: [],
+      focusedRotatePosition: [],
+      rotateBtns: [],
     };
   },
   computed: {
@@ -48,6 +55,9 @@ export default {
     runeRotate(degree) {
       const { runeWidth: rw, runeHeight: rh } = this;
       return `translate(${-rw / 2}px, ${-rh / 2}px) rotate(${degree}deg)`;
+    },
+    radianToDegree(radian) {
+      return (radian / Math.PI) * 180;
     },
     commit(localMutation, payload) {
       this.$store.commit(`pertho/${localMutation}`, payload);
@@ -66,7 +76,7 @@ export default {
       if ($el.classList.contains('rune')) {
         this.holding = true;
         const index = Number.parseInt($el.getAttribute('data-deck-index'), 10);
-        const { pageX: x, pageY: y } = event;
+        const { screenX: x, screenY: y } = event;
         this.previousPosition = [x, y];
         this.commit('place-rune-to-top', index);
       }
@@ -76,7 +86,7 @@ export default {
 
       if (this.holding) {
         const { deck, previousPosition } = this;
-        const { pageX: x, pageY: y } = event;
+        const { screenX: x, screenY: y } = event;
         const [previousX, previousY] = previousPosition;
 
         const [deltaX, deltaY] = [x - previousX, y - previousY];
@@ -86,10 +96,94 @@ export default {
 
         this.commit('move-top-rune-position', newPosition);
       }
+
+      if (this.rotating) {
+        /* TODO: Derive rotation mechanism */
+        const {
+          deck,
+          rotateBtns,
+          focusedRotatePosition: FRP,
+          runeWidth: rw,
+          runeHeight: rh,
+        } = this;
+        const { clientX: x, clientY: y } = event;
+        const { rotateDegree, left, top } = deck[0];
+
+        let btnRef1, btnRef2;
+
+        if (FRP[0] === 'left') {
+          if (FRP[1] === 'top') {
+            [btnRef1, btnRef2] = [rotateBtns[0], rotateBtns[3]];
+          } else {
+            [btnRef1, btnRef2] = [rotateBtns[1], rotateBtns[2]];
+          }
+        } else {
+          if (FRP[1] ===  'top') {
+            [btnRef1, btnRef2] = [rotateBtns[2], rotateBtns[1]];
+          } else {
+            [btnRef1, btnRef2] = [rotateBtns[3], rotateBtns[0]];
+          }
+        }
+
+        const { left: l1, top: t1 } = btnRef1.getBoundingClientRect();
+        const { left: l2, top: t2 } = btnRef2.getBoundingClientRect();
+        const center = { x: ((l1 + l2) / 2), y: ((t1 + t2) / 2) };
+
+        // console.log({ x, y }, center);
+        // const deltaX = x - center.x;
+        // const deltaY = y - center.y;
+        // const newRotationDegree = this.radianToDegree(Math.atan2(y, x));
+        // console.log(newRotationDegree);
+        // const newRotationDegree = rotateDegree + rotationDelta;
+
+        // const slope = (runeCenter.y - y) / (runeCenter.x - x);
+        // const radian = Math.atan(slope);
+        // let degree = this.radianToDegree(radian);
+
+        // if (l1 > runeCenter.x && l2 < runeCenter.y) {
+        //   degree += 270;
+        //   console.log('first quadrant');
+        // }
+
+        // const rectifyRadian = Math.atan(174.18 / 104.94);
+        // const rectifyDegree = this.radianToDegree(rectifyRadian);
+
+        // if (
+        //   (FRP[0] === 'left' && FRP[1] === 'top')     ||
+        //   (FRP[0] === 'right' && FRP[1] === 'bottom')
+        // ) {
+        //   degree = degree - rectifyDegree;
+        // } else {
+        //   degree = degree + rectifyDegree;
+        // }
+
+        // if (FRP[0] === 'left') {
+        //   if (FRP[1] === 'top') {
+        //     console.log(degree);
+        //   } else {
+        //   }
+        // } else {
+        //   if (FRP[1] ===  'top') {
+        //   } else {
+        //   }
+        // }
+
+        // this.commit('rotate-top-rune-angle', degree);
+      }
     }, 1000 / 60),
     handleMouseup(event) {
       this.holding = false;
       this.previousPosition = [];
+      this.rotating = false;
+      this.focusedRotatePosition = [];
+      this.rotateBtns;
+    },
+
+    handleRotateStart({ event, position, rotateBtns }, index) {
+      this.rotating = true;
+      this.focusedRotatePosition = position;
+      this.rotateBtns = rotateBtns;
+      this.commit('place-rune-to-top', index);
     },
   },
   mounted() {

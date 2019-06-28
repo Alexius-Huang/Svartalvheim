@@ -78,15 +78,21 @@ export const mutations = {
 
   ['place-rune-to-top'](state, payload) {
     const { deck: preClonedDeck } = state;
-    const deck = Array.from(preClonedDeck).map(rune => ({ ...rune }));
+    const deck = Array.from(preClonedDeck);
     deck.unshift(deck.splice(payload, 1)[0]);
     state.deck = deck;
   },
   ['move-top-rune-position'](state, payload) {
     const { deck: preClonedDeck } = state;
-    const deck = Array.from(preClonedDeck).map(rune => ({ ...rune }));
+    const deck = Array.from(preClonedDeck);
     deck[0].top = payload.top;
     deck[0].left = payload.left;
+    state.deck = deck;
+  },
+  ['rotate-top-rune-angle'](state, payload) {
+    const { deck: preClonedDeck } = state;
+    const deck = Array.from(preClonedDeck);
+    deck[0].rotateDegree = payload;
     state.deck = deck;
   },
 };

@@ -136,11 +136,6 @@ main
   height: 100vh
   width: 100vw
 
-// // Rune Size
-// $width-height-ratio: 174.18 / 104.94
-// $width: 100px
-// $height: $width * $width-height-ratio
-
 main > section.card-shuffle-area
   pointer-events: none
   position: fixed
@@ -165,21 +160,4 @@ main > section.card-shuffle-area
     margin: 24pt 0
     font: 24pt $base-font-family
     color: $yellow-500
-
-  // > div.shuffle-section
-  //   width: 100vw
-  //   height: 100vh
-  //   position: absolute
-  //   left: 0
-  //   top: 0
-  //   // pointer-events: none
-
-  //   > .rune
-  //     position: absolute
-  //     transform: translate(-$width / 2, -$height / 2)
-  //     transition: left .25s, top .25s
-  //     pointer-events: visible
-
-  //   // &.animating > .rune
-  //   //   pointer-events: none
 </style>
