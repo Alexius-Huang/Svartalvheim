@@ -1,6 +1,11 @@
 <template>
   <div>
-    <nuxt/>
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <nuxt/>
+    </transition>
 
     <div ref="scriptHolder"></div>
   </div>
@@ -39,6 +44,16 @@ html
   color: $grey-900
   background-color: $grey-900
   user-select: none
+
+.fade-enter-active,
+.fade-leave-active
+  transition-duration: 0.3s
+  transition-property: opacity
+  transition-timing-function: ease
+
+.fade-enter,
+.fade-leave-active
+  opacity: 0
 
 ul
   padding: 0
