@@ -23,24 +23,6 @@
       <h2 class="sub-title">Shuffle Runes</h2>
 
       <shuffle-section />
-
-      <!-- <div
-        class="shuffle-section"
-        :class="{ animating }"
-        @mousedown="handleShuffleSectionMousedown"
-      >
-        <rune
-          v-for="rune in deck" :key="rune.name"
-          v-bind="{ flipped: rune.flipped, order: rune.order, name: rune.name }"
-          :rune-image="runeImages[rune.name]"
-          class="rune"
-          :style="{
-            left: `${rune.left}px`,
-            top: `${rune.top}px`,
-            transform: runeRotate(rune.rotateDegree),
-          }"
-        />
-      </div> -->
     </section>
   </main>
 </template>

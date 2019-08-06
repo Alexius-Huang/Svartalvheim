@@ -3,7 +3,6 @@
     class="rune-wrapper"
     @click="$emit('click', $event)"
     :style="{ 'z-index': 100 - order }"
-    :class="{ 'enable-rotate': enableRotate }"
   >
     <div class="rune" :class="{ flipped }">
       <div class="rune-face front">
@@ -13,12 +12,6 @@
         <img :src="runeImages[name]" />
       </div>
     </div>
-
-    <button
-      v-for="position in positions" :key="position.join(',')"
-      @mousedown="handleRotateBtnMousedown({ event: $event, position })"
-      class="rotate-btn" :class="position" ref="rotate-btns"
-    ></button>
   </div>
 </template>
 
@@ -44,12 +37,6 @@ export default {
     animating() { return this.state.animating; },
     runeImages() { return this.state.runeImages; },
     rotateBtns() { return this.$refs['rotate-btns']; },
-  },
-  methods: {
-    handleRotateBtnMousedown({ event, position }) {
-      const { rotateBtns } = this;
-      this.$emit('rotate-start', { event, position, rotateBtns });
-    },
   },
 };
 </script>
@@ -106,44 +93,4 @@ div.rune-wrapper > div.rune > div.rune-face
 
   &.back
     transform: rotateY(180deg)
-
-$btn-area-size: 20px
-$btn-visible-size: 5px
-div.rune-wrapper > button.rotate-btn
-  position: absolute
-  @include btn-reset
-  display: inline-block
-  width: $btn-area-size
-  height: $btn-area-size
-  border-radius: $btn-area-size / 2
-  background-color: transparent
-  pointer-events: none
-
-  &.left
-    left: 0
-  &.right
-    right: 0
-  &.top
-    top: 0
-  &.bottom
-    bottom: 0
-  &:before
-    content: ''
-    position: absolute
-    left: 0
-    right: 0
-    top: 0
-    bottom: 0
-    margin: auto
-    display: inline-block
-    width: $btn-visible-size
-    height: $btn-visible-size
-    border-radius: $btn-visible-size / 2
-    pointer-events: none
-    background-color: transparent
-
-div.rune-wrapper.enable-rotate > button.rotate-btn
-  pointer-events: visible
-  &:before
-    background-color: transparentize($yellow-500, .5)
 </style>

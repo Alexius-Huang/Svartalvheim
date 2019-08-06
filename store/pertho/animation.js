@@ -62,7 +62,10 @@ export const actions = {
         };
         return { ...rune, ...random };
       });
-    await dispatch('set-deck-after', { duration: 1500, deck });
+    await dispatch('set-deck-after', { duration: 750, deck });
+
+    /* Collect all the runes */
+    console.log(deck);
 
     commit('pertho/animate-complete', undefined, { root: true });
   },
