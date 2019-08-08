@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section class="left">
+    <section v-if="!chart" class="left">
       <div class="title-wrapper">
         <h1 class="title">Visualizations</h1>
       </div>
@@ -17,7 +17,7 @@
       </div>
     </section><!--
 
- --><section class="inguz-chart-grid chart-grid">
+ --><section v-if="!chart" class="inguz-chart-grid chart-grid">
       <div
         class="chart"
         v-for="chart in charts" :key="chart"
@@ -85,6 +85,9 @@ export default {
       },
       icons: { chevronRight },
     };
+  },
+  computed: {
+    chart() { return this.$route.params.chart; },
   },
   methods: {
     inspectChartDetail(type) {
