@@ -1,6 +1,6 @@
 <template>
   <main>
-    <back-button to="back" />
+    <back-button :position="['top', 'right']" to="back" />
     <h1 class="title">Maxwell's Blog Posts</h1>
 
     <ul class="timeline-layout">

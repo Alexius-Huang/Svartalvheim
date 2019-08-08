@@ -205,4 +205,19 @@ section.public-speech
 
         &:hover
           transform: none
+
+@media screen and (max-width: 425px)
+  section.public-speech
+    > ul > li
+      padding: 18pt 14pt
+      > p.date
+        font-size: 12pt
+      > h2
+        font-size: 12pt
+        line-height: 1.5
+        padding-left: 8pt
+      > p.title
+        margin-top: 6pt
+        font-size: 12pt
+        line-height: 1.5
 </style>
