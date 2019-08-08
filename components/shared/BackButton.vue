@@ -64,7 +64,9 @@ div.back-button-wrapper
     height: 30pt
     border-radius: 50%
     border: 1pt solid $yellow-500
+    cursor: pointer
     > img
+      pointer-events: none
       width: 100%
       height: 100%
     > span.text-wrapper
