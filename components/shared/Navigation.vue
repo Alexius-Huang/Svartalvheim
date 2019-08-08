@@ -81,6 +81,8 @@ div.nav-wrapper
     border-top-left-radius: 60px
     background-color: #222
     box-shadow: -1pt -1pt 4pt transparentize($yellow-500, .5)
+    transform-origin: right bottom
+    transform: scale(1.25)
 
     > button.nav-btn
       @include btn-reset
@@ -190,6 +192,9 @@ div.nav-wrapper.active > nav.nav-section
   transition: .5s
 
 @media screen and (max-width: 768px)
+  div.nav-wrapper > div.nav-btn-wrapper
+    transform: scale(1)
+
   div.nav-wrapper > nav.nav-section
     > ul
       padding: 50pt 0 75pt 20pt
