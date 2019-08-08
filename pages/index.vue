@@ -14,7 +14,7 @@ export default {
   mounted() {
     window.setTimeout(() => {
       this.$router.push({ name: 'maxwell-alexius' });
-    }, 5000);
+    }, 2500);
   },
 }
 </script>

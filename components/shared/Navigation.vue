@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-wrapper" :class="{ active: opened }">    
+  <div class="nav-wrapper" :class="{ active: opened, hide: currentPage === 'index' }">    
     <div class="nav-btn-wrapper">
       <button class="nav-btn" @click="opened = !opened">
         <span></span>
@@ -58,6 +58,8 @@ export default {
 div.nav-wrapper
   width: 0
   height: 0
+  &.hide
+    display: none
   > div.nav-btn-wrapper
     position: fixed
     right: 0
@@ -170,7 +172,7 @@ div.nav-wrapper.active > nav.nav-section
 @media screen and (max-width: 768px)
   div.nav-wrapper > nav.nav-section
     > ul
-      padding: 50pt 0
+      padding: 50pt 0 75pt 0
       > li
         height: 30pt
         padding-right: 10pt
