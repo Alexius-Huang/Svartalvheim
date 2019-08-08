@@ -1,8 +1,7 @@
 <template>
   <main>
-    <div class="title-wrapper">
-      <h1 class="title">Showcase</h1>
-    </div>
+    <back-button to="back" :position="['top', 'right']" />
+    <h1 v-if="!showcase" class="title">{{ title }}</h1>
 
     <div class="wrapper">
       <template v-if="showcase">
@@ -10,21 +9,47 @@
       </template>
 
       <ul v-else class="list">
+        <li class="sub-title">CodePen Project</li>
+        <li
+          v-for="{ title, link } in codepenLinks" :key="title"
+          :data-title="title"
+        >
+          <a class="link" target="_blank" :href="link">{{ title }}</a>
+        </li>
+
+        <li class="sub-title">Miscellaneous</li>
         <li
           data-title="Turing Machine"
           @click="navigateToShowcase('turing-machine')"
         >Turing Machine</li>
         <li
-          data-title="Drum Sheet Editor"
+          data-title="Drum Sheet Editor [WIP]"
           @click="navigateToShowcase('drum-sheet-editor')"
-        >Drum Sheet Editor</li>
+        >Drum Sheet Editor [WIP]</li>
       </ul>
     </div>
   </main>
 </template>
 
 <script>
+import BackButton from '@/components/shared/BackButton';
+import randomString from '@/utils/randomString';
+import codepenLinks from '@/resources/thurisaz/codepen-project-links.json';
+
 export default {
+  components: { BackButton },
+  data() {
+    const finalizedTitle = 'Showcase';
+
+    return {
+      codepenLinks,
+      finalizedTitle,
+      title: randomString(finalizedTitle.length),
+      titleCharGenReqCycles: 5,
+      titleCharGenCycle: 0,
+      titleCharFinIndex: 0,
+    }
+  },
   computed: {
     showcase() { return this.$route.params.showcase; },
   },
@@ -32,6 +57,40 @@ export default {
     navigateToShowcase(showcase) {
       this.$router.push({ name: 'thurisaz-showcase', params: { showcase } });
     },
+    titleAnimation() {
+      const {
+        titleCharGenReqCycles: reqCycles,
+        titleCharGenCycle: genCycles,
+        finalizedTitle: FT,
+      } = this;
+
+      let { titleCharFinIndex: finIndex } = this;
+
+      if (genCycles === reqCycles) {
+        this.titleCharGenCycle = 0;
+        finIndex += 1;
+        this.titleCharFinIndex = finIndex;
+      } else {
+        this.titleCharGenCycle += 1;
+      }
+
+      const randomStringLength = FT.length - finIndex;
+      this.title = FT.slice(0, finIndex) + randomString(randomStringLength);
+      if (finIndex !== FT.length) {
+        setTimeout(() => {
+          this.titleAnimation();
+        }, 66.67);
+      } else {
+        setTimeout(() => {
+          this.titleCharGenCycle = 0,
+          this.titleCharFinIndex = 0;
+          this.titleAnimation();
+        }, 10000);
+      }
+    },
+  },
+  mounted() {
+    this.titleAnimation();
   },
 };
 </script>
@@ -47,25 +106,44 @@ main
   margin: 0 auto
   @include title-style
 
-  > div.title-wrapper
-    margin-top: 50pt
+  > h1.title
+    position: fixed
+    left: 10pt
+    bottom: 20pt
+    font: 144pt/200pt $base-font-family
+    color: rgba(255, 255, 255, 0.2)
 
   > div.wrapper
     margin-top: 25pt
 
     > ul.list
-      > li
+      padding-bottom: 96pt
+      > li.sub-title
+        display: block
+        color: $yellow-500
+        height: 60pt
+        font: 48pt/60pt $base-font-family
+        margin-bottom: 5pt
+        &:not(:first-child)
+          margin-top: 48pt
+
+      > li:not(.sub-title)
         position: relative
         display: inline-block
         width: auto
         height: 30pt
-        line-height: 30pt
         color: white
         border-left: 5pt solid $yellow-500
         padding: 0 10pt
-        font-size: 16pt
-        font-family: $base-font-family
+        font: 16pt/30pt $default-font-family
         margin-right: 10pt
+        margin-top: 8pt
+        cursor: pointer
+
+        > a.link,
+        > a.link:visited
+          text-decoration: none
+          color: white
         &:after
           content: attr(data-title)
           padding-left: 10pt
@@ -79,6 +157,7 @@ main
           top: 0
           color: #222
           transition: .2s ease-out
+          pointer-events: none
 
         &:hover:after
           background-color: $yellow-500
@@ -88,4 +167,57 @@ main
 @media screen and (max-width: 960px)
   main
     width: 100vw
+    padding: 0 25pt
+
+@media screen and (max-width: 768px)
+  main
+    > h1.title
+      font: 108pt/120pt $base-font-family
+
+    > div.wrapper
+      > ul.list
+        > li.sub-title
+          height: 48pt
+          font: 36pt/48pt $base-font-family
+
+        > li:not(.sub-title)
+          height: 24pt
+          border-left-width: 3pt
+          font: 12pt/24pt $default-font-family
+          margin-top: 8pt
+          cursor: pointer
+          padding: 0 8pt
+
+          &:after
+            padding-left: 8pt
+            height: 24pt
+            line-height: 24pt
+
+@media screen and (max-width: 425px)
+  main
+    > h1.title
+      font: 60pt/72pt $base-font-family
+
+    > div.wrapper
+      > ul.list
+        > li.sub-title
+          height: 36pt
+          font: 24pt/36pt $base-font-family
+          color: white
+
+        > li:not(.sub-title)
+          height: auto
+          font: 10pt/18pt $default-font-family
+          margin-top: 8pt
+          padding: 4pt 8pt
+          color: #222
+          border-left-width: 0
+          background-color: $yellow-500
+          > a.link,
+          > a.link:visited
+            background-color: $yellow-500
+            color: #222
+
+          &:after
+            display: none
 </style>

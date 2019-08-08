@@ -43,7 +43,7 @@ export default {
         { to: 'maxwell-alexius', title: 'About Me', icon: home, dark: homeDark },
         { to: 'ansuz', title: 'Blog Posts', icon: bookmark, dark: bookmarkDark },
         { to: 'inguz', title: 'Data Visualzation Catalogue', icon: assessment, dark: assessmentDark },
-        { to: 'thurisaz', title: 'Miscellaneous Portfolio', icon: stars, dark: starsDark },
+        { to: 'thurisaz', title: 'Showcase', icon: stars, dark: starsDark },
       ],
     };
   },
