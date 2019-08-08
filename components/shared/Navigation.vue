@@ -11,12 +11,14 @@
     <nav class="nav-section">
       <ul>
         <li
-          v-for="{ to, title } in links" :key="to"
+          v-for="{ to, title, icon, dark } in links" :key="to"
           @click="navigate(to)"
           :class="{ highlight: currentPage === to }"
         >
           <span class="info">{{ title }}</span><!--
-       --><span class="icon" />
+       --><span class="icon-wrapper">
+            <img :src="currentPage === to ? dark : icon" />
+          </span>
         </li>
       </ul>
     </nav>
@@ -24,15 +26,24 @@
 </template>
 
 <script>
+import home from '@/assets/icons/material/home-main.svg';
+import assessment from '@/assets/icons/material/assessment-main.svg';
+import bookmark from '@/assets/icons/material/bookmark-main.svg';
+import stars from '@/assets/icons/material/stars-main.svg';
+import homeDark from '@/assets/icons/material/home-dark.svg';
+import assessmentDark from '@/assets/icons/material/assessment-dark.svg';
+import bookmarkDark from '@/assets/icons/material/bookmark-dark.svg';
+import starsDark from '@/assets/icons/material/stars-dark.svg';
+
 export default {
   data() {
     return {
       opened: false,
       links: [
-        { to: 'maxwell-alexius', title: 'About Me' },
-        { to: 'ansuz', title: 'Blog Posts' },
-        { to: 'inguz', title: 'Data Visualzation Catalogue' },
-        { to: 'thurisaz', title: 'Miscellaneous Portfolio' },
+        { to: 'maxwell-alexius', title: 'About Me', icon: home, dark: homeDark },
+        { to: 'ansuz', title: 'Blog Posts', icon: bookmark, dark: bookmarkDark },
+        { to: 'inguz', title: 'Data Visualzation Catalogue', icon: assessment, dark: assessmentDark },
+        { to: 'thurisaz', title: 'Miscellaneous Portfolio', icon: stars, dark: starsDark },
       ],
     };
   },
@@ -133,7 +144,7 @@ div.nav-wrapper > nav.nav-section
     position: absolute
     max-height: 100vh
     overflow-y: auto
-    padding: 75pt 0
+    padding: 75pt 0 75pt 20pt
     bottom: 0pt
     right: 0
     > li
@@ -143,6 +154,7 @@ div.nav-wrapper > nav.nav-section
       > span
         display: inline-block
         vertical-align: middle
+        border: 1px solid transparentize($yellow-500, .75)
       > span.info
         padding: 4pt 7pt
         border-radius: 3pt
@@ -150,18 +162,26 @@ div.nav-wrapper > nav.nav-section
         background-color: #222
         font: 14pt $default-font-family
 
-      > span.icon
+      > span.icon-wrapper
         margin-left: 10pt
         width: 40pt
         height: 40pt
         border-radius: 50%
-        background-color: $yellow-500
+        background-color: #222
+        text-align: center
+        @include vertical-align
+
+        > img
+          width: 25pt
+          height: 25pt
 
       + li
         margin-top: 12pt
 
       &.highlight > span.info
         color: #222
+        background-color: $yellow-500
+      &.highlight > span.icon-wrapper
         background-color: $yellow-500
 
 div.nav-wrapper.active > nav.nav-section
@@ -172,19 +192,22 @@ div.nav-wrapper.active > nav.nav-section
 @media screen and (max-width: 768px)
   div.nav-wrapper > nav.nav-section
     > ul
-      padding: 50pt 0 75pt 0
+      padding: 50pt 0 75pt 20pt
       > li
         height: 30pt
         padding-right: 10pt
         > span.info
           padding: 3pt 5pt
           border-radius: 2pt
-          font: 12pt $default-font-family
+          font: 11pt $default-font-family
 
-        > span.icon
+        > span.icon-wrapper
           margin-left: 5pt
           width: 30pt
           height: 30pt
+          > img
+            width: 18pt
+            height: 18pt
 
         + li
           margin-top: 10pt
