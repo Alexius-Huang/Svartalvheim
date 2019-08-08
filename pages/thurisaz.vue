@@ -84,4 +84,8 @@ main
           background-color: $yellow-500
           width: 100%
           transition: .2s ease-in
+
+@media screen and (max-width: 960px)
+  main
+    width: 100vw
 </style>

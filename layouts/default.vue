@@ -1,5 +1,7 @@
 <template>
   <div>
+    <navigation />
+
     <transition
       name="fade"
       mode="out-in"
@@ -12,7 +14,10 @@
 </template>
 
 <script>
+import Navigation from '@/components/shared/Navigation';
+
 export default {
+  components: { Navigation },
   mounted() {
     const scriptEl = document.createElement('script');
     scriptEl.setAttribute('async', '');

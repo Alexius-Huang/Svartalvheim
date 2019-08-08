@@ -1,0 +1,189 @@
+<template>
+  <div class="nav-wrapper" :class="{ active: opened }">    
+    <div class="nav-btn-wrapper">
+      <button class="nav-btn" @click="opened = !opened">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="nav-section">
+      <ul>
+        <li
+          v-for="{ to, title } in links" :key="to"
+          @click="navigate(to)"
+          :class="{ highlight: currentPage === to }"
+        >
+          <span class="info">{{ title }}</span><!--
+       --><span class="icon" />
+        </li>
+      </ul>
+    </nav>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      opened: false,
+      links: [
+        { to: 'maxwell-alexius', title: 'About Me' },
+        { to: 'ansuz', title: 'Blog Posts' },
+        { to: 'inguz', title: 'Data Visualzation Catalogue' },
+        { to: 'thurisaz', title: 'Miscellaneous Portfolio' },
+      ],
+    };
+  },
+  computed: {
+    currentPage() {
+      return this.$route.name;
+    },
+  },
+  methods: {
+    navigate(to) {
+      this.opened = false;
+      this.$router.push({ name: to });
+    },
+  },
+};
+</script>
+
+<style scoped lang="sass">
+@import '~/sass/colors.sass'
+@import '~/sass/helpers.sass'
+@import '~/sass/shared.sass'
+
+div.nav-wrapper
+  width: 0
+  height: 0
+  > div.nav-btn-wrapper
+    position: fixed
+    right: 0
+    bottom: 0
+    z-index: 9999
+    width: 60px
+    height: 60px
+    border-top-left-radius: 60px
+    background-color: #222
+    box-shadow: -1pt -1pt 4pt transparentize($yellow-500, .5)
+
+    > button.nav-btn
+      @include btn-reset
+      background-color: transparent
+      width: 100%
+      height: 100%
+      position: relative
+      > span
+        display: inline-block
+        position: absolute
+        right: 10px
+        width: 30px
+        height: 3px
+        border-radius: 1.5px
+        background-color: $yellow-500
+        transition: .25s
+
+        &:nth-child(1)
+          bottom: 30px
+        &:nth-child(2)
+          bottom: 20px
+        &:nth-child(3)
+          bottom: 10px
+
+  &.active > div.nav-btn-wrapper
+    box-shadow: -1pt -1pt 4pt $yellow-500
+
+  &.active > div.nav-btn-wrapper > button.nav-btn > span
+    transition: .25s
+
+    &:nth-child(1)
+      width: 15px
+      bottom: 31px
+      right: 15px
+      transform-origin: right center
+      transform: rotate(-45deg)
+    &:nth-child(2)
+      transform-origin: center center
+      transform: rotate(45deg)
+    &:nth-child(3)
+      width: 15px
+      bottom: 10px
+      right: 21px
+      transform-origin: left center
+      transform: rotate(-45deg)
+
+div.nav-wrapper > nav.nav-section
+  pointer-events: none
+  position: fixed
+  left: 0
+  top: 100vh
+  width: 100vw
+  height: 100vh
+  background-image: linear-gradient(to top, #222 0%, transparent 95%)
+  z-index: 9998
+  transition: .5s
+
+  > ul
+    text-align: right
+    display: inline-block
+    position: absolute
+    max-height: 100vh
+    overflow-y: auto
+    padding: 75pt 0
+    bottom: 0pt
+    right: 0
+    > li
+      width: 100%
+      height: 40pt
+      padding-right: 15pt
+      > span
+        display: inline-block
+        vertical-align: middle
+      > span.info
+        padding: 4pt 7pt
+        border-radius: 3pt
+        color: $yellow-500
+        background-color: #222
+        font: 14pt $default-font-family
+
+      > span.icon
+        margin-left: 10pt
+        width: 40pt
+        height: 40pt
+        border-radius: 50%
+        background-color: $yellow-500
+
+      + li
+        margin-top: 12pt
+
+      &.highlight > span.info
+        color: #222
+        background-color: $yellow-500
+
+div.nav-wrapper.active > nav.nav-section
+  top: 0
+  pointer-events: visible
+  transition: .5s
+
+@media screen and (max-width: 768px)
+  div.nav-wrapper > nav.nav-section
+    > ul
+      padding: 50pt 0
+      > li
+        height: 30pt
+        padding-right: 10pt
+        > span.info
+          padding: 3pt 5pt
+          border-radius: 2pt
+          font: 12pt $default-font-family
+
+        > span.icon
+          margin-left: 5pt
+          width: 30pt
+          height: 30pt
+
+        + li
+          margin-top: 10pt
+</style>
