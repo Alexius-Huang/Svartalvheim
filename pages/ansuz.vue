@@ -35,7 +35,7 @@ export default {
       totalPosts: posts,
       posts: [],
       page: 1,
-      pageSize: 10,
+      pageSize: 9,
     };
   },
   computed: {
@@ -58,7 +58,7 @@ export default {
           newPosts.push(newPost);
           this.posts = newPosts;
 
-          setTimeout(this.appendPostAnimation, 500);
+          setTimeout(this.appendPostAnimation, 200);
         }
       }
     },
@@ -226,6 +226,65 @@ main
 @media screen and (max-width: 960px)
   main
     width: 100vw
+
+  main > ul.timeline-layout > li
+    &:nth-child(even)
+      padding-left: 25pt
+    &:nth-child(odd)
+      padding-right: 25pt
+
+@media screen and (max-width: 768px)
+  main > h1.title
+    font-size: 24pt
+  main > ul.timeline-layout
+    &:before
+      display: none
+    &:after
+      content: ''
+      position: absolute
+      content: ''
+      width: 2px
+      height: calc(100% + 50px)
+      background-color: $yellow-500
+      left: 20px
+      top: -25px
+      border-radius: 1pt
+
+  main > ul.timeline-layout > li
+    width: 100%
+    &:nth-child(even)
+      text-align: left
+    &:nth-child(odd)
+      margin-left: 0
+    &:before
+      display: none
+    &:after
+      content: ''
+      position: absolute
+      width: 10pt
+      height: 10pt
+      border-radius: 50%
+      background-color: $yellow-500
+      border: 3px solid #222
+      top: 6px
+      left: 15px
+
+  main > ul.timeline-layout > li > div.info
+    &:before
+      display: none
+
+  main > ul.timeline-layout > li > h2.title
+    font-size: 14pt
+    &.smaller
+      font-size: 12pt
+
+  main > ul.timeline-layout > li.load-more
+    padding: 0
+    text-align: center
+    &:after
+      display: none
+    &:nth-child(odd)
+      left: 0
 
 @keyframes fade-in
   0%
