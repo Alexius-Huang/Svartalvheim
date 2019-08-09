@@ -9,7 +9,19 @@
       </template>
 
       <ul v-else class="list">
-        <li class="sub-title">CodePen Project</li>
+        <li class="sub-title">
+          <img class="logo" :src="logo.GitHub" />
+          <span class="content">GitHub</span>
+        </li>
+
+        <li class="custom-section">
+          <github-projects-gallery />
+        </li>
+
+        <li class="sub-title">
+          <img class="logo" :src="logo.CodePen" />
+          <span class="content">CodePen Project</span>
+        </li>
         <li
           v-for="{ title, link } in codepenLinks" :key="title"
           :data-title="title"
@@ -32,22 +44,30 @@
 </template>
 
 <script>
+import GithubProjectsGallery from '@/components/misc/Thurisaz/GithubProjectsGallery';
 import BackButton from '@/components/shared/BackButton';
+import GitHubLogo from '@/assets/logo/github-main.svg';
+import CodePenLogo from '@/assets/logo/codepen-main.svg';
 import randomString from '@/utils/randomString';
 import codepenLinks from '@/resources/thurisaz/codepen-project-links.json';
 
 export default {
-  components: { BackButton },
+  components: { GithubProjectsGallery, BackButton },
   data() {
     const finalizedTitle = 'Showcase';
 
     return {
+      logo: {
+        GitHub: GitHubLogo,
+        CodePen: CodePenLogo,
+      },
       codepenLinks,
       finalizedTitle,
       title: randomString(finalizedTitle.length),
       titleCharGenReqCycles: 5,
       titleCharGenCycle: 0,
       titleCharFinIndex: 0,
+      timeoutFlag: null,
     }
   },
   computed: {
@@ -77,11 +97,11 @@ export default {
       const randomStringLength = FT.length - finIndex;
       this.title = FT.slice(0, finIndex) + randomString(randomStringLength);
       if (finIndex !== FT.length) {
-        setTimeout(() => {
+        this.timeoutFlag = setTimeout(() => {
           this.titleAnimation();
         }, 66.67);
       } else {
-        setTimeout(() => {
+        this.timeoutFlag = setTimeout(() => {
           this.titleCharGenCycle = 0,
           this.titleCharFinIndex = 0;
           this.titleAnimation();
@@ -91,6 +111,9 @@ export default {
   },
   mounted() {
     this.titleAnimation();
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutFlag);
   },
 };
 </script>
@@ -124,10 +147,15 @@ main
         height: 60pt
         font: 48pt/60pt $base-font-family
         margin-bottom: 5pt
+        @include vertical-align
+        > img.logo
+          width: 48pt
+          height: 48pt
+          margin-right: 8pt
         &:not(:first-child)
           margin-top: 48pt
 
-      > li:not(.sub-title)
+      > li:not(.sub-title):not(.custom-section)
         position: relative
         display: inline-block
         width: auto
@@ -204,6 +232,11 @@ main
           height: 36pt
           font: 24pt/36pt $base-font-family
           color: white
+
+          > img.logo
+            width: 30pt
+            height: 30pt
+            margin-right: 4pt
 
         > li:not(.sub-title)
           height: auto

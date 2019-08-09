@@ -8,11 +8,11 @@
       </button>
     </div>
 
-    <nav class="nav-section">
+    <nav class="nav-section" @click.prevent="opened = false">
       <ul>
         <li
           v-for="{ to, title, icon, dark } in links" :key="to"
-          @click="navigate(to)"
+          @click.prevent="navigate(to)"
           :class="{ highlight: currentPage === to }"
         >
           <span class="info">{{ title }}</span><!--
