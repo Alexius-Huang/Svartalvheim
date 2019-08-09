@@ -16,7 +16,11 @@
     "date": [2019, 8],
     "tags": ["ReactJS"],
     "description": "An example code compare between ES6 Class styled and functional with hooks styled React components",
-    "meta": {}
+    "meta": {
+      "company": "React.JS",
+      "companyWebsite": "https://reactjs.org/",
+      "logo": "react-js.png"
+    }
   },
   {
     "title": "Avian Influenza",
@@ -46,7 +50,7 @@
     }
   },
   {
-    "title": "StrataJS",
+    "title": "Strata.JS",
     "link": "https://github.com/Maxwell-Alexius/StrataJS",
     "date": [2018, 12],
     "tags": ["JavaScript", "NPM Package"],
@@ -69,7 +73,7 @@
     }
   },
   {
-    "title": "Manufacturer",
+    "title": "Manufacturer.JS",
     "link": "https://github.com/Maxwell-Alexius/Manufacturer",
     "date": [2018, 3],
     "tags": ["JavaScript", "NPM Package", "Design Pattern"],
@@ -77,17 +81,20 @@
     "meta": {}
   },
   {
-    "title": "MonsterRX",
+    "title": "Monster RX",
     "link": "https://github.com/Maxwell-Alexius/MonsterRX",
     "date": [2018, 1],
     "tags": ["RxJS", "UX"],
     "description": "UX Realization Compared between VanillaJS && RxJS Examples",
     "meta": {
+      "company": "Rx.JS",
+      "companyWebsite": "https://rxjs-dev.firebaseapp.com/",
+      "logo": "rxjs-logo.png",
       "cover": "monster-rx-cover.png"
     }
   },
   {
-    "title": "LeichterJS",
+    "title": "Leichter.JS",
     "link": "https://github.com/Maxwell-Alexius/LeichterJS",
     "date": [2017, 11],
     "tags": ["JavaScript", "NPM Package"],
@@ -109,7 +116,7 @@
     "link": "https://github.com/Maxwell-Alexius/ML-on-Coursera",
     "date": [2017, 10],
     "tags": ["Machine Learning", "Octave"],
-    "description": "Machine Learning course on Coursera teached by Andrew Ng in Stanford University",
+    "description": "Machine Learning course on Coursera taught by Andrew Ng in Stanford University",
     "meta": {}
   },
   {
@@ -121,8 +128,9 @@
     "meta": {
       "company": "Goby Lang.",
       "position": "Contributor",
+      "companyWebsite": "https://github.com/goby-lang/goby",
       "website": "https://github.com/goby-lang/goby",
-      "logo": "goby-lang-logo.png"
+      "logo": "goby-lang-logo.svg"
     }
   },
   {
@@ -145,6 +153,9 @@
     "tags": ["VueJS", "Data Visualization", "Google Map"],
     "description": "Taipei UBike information data visualization",
     "meta": {
+      "company": "Vue.JS",
+      "companyWebsite": "https://vuejs.org/",
+      "logo": "vuejs-logo.png",
       "cover": "vue-ubike-info-cover.png"
     }
   },
@@ -155,6 +166,9 @@
     "tags": ["Ruby", "Gem Package", "Algorithm", "Data Structure"],
     "description": "Basic Data Structure & Algorithm Implementation in Ruby",
     "meta": {
+      "company": "Ruby Lang",
+      "companyWebsite": "https://www.ruby-lang.org/en/",
+      "logo": "ruby-lang-logo.png",
       "cover": "kaninchen-cover.png"
     }
   },
@@ -180,18 +194,20 @@
     }
   },
   {
-    "title": "HackNTU CrimeX",
+    "title": "Hack NTU CrimeX",
     "link": "https://github.com/Maxwell-Alexius/HackNTU-CrimeX-UI",
     "date": [2017, 6],
     "tags": ["ReactJS", "Data Visualization", "Google Map"],
     "description": "Taipei crime data visualization on map",
     "meta": {
       "company": "NTU Hackathon",
+      "companyWebsite": "https://www.facebook.com/hackNTU",
+      "logo": "hack-ntu-2017-logo.png",
       "position": "Participant"
     }
   },
   {
-    "title": "EnlightenJS",
+    "title": "Enlighten.JS",
     "link": "https://github.com/Maxwell-Alexius/EnlightenJS",
     "date": [2017, 5],
     "tags": ["Javascript", "CSS"],
@@ -240,7 +256,7 @@
     "meta": {}
   },
   {
-    "title": "MusiqueJS",
+    "title": "Musique.JS",
     "link": "https://github.com/Maxwell-Alexius/MusiqueJS",
     "date": [2016, 12],
     "tags": ["JavaScript", "CSS"],
