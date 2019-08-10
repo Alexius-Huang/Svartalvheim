@@ -41,9 +41,9 @@ export default {
       opened: false,
       links: [
         { to: 'maxwell-alexius', title: 'About Me', icon: home, dark: homeDark },
+        { to: 'thurisaz', title: 'Portfolio', icon: stars, dark: starsDark },
         { to: 'ansuz', title: 'Blog Posts', icon: bookmark, dark: bookmarkDark },
         { to: 'inguz', title: 'Data Visualzation Catalogue', icon: assessment, dark: assessmentDark },
-        { to: 'thurisaz', title: 'Showcase', icon: stars, dark: starsDark },
       ],
     };
   },

@@ -39,6 +39,12 @@ import GitHubLogo from '@/assets/logo/github-main.svg';
 import GitHubLogoDark from '@/assets/logo/github-dark.svg';
 import CodePenLogo from '@/assets/logo/codepen-main.svg';
 import CodePenLogoDark from '@/assets/logo/codepen-dark.svg';
+import timeline from '@/assets/icons/material/timeline-main.svg';
+import timelineDark from '@/assets/icons/material/timeline-dark.svg';
+import barChart from '@/assets/icons/material/bar-chart-main.svg';
+import barChartDark from '@/assets/icons/material/bar-chart-dark.svg';
+import stars from '@/assets/icons/material/stars-main.svg';
+import starsDark from '@/assets/icons/material/stars-dark.svg';
 import randomString from '@/utils/randomString';
 
 /* Data Sources */
@@ -48,22 +54,31 @@ import githubProjectsData from '@/resources/thurisaz/github-project-links.json';
 export default {
   components: { ProjectsGallery, BackButton },
   data() {
-    const finalizedTitle = 'Showcase';
+    const finalizedTitle = 'Portfolio';
 
     return {
       logo: {
         GitHub: GitHubLogo,
-        CodePen: CodePenLogo
+        CodePen: CodePenLogo,
+        Career: timeline,
+        Visualization: barChart,
+        Special: stars,
       },
       logoDark: {
         GitHub: GitHubLogoDark,
         CodePen: CodePenLogoDark,
+        Career: timelineDark,
+        Visualization: barChartDark,
+        Special: starsDark,
       },
       dataMap: {
         GitHub: githubProjectsData,
         CodePen: codepenLinks,
+        Career: null,
+        Visualization: null,
+        Special: null,
       },
-      sources: ['GitHub', 'CodePen'],
+      sources: ['GitHub', 'CodePen', 'Career', 'Visualization', 'Special'],
       currentSource: 'GitHub',
 
       codepenLinks,
@@ -168,7 +183,7 @@ main
     width: 100vw
     height: 80pt
     box-sizing: border-box
-    padding: 0 100pt 0 20pt
+    padding: 0 60pt 0 20pt
     left: 0
     top: 0
     z-index: 10000
@@ -181,7 +196,7 @@ main
       @include btn-reset
       display: inline-block
       position: relative
-      width: 50pt
+      width: 60pt
       background-color: transparent
       transition: .25s
 
