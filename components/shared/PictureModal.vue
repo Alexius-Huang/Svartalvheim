@@ -74,9 +74,10 @@ div.picture-modal
   > div.img-wrapper
     box-sizing: border-box
     display: inline-block
-    width: 960px
+    max-width: 960px
     max-height: 720px
     position: relative
+    overflow-y: hidden
 
     > div.clear-btn-wrapper
       position: absolute
@@ -107,8 +108,13 @@ div.picture-modal
           top: 23pt
 
     > img
+      background-color: #222
       width: 100%
       height: auto
+
+      &:hover + div.picture-info
+        opacity: 1
+        transition: .25s
 
     > div.picture-info
       position: absolute
@@ -118,6 +124,8 @@ div.picture-modal
       box-sizing: border-box
       padding: 16pt 12pt
       background-color: transparentize(#222, .3)
+      opacity: 0
+      transition: .25s
       > p
         text-align: left
       > p.title

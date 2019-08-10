@@ -2,6 +2,7 @@
   <main>
     <back-button to="back" :position="['top', 'right']" />
     <h1 v-if="!showcase" class="title">{{ title }}</h1>
+    <img class="huge-bg-img" :src="logo.GitHub" />
 
     <div class="wrapper">
       <template v-if="showcase">
@@ -12,21 +13,25 @@
         <img class="logo" :src="logo.GitHub" />
         <span class="content">GitHub</span>
       </div>
-      <github-projects-gallery />
+      <projects-gallery
+        :source-data="githubProjectsData"
+        img-url="github-projects-img/"
+      />
     </div>
   </main>
 </template>
 
 <script>
-import GithubProjectsGallery from '@/components/misc/Thurisaz/GithubProjectsGallery';
+import ProjectsGallery from '@/components/misc/Thurisaz/ProjectsGallery';
 import BackButton from '@/components/shared/BackButton';
 import GitHubLogo from '@/assets/logo/github-main.svg';
 import CodePenLogo from '@/assets/logo/codepen-main.svg';
 import randomString from '@/utils/randomString';
 import codepenLinks from '@/resources/thurisaz/codepen-project-links.json';
+import githubProjectsData from '@/resources/thurisaz/github-project-links.json';
 
 export default {
-  components: { GithubProjectsGallery, BackButton },
+  components: { ProjectsGallery, BackButton },
   data() {
     const finalizedTitle = 'Showcase';
 
@@ -36,6 +41,7 @@ export default {
         CodePen: CodePenLogo,
       },
       codepenLinks,
+      githubProjectsData,
       finalizedTitle,
       title: randomString(finalizedTitle.length),
       titleCharGenReqCycles: 5,
@@ -112,6 +118,15 @@ main
     pointer-events: none
     z-index: -1
 
+  > img.huge-bg-img
+    position: fixed
+    z-index: -2
+    width: 500pt
+    height: 500pt
+    bottom: -50pt
+    right: -25pt
+    opacity: .1
+
   > div.wrapper
     margin-top: 25pt
     padding-bottom: 96pt
@@ -139,15 +154,29 @@ main
   main
     > h1.title
       font: 108pt/120pt $base-font-family
+    > img.huge-bg-img
+      width: 400pt
+      height: 400pt
 
     > div.wrapper > div.title-wrapper
       height: 48pt
       font: 36pt/48pt $base-font-family
 
+@media screen and (max-width: 575px)
+  main
+    > img.huge-bg-img
+      width: 300pt
+      height: 300pt
+      bottom: -15pt
+
 @media screen and (max-width: 425px)
   main
     > h1.title
       font: 60pt/72pt $base-font-family
+    > img.huge-bg-img
+      width: 200pt
+      height: 200pt
+      bottom: -10pt
 
     > div.wrapper > div.title-wrapper
       height: 36pt

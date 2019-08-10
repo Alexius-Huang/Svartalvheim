@@ -1,0 +1,34 @@
+p
+  font: lighter 12pt/16pt $default-font-family
+  color: white
+
+  &.description
+    margin: 6pt 0
+  &.date
+    text-align: right
+    font: 10pt/12pt $base-font-family
+
+a.website
+  text-decoration: none
+  font: 10pt/16pt $default-font-family
+  > span.url, > img.icon
+    vertical-align: middle
+  > span.url
+    margin-left: 6pt
+a.website, a.website:visited
+  color: $yellow-500
+
+ul.tags
+  padding: 6pt 0
+  > li
+    display: inline-block
+    width: auto
+    height: 18pt
+    padding: 0 5pt
+    margin-right: 5pt
+    font: 8pt/18pt $default-font-family
+    color: $yellow-500
+    background-color: transparent
+    border: 1pt solid $yellow-500
+    border-radius: 2pt
+
