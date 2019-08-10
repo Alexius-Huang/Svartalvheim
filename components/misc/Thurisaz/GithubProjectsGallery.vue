@@ -10,16 +10,16 @@
           v-for="{
             title,
             description,
-            // link,
+            link,
             date,
-            // tags,
+            tags,
             meta: {
               cover = null,
               logo = null,
               company = null,
               position = null,
               companyWebsite = '#',
-              //website = null,
+              website = null,
             },
           } in columnData[i - 1]" :key="title"
         >
@@ -27,7 +27,13 @@
             class="inner-wrapper column-style-1"
             v-if="cover === null && logo === null"
           >
-            <p class="title" :class="{ smaller: title.length > 20 }">{{ title }}</p>
+            <p class="title" :class="{ smaller: title.length > 20 }">
+              <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
+              <template v-else>{{ title }}</template>
+            </p>
+            <ul class="tags">
+              <li v-for="tag in tags" :key="tag">{{ tag }}</li>
+            </ul>
             <p class="description">{{ description }}</p>
             <p class="date">{{ formatDate(date) }}</p>
           </div>
@@ -38,8 +44,19 @@
           >
             <div class="cover-img-wrapper">
               <img :src="imgURL + cover" />
-              <p class="title" :class="{ smaller: title.length > 20 }">{{ title }}</p>
+              <p class="title" :class="{ smaller: title.length > 20 }">
+                <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
+                <template v-else>{{ title }}</template>
+              </p>
             </div>
+
+            <a v-if="website" class="website" :href="website" target="_blank">
+              <img class="icon" :src="icons.worldwide" />
+              <span class="url">{{ trim(website, 25) }}</span>
+            </a>
+            <ul class="tags">
+              <li v-for="tag in tags" :key="tag">{{ tag }}</li>
+            </ul>
             <p class="description">{{ description }}</p>
             <p class="date">{{ formatDate(date) }}</p>
           </div>
@@ -63,7 +80,17 @@
          --><div v-if="cover !== null" class="cover-wrapper"><!--
            --><img :src="imgURL + cover" class="cover" /><!--
          --></div><!--
-         --><p class="title">{{ title }}</p>
+         --><p class="title">
+              <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
+              <template v-else>{{ title }}</template>
+            </p>
+            <a v-if="website" class="website" :href="website" target="_blank">
+              <img class="icon" :src="icons.worldwide" />
+              <span class="url">{{ trim(website, 25) }}</span>
+            </a>
+            <ul class="tags">
+              <li v-for="tag in tags" :key="tag">{{ tag }}</li>
+            </ul>
             <p class="description">{{ description }}</p>
             <p class="date">{{ formatDate(date) }}</p>
           </div>
@@ -75,6 +102,7 @@
 
 <script>
 import data from '@/resources/thurisaz/github-project-links.json';
+import worldwide from '@/assets/icons/material/worldwide-main.svg';
 import indexOfMinimum from '@/utils/indexOfMinimum';
 
 export default {
@@ -85,6 +113,7 @@ export default {
       columns: 0,
       columnData: [[], [], []],
       innerWidth: null,
+      icons: { worldwide },
     };
   },
   methods: {
@@ -198,6 +227,30 @@ section.github-projects-gallery > div.columns-wrapper > ul.column > li > div.inn
       text-align: right
       font: 10pt/12pt $base-font-family
 
+  a.website
+    text-decoration: none
+    font: 10pt/16pt $default-font-family
+    > span.url, > img.icon
+      vertical-align: middle
+    > span.url
+      margin-left: 6pt
+  a.website, a.website:visited
+    color: $yellow-500
+
+  ul.tags
+    padding: 6pt 0
+    > li
+      display: inline-block
+      width: auto
+      height: 18pt
+      padding: 0 5pt
+      margin-right: 5pt
+      font: 8pt/18pt $default-font-family
+      color: $yellow-500
+      background-color: transparent
+      border: 1pt solid $yellow-500
+      border-radius: 2pt
+
   &.column-style-1
     background-color: $yellow-500
     margin: -6pt -8pt
@@ -210,21 +263,35 @@ section.github-projects-gallery > div.columns-wrapper > ul.column > li > div.inn
         font: 24pt/30pt $base-font-family
         &.smaller
           font: 18pt/24pt $base-font-family
+        > a, > a:visited
+          color: #222
+        > a:hover
+          color: #444
 
       &.description
         font-weight: bolder
         letter-spacing: default
+
+    > ul.tags > li
+      color: #222
+      border-color: #222
 
   &.column-style-2
     > div.cover-img-wrapper
       margin: -6pt -8pt 6pt -8pt
       position: relative
       box-sizing: border-box
+      overflow: hidden
       > img
         border-top-left-radius: 3pt
         border-top-right-radius: 3pt
         width: 100%
         height: auto
+        transition: .25s
+        &:hover
+          transform-origin: center center
+          transform: scale(1.2)
+          transition: .25s
       > p.title
         position: absolute
         width: 100%
@@ -235,6 +302,11 @@ section.github-projects-gallery > div.columns-wrapper > ul.column > li > div.inn
         color: $yellow-500
         padding: 6pt 8pt
         background-color: transparentize(#222, .5)
+
+        > a, > a:visited
+          color: $yellow-500
+        > a:hover
+          color: white
 
         &.smaller
           font: 16pt/24pt $base-font-family
@@ -269,9 +341,20 @@ section.github-projects-gallery > div.columns-wrapper > ul.column > li > div.inn
 
     > div.cover-wrapper
       margin: 0 -8pt
+      overflow: hidden
       > img
         width: 100%
         height: auto
+        transition: .25s
+        &:hover
+          transform-origin: center center
+          transform: scale(1.2)
+          transition: .25s
+
+    > p > a, > p > a:visited
+      color: $yellow-500
+    > p > a:hover
+      color: white
 
     &.has-cover > p
       &.title

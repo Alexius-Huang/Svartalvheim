@@ -73,7 +73,7 @@
     }
   },
   {
-    "title": "Manufacturer.JS",
+    "title": "Manufacturer",
     "link": "https://github.com/Maxwell-Alexius/Manufacturer",
     "date": [2018, 3],
     "tags": ["JavaScript", "NPM Package", "Design Pattern"],
@@ -236,9 +236,9 @@
   },
   {
     "title": "daikichi",
-    "link": "https://github.com/Maxwell-Alexius/daikichi",
+    "link": null,
     "date": [2017, 4],
-    "tags": ["Ruby on Rails"],
+    "tags": ["Ruby on Rails", "Ruby"],
     "description": "An HR system",
     "meta": {
       "company": "5xRuby",

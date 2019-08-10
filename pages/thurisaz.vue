@@ -8,39 +8,11 @@
         <nuxt-child />
       </template>
 
+      <div class="title-wrapper">
+        <img class="logo" :src="logo.GitHub" />
+        <span class="content">GitHub</span>
+      </div>
       <github-projects-gallery />
-
-      <!-- <ul v-else class="list">
-        <li class="sub-title">
-          <img class="logo" :src="logo.GitHub" />
-          <span class="content">GitHub</span>
-        </li>
-
-        <li class="custom-section">
-          <github-projects-gallery />
-        </li>
-
-        <li class="sub-title">
-          <img class="logo" :src="logo.CodePen" />
-          <span class="content">CodePen Project</span>
-        </li>
-        <li
-          v-for="{ title, link } in codepenLinks" :key="title"
-          :data-title="title"
-        >
-          <a class="link" target="_blank" :href="link">{{ title }}</a>
-        </li>
-
-        <li class="sub-title">Miscellaneous</li>
-        <li
-          data-title="Turing Machine"
-          @click="navigateToShowcase('turing-machine')"
-        >Turing Machine</li>
-        <li
-          data-title="Drum Sheet Editor [WIP]"
-          @click="navigateToShowcase('drum-sheet-editor')"
-        >Drum Sheet Editor [WIP]</li>
-      </ul> -->
     </div>
   </main>
 </template>
@@ -138,63 +110,25 @@ main
     font: 144pt/200pt $base-font-family
     color: rgba(255, 255, 255, 0.2)
     pointer-events: none
+    z-index: -1
 
   > div.wrapper
     margin-top: 25pt
     padding-bottom: 96pt
 
-    // > ul.list
-    //   padding-bottom: 96pt
-    //   > li.sub-title
-    //     display: block
-    //     color: $yellow-500
-    //     height: 60pt
-    //     font: 48pt/60pt $base-font-family
-    //     margin-bottom: 5pt
-    //     @include vertical-align
-    //     > img.logo
-    //       width: 48pt
-    //       height: 48pt
-    //       margin-right: 8pt
-    //     &:not(:first-child)
-    //       margin-top: 48pt
-
-    //   > li:not(.sub-title):not(.custom-section)
-    //     position: relative
-    //     display: inline-block
-    //     width: auto
-    //     height: 30pt
-    //     color: white
-    //     border-left: 5pt solid $yellow-500
-    //     padding: 0 10pt
-    //     font: 16pt/30pt $default-font-family
-    //     margin-right: 10pt
-    //     margin-top: 8pt
-    //     cursor: pointer
-
-    //     > a.link,
-    //     > a.link:visited
-    //       text-decoration: none
-    //       color: white
-    //     &:after
-    //       content: attr(data-title)
-    //       padding-left: 10pt
-    //       background-color: transparent
-    //       position: absolute
-    //       width: 0
-    //       height: 30pt
-    //       line-height: 30pt
-    //       overflow: hidden
-    //       left: 0
-    //       top: 0
-    //       color: #222
-    //       transition: .2s ease-out
-    //       pointer-events: none
-
-    //     &:hover:after
-    //       background-color: $yellow-500
-    //       width: 100%
-    //       transition: .2s ease-in
+    > div.title-wrapper
+      display: block
+      color: $yellow-500
+      height: 60pt
+      font: 48pt/60pt $base-font-family
+      margin-bottom: 5pt
+      @include vertical-align
+      > img.logo
+        width: 48pt
+        height: 48pt
+        margin-right: 8pt
+      &:not(:first-child)
+        margin-top: 48pt
 
 @media screen and (max-width: 960px)
   main
@@ -206,55 +140,20 @@ main
     > h1.title
       font: 108pt/120pt $base-font-family
 
-    // > div.wrapper
-    //   > ul.list
-    //     > li.sub-title
-    //       height: 48pt
-    //       font: 36pt/48pt $base-font-family
-
-    //     > li:not(.sub-title)
-    //       height: 24pt
-    //       border-left-width: 3pt
-    //       font: 12pt/24pt $default-font-family
-    //       margin-top: 8pt
-    //       cursor: pointer
-    //       padding: 0 8pt
-
-    //       &:after
-    //         padding-left: 8pt
-    //         height: 24pt
-    //         line-height: 24pt
+    > div.wrapper > div.title-wrapper
+      height: 48pt
+      font: 36pt/48pt $base-font-family
 
 @media screen and (max-width: 425px)
   main
     > h1.title
       font: 60pt/72pt $base-font-family
 
-    // > div.wrapper
-    //   > ul.list
-    //     > li.sub-title
-    //       height: 36pt
-    //       font: 24pt/36pt $base-font-family
-    //       color: white
-
-    //       > img.logo
-    //         width: 30pt
-    //         height: 30pt
-    //         margin-right: 4pt
-
-    //     > li:not(.sub-title)
-    //       height: auto
-    //       font: 10pt/18pt $default-font-family
-    //       margin-top: 8pt
-    //       padding: 4pt 8pt
-    //       color: #222
-    //       border-left-width: 0
-    //       background-color: $yellow-500
-    //       > a.link,
-    //       > a.link:visited
-    //         background-color: $yellow-500
-    //         color: #222
-
-    //       &:after
-    //         display: none
+    > div.wrapper > div.title-wrapper
+      height: 36pt
+      font: 24pt/36pt $base-font-family
+      color: white
+      > img.logo
+        width: 36pt
+        height: 36pt
 </style>
