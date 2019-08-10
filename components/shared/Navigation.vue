@@ -137,7 +137,7 @@ div.nav-wrapper > nav.nav-section
   width: 100vw
   height: 100vh
   background-image: linear-gradient(to top, #222 0%, transparent 95%)
-  z-index: 999999
+  z-index: 99999
   transition: .5s
 
   > ul
