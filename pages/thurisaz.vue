@@ -2,17 +2,28 @@
   <main>
     <back-button to="back" :position="['top', 'right']" />
     <h1 v-if="!showcase" class="title">{{ title }}</h1>
-    <img class="huge-bg-img" :src="logo.GitHub" />
+    <img class="huge-bg-img" :src="logo[currentSource]" />
+
+    <div class="sources-wrapper" :class="{ 'show-in-mobile': scrollDirectionIsDown }">
+      <button
+        v-for="(source, i) in sources"
+        :key="`${source}-${i}`"
+        class="source-btn" :class="{ active: currentSource === source }"
+        @click="currentSource = source"
+      >
+        <img
+          class="source-logo"
+          :src="(currentSource === source ? logoDark : logo)[source]"
+        />
+        <span class="source-name">{{ source }}</span>
+      </button>
+    </div>
 
     <div class="wrapper">
       <template v-if="showcase">
         <nuxt-child />
       </template>
 
-      <div class="title-wrapper">
-        <img class="logo" :src="logo.GitHub" />
-        <span class="content">GitHub</span>
-      </div>
       <projects-gallery
         :source-data="githubProjectsData"
         img-url="github-projects-img/"
@@ -25,8 +36,12 @@
 import ProjectsGallery from '@/components/misc/Thurisaz/ProjectsGallery';
 import BackButton from '@/components/shared/BackButton';
 import GitHubLogo from '@/assets/logo/github-main.svg';
+import GitHubLogoDark from '@/assets/logo/github-dark.svg';
 import CodePenLogo from '@/assets/logo/codepen-main.svg';
+import CodePenLogoDark from '@/assets/logo/codepen-dark.svg';
 import randomString from '@/utils/randomString';
+
+/* Data Sources */
 import codepenLinks from '@/resources/thurisaz/codepen-project-links.json';
 import githubProjectsData from '@/resources/thurisaz/github-project-links.json';
 
@@ -38,17 +53,32 @@ export default {
     return {
       logo: {
         GitHub: GitHubLogo,
-        CodePen: CodePenLogo,
+        CodePen: CodePenLogo
       },
+      logoDark: {
+        GitHub: GitHubLogoDark,
+        CodePen: CodePenLogoDark,
+      },
+      dataMap: {
+        GitHub: githubProjectsData,
+        CodePen: codepenLinks,
+      },
+      sources: ['GitHub', 'CodePen'],
+      currentSource: 'GitHub',
+
       codepenLinks,
       githubProjectsData,
+
       finalizedTitle,
       title: randomString(finalizedTitle.length),
       titleCharGenReqCycles: 5,
       titleCharGenCycle: 0,
       titleCharFinIndex: 0,
       timeoutFlag: null,
-    }
+
+      previousScroll: 0,
+      scrollDirectionIsDown: false,
+    };
   },
   computed: {
     showcase() { return this.$route.params.showcase; },
@@ -88,12 +118,18 @@ export default {
         }, 10000);
       }
     },
+    handleScroll() {
+      this.scrollDirectionIsDown = this.previousScroll < window.scrollY;
+      this.previousScroll = window.scrollY;
+    },
   },
   mounted() {
     this.titleAnimation();
+    window.addEventListener('scroll', this.handleScroll.bind(this));
   },
   beforeDestroy() {
     clearTimeout(this.timeoutFlag);
+    window.removeEventListener('scroll', this.handleScroll);
   },
 };
 </script>
@@ -127,23 +163,65 @@ main
     right: -25pt
     opacity: .1
 
-  > div.wrapper
-    margin-top: 25pt
-    padding-bottom: 96pt
+  > div.sources-wrapper
+    position: fixed
+    width: 100vw
+    height: 80pt
+    box-sizing: border-box
+    padding: 0 100pt 0 20pt
+    left: 0
+    top: 0
+    z-index: 10000
+    white-space: nowrap
+    overflow-x: auto
+    overflow-y: visible
+    @include vertical-align
 
-    > div.title-wrapper
-      display: block
-      color: $yellow-500
-      height: 60pt
-      font: 48pt/60pt $base-font-family
-      margin-bottom: 5pt
-      @include vertical-align
-      > img.logo
-        width: 48pt
-        height: 48pt
-        margin-right: 8pt
-      &:not(:first-child)
-        margin-top: 48pt
+    > button.source-btn
+      @include btn-reset
+      display: inline-block
+      position: relative
+      width: 50pt
+      background-color: transparent
+      transition: .25s
+
+      > img.source-logo
+        width: 35pt
+        height: 35pt
+        display: block
+        margin: 0 auto
+        background-color: #222
+        border-radius: 50%
+        padding: 5pt
+        transition: .25s
+      > span.source-name
+        font: 10pt/18pt $base-font-family
+        background-color: #222
+        position: absolute
+        display: inline-block
+        width: 100%
+        height: 18pt
+        line-height: 18pt
+        bottom: -16pt
+        left: 0
+        text-align: center
+        border: 1pt solid $yellow-500
+        border-radius: 1pt
+        transition: .25s
+
+      + button
+        margin-left: 10pt
+
+      &.active
+        > img.source-logo
+          background-color: $yellow-500
+        > span.source-name
+          color: #222
+          background-color: $yellow-500
+
+  > div.wrapper
+    padding-top: 75pt
+    padding-bottom: 96pt
 
 @media screen and (max-width: 960px)
   main
@@ -158,16 +236,23 @@ main
       width: 400pt
       height: 400pt
 
-    > div.wrapper > div.title-wrapper
-      height: 48pt
-      font: 36pt/48pt $base-font-family
-
 @media screen and (max-width: 575px)
   main
     > img.huge-bg-img
       width: 300pt
       height: 300pt
       bottom: -15pt
+
+    > div.sources-wrapper
+      top: -80pt
+      transition: .25s
+
+      &.show-in-mobile
+        top: 0
+        transition: .25s
+
+    > div.wrapper
+      padding-top: 25pt
 
 @media screen and (max-width: 425px)
   main
@@ -177,12 +262,4 @@ main
       width: 200pt
       height: 200pt
       bottom: -10pt
-
-    > div.wrapper > div.title-wrapper
-      height: 36pt
-      font: 24pt/36pt $base-font-family
-      color: white
-      > img.logo
-        width: 36pt
-        height: 36pt
 </style>

@@ -1,31 +1,29 @@
 <template>
   <section class="projects-gallery">
-    <div class="columns-wrapper">
-      <ul
-        v-for="i in columns" :key="i"
-        class="column" :class="[`column-${i}`]"
-        ref="columns"
+    <ul
+      v-for="i in columns" :key="i"
+      class="column" :class="[`column-${i}`]"
+      ref="columns"
+    >
+      <li
+        v-for="data in columnData[i - 1]" :key="data.title"
       >
-        <li
-          v-for="data in columnData[i - 1]" :key="data.title"
-        >
-          <plain-style
-            v-if="data.cover === null && data.logo === null"
-            v-bind="data"
-          />
+        <plain-style
+          v-if="data.cover === null && data.logo === null"
+          v-bind="data"
+        />
 
-          <cover-image-style
-            v-else-if="data.cover !== null && data.logo === null"
-            v-bind="data"
-          />
+        <cover-image-style
+          v-else-if="data.cover !== null && data.logo === null"
+          v-bind="data"
+        />
 
-          <full-post-style
-            v-else
-            v-bind="data"
-          />
-        </li>
-      </ul>
-    </div>
+        <full-post-style
+          v-else
+          v-bind="data"
+        />
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -130,28 +128,26 @@ export default {
 
 section.projects-gallery
   width: 100%
-  > div.columns-wrapper
-    width: 100%
-    > ul.column
-      display: inline-block
-      width: calc((100% - 30pt) / 3)
-      vertical-align: top
-      + ul.column
-        margin-left: 15pt
-      > li
-        border-radius: 3pt
-        padding: 6pt 8pt
-        width: 100%
-        background-color: rgba(255, 255, 255, 0.05)
-        + li
-          margin-top: 15pt
+  > ul.column
+    display: inline-block
+    width: calc((100% - 30pt) / 3)
+    vertical-align: top
+    + ul.column
+      margin-left: 15pt
+    > li
+      border-radius: 3pt
+      padding: 6pt 8pt
+      width: 100%
+      background-color: rgba(255, 255, 255, 0.05)
+      + li
+        margin-top: 15pt
 
 @media screen and (max-width: 768px)
-  section.projects-gallery > div.columns-wrapper > ul.column
+  section.projects-gallery > ul.column
     width: calc((100% - 15pt) / 2)
   
 @media screen and (max-width: 576px)
-  section.projects-gallery > div.columns-wrapper > ul.column
+  section.projects-gallery > ul.column
     width: 100%
   
 </style>

@@ -75,7 +75,7 @@ div.nav-wrapper
     position: fixed
     right: 0
     bottom: 0
-    z-index: 9999
+    z-index: 100000
     width: 60px
     height: 60px
     border-top-left-radius: 60px
@@ -137,7 +137,7 @@ div.nav-wrapper > nav.nav-section
   width: 100vw
   height: 100vh
   background-image: linear-gradient(to top, #222 0%, transparent 95%)
-  z-index: 9998
+  z-index: 999999
   transition: .5s
 
   > ul

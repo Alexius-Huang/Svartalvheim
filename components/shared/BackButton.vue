@@ -56,7 +56,7 @@ div.back-button-wrapper
   position: fixed
   width: auto
   height: 30pt
-  z-index: 999
+  z-index: 999998
 
   > button
     @include btn-reset
