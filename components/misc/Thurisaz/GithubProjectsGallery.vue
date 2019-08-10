@@ -43,7 +43,14 @@
             v-else-if="cover !== null && logo === null"
           >
             <div class="cover-img-wrapper">
-              <img :src="imgURL + cover" />
+              <img
+                :src="imgURL + cover"
+                @click="showPicture({
+                  url: imgURL + cover,
+                  title,
+                  content: description,
+                })"
+              />
               <p class="title" :class="{ smaller: title.length > 20 }">
                 <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
                 <template v-else>{{ title }}</template>
@@ -78,7 +85,15 @@
             </div><!--
 
          --><div v-if="cover !== null" class="cover-wrapper"><!--
-           --><img :src="imgURL + cover" class="cover" /><!--
+           --><img
+                :src="imgURL + cover"
+                class="cover"
+                @click="showPicture({
+                  url: imgURL + cover,
+                  title,
+                  content: description,
+                })"
+              /><!--
          --></div><!--
          --><p class="title">
               <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
@@ -117,6 +132,9 @@ export default {
     };
   },
   methods: {
+    showPicture(info) {
+      this.$store.commit('picture-modal/setData', [info]);
+    },
     handleResize() {
       const { innerWidth: w, columns: c } = window;
       this.innerWidth = w;

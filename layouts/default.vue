@@ -1,6 +1,7 @@
 <template>
   <div>
     <navigation />
+    <picture-modal />
 
     <transition
       name="fade"
@@ -15,9 +16,10 @@
 
 <script>
 import Navigation from '@/components/shared/Navigation';
+import PictureModal from '@/components/shared/PictureModal';
 
 export default {
-  components: { Navigation },
+  components: { Navigation, PictureModal },
   mounted() {
     const scriptEl = document.createElement('script');
     scriptEl.setAttribute('async', '');
