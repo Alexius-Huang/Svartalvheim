@@ -15,7 +15,6 @@
 <script>
 export default {
   props: ['title', 'description', 'tags', 'date', 'link'],
-  mounted() { console.log(this.link); }
 };
 </script>
 

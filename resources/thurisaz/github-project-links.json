@@ -71,7 +71,12 @@
     "date": [2017, 11],
     "tags": ["JavaScript"],
     "description": "A series of CodePen project collections by myself",
-    "meta": {}
+    "meta": {
+      "company": "CodePen.io",
+      "companyWebsite": "https://codepen.io",
+      "website": "https://svartalvhe.im/thurisaz?source=CodePen",
+      "logo": "codepen.png"
+    }
   },
   {
     "title": "ML on Coursera",

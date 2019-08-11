@@ -1,7 +1,7 @@
 <template>
   <main>
     <back-button to="back" :position="['top', 'right']" />
-    <h1 v-if="!showcase" class="title">{{ title }}</h1>
+    <h1 class="title">{{ title }}</h1>
     <img class="huge-bg-img" :src="logo[currentSource]" />
 
     <div class="sources-wrapper" :class="{ 'show-in-mobile': scrollDirectionIsDown }">
@@ -9,7 +9,7 @@
         v-for="(source, i) in sources"
         :key="`${source}-${i}`"
         class="source-btn" :class="{ active: currentSource === source }"
-        @click="currentSource = source"
+        @click="$router.push({ name: 'thurisaz', query: { source } })"
       >
         <img
           class="source-logo"
@@ -20,10 +20,6 @@
     </div>
 
     <div class="wrapper">
-      <template v-if="showcase">
-        <nuxt-child />
-      </template>
-
       <projects-gallery
         :source-data="dataMap[currentSource]"
         img-url="projects-img/"
@@ -99,7 +95,7 @@ export default {
         Special: specialProjects,
       },
       sources: ['Projects', 'GitHub', 'Career', 'CodePen', 'Visualization', 'Special'],
-      currentSource: 'Projects',
+      // currentSource: 'Projects',
 
       finalizedTitle,
       title: randomString(finalizedTitle.length),
@@ -113,12 +109,10 @@ export default {
     };
   },
   computed: {
-    showcase() { return this.$route.params.showcase; },
+    query() { return this.$route.query; },
+    currentSource() { return this.query.source; },
   },
   methods: {
-    navigateToShowcase(showcase) {
-      this.$router.push({ name: 'thurisaz-showcase', params: { showcase } });
-    },
     titleAnimation() {
       const {
         titleCharGenReqCycles: reqCycles,
@@ -156,12 +150,23 @@ export default {
     },
   },
   mounted() {
+    if (!this.currentSource) {
+      this.$router.push({ name: 'thurisaz', query: { source: 'Projects' } });
+    }
+
     this.titleAnimation();
     window.addEventListener('scroll', this.handleScroll.bind(this));
   },
   beforeDestroy() {
     clearTimeout(this.timeoutFlag);
     window.removeEventListener('scroll', this.handleScroll);
+  },
+  watch: {
+    currentSource() {
+      if (!this.currentSource) {
+        this.$router.push({ name: 'thurisaz', query: { source: 'Projects' } });
+      }
+    },
   },
 };
 </script>
