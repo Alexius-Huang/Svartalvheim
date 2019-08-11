@@ -7,21 +7,28 @@
     >
       <li
         v-for="data in columnData[i - 1]" :key="data.title"
+        :class="{ 'timeline-block': data.belongsToTimeline }"
       >
-        <plain-style
-          v-if="data.cover === null && data.logo === null"
-          v-bind="data"
-        />
+        <template v-if="data.belongsToTimeline">
+          <span class="year">{{ data.year }}</span>
+        </template>
 
-        <cover-image-style
-          v-else-if="data.cover !== null && data.logo === null"
-          v-bind="data"
-        />
+        <template v-else>
+          <plain-style
+            v-if="data.cover === null && data.logo === null"
+            v-bind="data"
+          />
 
-        <full-post-style
-          v-else
-          v-bind="data"
-        />
+          <cover-image-style
+            v-else-if="data.cover !== null && data.logo === null"
+            v-bind="data"
+          />
+
+          <full-post-style
+            v-else
+            v-bind="data"
+          />
+        </template>
       </li>
     </ul>
   </section>
@@ -82,23 +89,44 @@ export default {
     },
     renderListItems() {
       const { sourceData, imgUrl: imgURL } = this;
-      this.processedData = sourceData.map(d => ({
+
+      /* Reformatting Data */
+      const formattedData = sourceData.map(d => ({
         ...d,
         ...d.meta,
         date: this.formatDate(d.date),
+        dateArray: d.date,
         cover: d.meta.cover ? imgURL + d.meta.cover : null,
         logo: d.meta.logo ? imgURL + 'logo/' + d.meta.logo : null,
       }));
+
+      /* Adding Year Object */
+      let previousYear = 3000;
+      for (let i = 0; i < formattedData.length; i += 1) {
+        const d = formattedData[i];
+        if (d.dateArray[0] < previousYear) {
+          previousYear = d.dateArray[0];
+          formattedData.splice(i, 0, { year: previousYear, belongsToTimeline: true });
+          i += 1;
+        }
+      }
+      this.processedData = formattedData;
 
       const { columns: $columns } = this.$refs;
       this.columnData = [[], [], []];
 
       this.processedData.forEach(d => {
         setImmediate(() => {
-          const heights = $columns.map($el => $el.clientHeight);
-          const index = indexOfMinimum(heights);
           const newColumnData = Array.from(this.columnData);
-          newColumnData[index].push(d);
+
+          if (d.belongsToTimeline) {
+            newColumnData[0].push(d);
+          } else {
+            const heights = $columns.map($el => $el.clientHeight);
+            const index = indexOfMinimum(heights);
+            newColumnData[index].push(d);
+          }
+
           this.columnData = newColumnData;
         });
       });
@@ -149,6 +177,51 @@ section.projects-gallery
       + li
         margin-top: 15pt
 
+      &.timeline-block
+        height: 200pt
+        text-align: right
+        background-color: $yellow-500
+        position: relative
+        &:before
+          content: ''
+          display: inline-block
+          width: 0
+          height: 100%
+          vertical-align: bottom
+        > span.year
+          display: inline-block
+          color: #222
+          margin-bottom: -18pt
+          font: 75pt $base-font-family
+          vertical-align: bottom
+          &:before
+            position: absolute
+            content: 'Year'
+            font-size: 36pt
+            color: transparentize(#222, .2)
+            transform-origin: left center
+            transform: rotate(90deg)
+            right: -36pt
+            top: -12pt
+
+        + li.timeline-block
+          height: auto
+          background-color: rgba(255, 255, 255, 0.05)
+          > span.year
+            color: $yellow-500
+            margin-top: -6pt
+            font-size: 48pt
+            margin-bottom: -12pt
+            &:before
+              position: relative
+              right: 0
+              top: 0
+              font-size: 18pt
+              transform: rotate(0)
+              color: $yellow-500
+              display: inline-block
+              margin-right: 10pt
+
 @media screen and (max-width: 768px)
   section.projects-gallery > ul.column
     width: calc((100% - 15pt) / 2)
@@ -157,4 +230,22 @@ section.projects-gallery
   section.projects-gallery > ul.column
     width: 100%
 
+    > li.timeline-block
+      background-color: transparent
+      height: auto
+      font-size: 24pt
+      text-align: left
+      > span.year
+        color: $yellow-500
+        font-size: 75pt
+
+        &:before
+          position: relative
+          right: 0
+          top: 0
+          font-size: 18pt
+          transform: rotate(0)
+          color: $yellow-500
+          display: inline-block
+          margin-right: 10pt
 </style>
