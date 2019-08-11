@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Fenrir Wolf",
+    "link": "/algiz",
+    "date": [2019, 3],
+    "tags": ["CSS", "Parallax", "Animation", "Art"],
+    "description": "Fenrir wolf art drawing using CSS triangles, CSS perspective to create the parallax effect",
+    "meta": {
+      "company": "CSS3",
+      "companyWebsite": "https://www.w3.org/Style/CSS/specs.en.html",
+      "logo": "css.svg",
+      "cover": "Special/ferisulfr.gif"
+    }
+  }
+]

@@ -19,6 +19,9 @@
     "description": "My current version of personal blog combine with dichromatic style. It includes my resumé, portfolio and even my visualization project such as the data visualization catalogue.",
     "html": true,
     "meta": {
+      "company": "Nuxt",
+      "companyWebsite": "https://nuxtjs.org/",
+      "logo": "nuxt.png",
       "website": "https://svartalvhe.im",
       "cover": "GitHub/svartalvheim-cover.png"
     }

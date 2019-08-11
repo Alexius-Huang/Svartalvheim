@@ -30,7 +30,7 @@
     "title": "Taiwan National Park",
     "link": null,
     "date": [2018, 7],
-    "tags": ["VueJS", "Nuxt", "LeafletJS", "RWD", "Data", "Visualization"],
+    "tags": ["VueJS", "Nuxt", "LeafletJS", "RWD", "Data", "Visualization", "> IE 11"],
     "description": "Taiwan National Park main website which belongs to Taiwan government project",
     "meta": {
       "company": "EMCT",
@@ -49,6 +49,8 @@
     "description": "NTUST classroom leasing application system",
     "meta": {
       "company": "NTUST",
+      "companyWebsite": "https://www.ntust.edu.tw/home.php?Lang=En",
+      "logo": "ntust.png",
       "position": "Contractor"
     }
   },
