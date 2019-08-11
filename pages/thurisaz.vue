@@ -207,7 +207,7 @@ main
     padding: 0 60pt 0 20pt
     left: 0
     top: 0
-    z-index: 10000
+    z-index: 100
     white-space: nowrap
     overflow-x: auto
     overflow-y: visible
