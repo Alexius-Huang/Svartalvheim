@@ -207,10 +207,12 @@ main
     white-space: nowrap
     overflow-x: auto
     overflow-y: visible
+    pointer-events: none
     @include vertical-align
 
     > button.source-btn
       @include btn-reset
+      pointer-events: visible
       display: inline-block
       position: relative
       width: 60pt
