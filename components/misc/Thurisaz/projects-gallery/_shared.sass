@@ -8,16 +8,23 @@ p
     text-align: right
     font: 10pt/12pt $base-font-family
 
-a.website
+a.website, a.contribution-link
+  display: block
   text-decoration: none
   font: 10pt/16pt $default-font-family
-  > span.url, > img.icon
+  > span.url, > span.content, > img.icon
     vertical-align: middle
-  > span.url
+  > span.url, > span.content
     margin-left: 6pt
-a.website, a.website:visited
+
+  + a
+    margin-top: 5pt
+
+a.website, a.website:visited,
+a.contribution-link, a.contribution-link:visited
   color: $yellow-500
-a.website:hover > span.url
+a.website:hover > span.url,
+a.contribution-link:hover > span.content
   text-decoration: underline
   color: white
 

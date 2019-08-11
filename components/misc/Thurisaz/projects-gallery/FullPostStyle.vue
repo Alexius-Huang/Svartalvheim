@@ -27,10 +27,17 @@
       <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
       <template v-else>{{ title }}</template>
     </p>
+
+    <!-- Links -->
+    <a v-if="contributionLink" class="contribution-link" :href="contributionLink" target="_blank">
+      <img class="icon" :src="icons.done" />
+      <span class="content">Check Out My Contribution!</span>
+    </a>
     <a v-if="website" class="website" :href="website" target="_blank">
       <img class="icon" :src="icons.worldwide" />
       <span class="url">{{ trim(website, 25) }}</span>
     </a>
+
     <tags v-bind="{ tags, developing, wip }" theme="dark" />
     <p class="description">{{ description }}</p>
     <p class="date">{{ date }}</p>
@@ -41,6 +48,7 @@
 import Tags from './Tags';
 import UnderConstructionRibbon from './UnderConstructionRibbon';
 import worldwide from '@/assets/icons/material/worldwide-main.svg';
+import done from '@/assets/icons/material/done-teal-500.svg';
 
 export default {
   components: { Tags, UnderConstructionRibbon },
@@ -57,11 +65,12 @@ export default {
     'companyWebsite',
     'website',
     'wip',
-    'developing'
+    'developing',
+    'contributionLink',
   ],
   data() {
     return {
-      icons: { worldwide },
+      icons: { worldwide, done },
     };
   },
   methods: {

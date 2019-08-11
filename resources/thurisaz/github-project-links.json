@@ -46,6 +46,33 @@
     }
   },
   {
+    "title": "Immutable.JS",
+    "link": null,
+    "date": [2018, 9],
+    "tags": ["Open Source Project", "Contribution"],
+    "description": "Immutable persistent data collections for Javascript which increase efficiency and simplicity. I helped contribute the project by revising the doc according to their contribution guide.",
+    "meta": {
+      "company": "Facebook",
+      "position": "Contributor",
+      "companyWebsite": "https://www.facebook.com/facebook/",
+      "website": "https://github.com/immutable-js/immutable-js",
+      "logo": "facebook.jpg",
+      "contributionLink": "https://github.com/immutable-js/immutable-js/commits?author=Maxwell-Alexius"
+    }
+  },
+  {
+    "title": "GraphQL Go Lang. Example",
+    "link": "https://github.com/Maxwell-Alexius/GraphQL-Golang-Example",
+    "date": [2018, 8],
+    "tags": ["GraphQL", "Go Lang"],
+    "description": "My GraphQL Implementation in Golang using GraphQL-Go Package",
+    "meta": {
+      "company": "GraphQL",
+      "companyWebsite": "https://graphql.org/",
+      "logo": "graphql.svg"
+    }
+  },
+  {
     "title": "Manufacturer",
     "link": "https://github.com/Maxwell-Alexius/Manufacturer",
     "date": [2018, 3],
@@ -64,6 +91,26 @@
       "companyWebsite": "https://rxjs-dev.firebaseapp.com/",
       "logo": "rxjs.png",
       "cover": "GitHub/monster-rx-cover.png"
+    }
+  },
+  {
+    "title": "Maxwell's Demon",
+    "link": "https://github.com/Maxwell-Alexius/Maxwells-Demon",
+    "date": [2017, 12],
+    "tags": ["ReactJS", "Redux", "Electron"],
+    "description": "Simple Text Editor Built by Using React, Redux & Electron",
+    "meta": {
+      "wip": true
+    }
+  },
+  {
+    "title": "Machine Learning Path",
+    "link": "https://github.com/Maxwell-Alexius/Machine-Learning-Path",
+    "date": [2017, 11],
+    "tags": ["Machine Learning", "Algorithm"],
+    "description": "Codes introduced in my Medium blog article series - Machine Learning Path",
+    "meta": {
+      "cover": "GitHub/machine-learning-path-cover.png"
     }
   },
   {
@@ -109,7 +156,8 @@
       "position": "Contributor",
       "companyWebsite": "https://github.com/goby-lang/goby",
       "website": "https://github.com/goby-lang/goby",
-      "logo": "goby-lang.svg"
+      "logo": "goby-lang.svg",
+      "contributionLink": "https://github.com/goby-lang/goby/commits?author=Maxwell-Alexius"
     }
   },
   {
@@ -221,6 +269,16 @@
     "description": "Music player parser",
     "meta": {
       "cover": "GitHub/musique-cover.png"
+    }
+  },
+  {
+    "title": "Scrumby Board",
+    "link": "https://github.com/Maxwell-Alexius/Scrumby-Board",
+    "date": [2016, 9],
+    "tags": ["PHP", "CSS"],
+    "description": "An application for managing projects and tracking task process, the design layout is referenced from Trello",
+    "meta": {
+      "cover": "GitHub/scrumby-board-cover.png"
     }
   }
 ]
