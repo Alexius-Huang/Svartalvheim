@@ -1,20 +1,24 @@
 <template>
-  <div class="plain-style">
+  <div class="project-info plain-style">
+    <under-construction-ribbon class="ribbon-wrapper" :wip="wip" />
+
     <p class="title" :class="{ smaller: title.length > 20 }">
       <a v-if="link !== null" target="_blank" :href="link">{{ title }}</a>
       <template v-else>{{ title }}</template>
     </p>
-    <ul class="tags">
-      <li v-for="tag in tags" :key="tag">{{ tag }}</li>
-    </ul>
+    <tags v-bind="{ tags, developing, wip }" theme="light" />
     <p class="description">{{ description }}</p>
     <p class="date">{{ date }}</p>
   </div>
 </template>
 
 <script>
+import Tags from './Tags';
+import UnderConstructionRibbon from './UnderConstructionRibbon';
+
 export default {
-  props: ['title', 'description', 'tags', 'date', 'link'],
+  components: { Tags, UnderConstructionRibbon },
+  props: ['title', 'description', 'tags', 'date', 'link', 'wip', 'developing'],
 };
 </script>
 
@@ -25,6 +29,7 @@ export default {
 @import './_shared.sass'
 
 div.plain-style
+  position: relative
   background-color: $yellow-500
   margin: -6pt -8pt
   padding: 6pt 8pt
@@ -46,8 +51,4 @@ div.plain-style
     &.description
       font-weight: bolder
       letter-spacing: default
-
-  > ul.tags > li
-    color: #222
-    border-color: #222
 </style>

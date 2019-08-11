@@ -8,7 +8,8 @@
     "meta": {
       "company": "React.JS",
       "companyWebsite": "https://reactjs.org/",
-      "logo": "react-js.png"
+      "logo": "react-js.png",
+      "developing": true
     }
   },
   {
@@ -17,13 +18,13 @@
     "date": [2019, 1],
     "tags": ["VueJS", "Nuxt", "RWD", "Personal Blog"],
     "description": "My current version of personal blog combine with dichromatic style. It includes my resumé, portfolio and even my visualization project such as the data visualization catalogue.",
-    "html": true,
     "meta": {
       "company": "Nuxt",
       "companyWebsite": "https://nuxtjs.org/",
       "logo": "nuxt.png",
       "website": "https://svartalvhe.im",
-      "cover": "GitHub/svartalvheim-cover.png"
+      "cover": "GitHub/svartalvheim-cover.png",
+      "developing": true
     }
   },
   {
@@ -33,6 +34,16 @@
     "tags": ["JavaScript", "NPM Package"],
     "description": "An ORM infrastructure design relative to Rails' ActiveRecord implemented in JavaScript",
     "meta": {}
+  },
+  {
+    "title": "Parallelization",
+    "link": "https://github.com/Maxwell-Alexius/Parallelization",
+    "date": [2018, 10],
+    "tags": ["ReactJS", "Electron"],
+    "description": "A Jira-like Workflow Management Built in Vue-Electron Including Managing Epics, Tickets and Scrum Boards ... etc.",
+    "meta": {
+      "wip": true
+    }
   },
   {
     "title": "Manufacturer",
@@ -62,7 +73,8 @@
     "tags": ["JavaScript", "NPM Package"],
     "description": "Simple code highlighting tool named by 'Lighter' in German",
     "meta": {
-      "cover": "GitHub/leighter-cover.png"
+      "cover": "GitHub/leighter-cover.png",
+      "wip": true
     }
   },
   {
@@ -82,7 +94,7 @@
     "title": "ML on Coursera",
     "link": "https://github.com/Maxwell-Alexius/ML-on-Coursera",
     "date": [2017, 10],
-    "tags": ["Machine Learning", "Octave"],
+    "tags": ["Machine Learning", "Octave", "Online Course", "Assignment"],
     "description": "Machine Learning course on Coursera taught by Andrew Ng in Stanford University",
     "meta": {}
   },
@@ -176,9 +188,12 @@
     "title": "Draconis Lair",
     "link": "https://github.com/Maxwell-Alexius/Draconis-Lair",
     "date": [2017, 5],
-    "tags": ["HTML5", "CSS", "Personal Blog"],
+    "tags": ["HTML5", "CSS", "Personal Blog", "Legacy"],
     "description": "My older version of personal blog",
-    "meta": {}
+    "meta": {
+      "cover": "GitHub/draconis-lair-cover.png",
+      "website": "https://svartalvhe.im/alpha"
+    }
   },
   {
     "title": "Resonance",

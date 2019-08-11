@@ -95,7 +95,6 @@ export default {
         Special: specialProjects,
       },
       sources: ['Projects', 'GitHub', 'Career', 'CodePen', 'Visualization', 'Special'],
-      // currentSource: 'Projects',
 
       finalizedTitle,
       title: randomString(finalizedTitle.length),

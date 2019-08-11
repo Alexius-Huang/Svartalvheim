@@ -1,5 +1,7 @@
 <template>
-  <div class="cover-image-style">
+  <div class="project-info cover-image-style">
+    <under-construction-ribbon class="ribbon-wrapper" :wip="wip" />
+
     <div class="cover-img-wrapper">
       <img
         :src="cover"
@@ -15,19 +17,30 @@
       <img class="icon" :src="icons.worldwide" />
       <span class="url">{{ trim(website, 25) }}</span>
     </a>
-    <ul class="tags">
-      <li v-for="tag in tags" :key="tag">{{ tag }}</li>
-    </ul>
+    <tags v-bind="{ tags, developing, wip }" theme="dark" />
     <p class="description">{{ description }}</p>
     <p class="date">{{ date }}</p>
   </div>
 </template>
 
 <script>
+import Tags from './Tags';
+import UnderConstructionRibbon from './UnderConstructionRibbon';
 import worldwide from '@/assets/icons/material/worldwide-main.svg';
 
 export default {
-  props: ['title', 'description', 'date', 'tags', 'link', 'website', 'cover'],
+  components: { Tags, UnderConstructionRibbon },
+  props: [
+    'title',
+    'description',
+    'date',
+    'tags',
+    'link',
+    'website',
+    'cover',
+    'wip',
+    'developing',
+  ],
   data() {
     return {
       icons: { worldwide },
@@ -55,6 +68,13 @@ export default {
 @import './_shared.sass'
 
 div.cover-image-style
+  position: relative
+
+  > div.ribbon-wrapper
+    margin: -6pt -16pt
+    width: calc(100% + 16pt)
+    top: -25%
+
   > div.cover-img-wrapper
     margin: -6pt -8pt 6pt -8pt
     position: relative

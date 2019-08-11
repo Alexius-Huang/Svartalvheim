@@ -1,8 +1,10 @@
 <template>
   <div
-    class="full-post-style"
+    class="project-info full-post-style"
     :class="{ 'has-cover': cover !== null }"
   >
+    <under-construction-ribbon class="ribbon-wrapper" :wip="wip" />
+
     <div class="logo-wrapper">
       <img class="logo" :src="logo" /><!--
     --><div class="descriptors">
@@ -29,18 +31,19 @@
       <img class="icon" :src="icons.worldwide" />
       <span class="url">{{ trim(website, 25) }}</span>
     </a>
-    <ul class="tags">
-      <li v-for="tag in tags" :key="tag">{{ tag }}</li>
-    </ul>
+    <tags v-bind="{ tags, developing, wip }" theme="dark" />
     <p class="description">{{ description }}</p>
     <p class="date">{{ date }}</p>
   </div>
 </template>
 
 <script>
+import Tags from './Tags';
+import UnderConstructionRibbon from './UnderConstructionRibbon';
 import worldwide from '@/assets/icons/material/worldwide-main.svg';
 
 export default {
+  components: { Tags, UnderConstructionRibbon },
   props: [
     'title',
     'description',
@@ -53,6 +56,8 @@ export default {
     'position',
     'companyWebsite',
     'website',
+    'wip',
+    'developing'
   ],
   data() {
     return {
@@ -81,6 +86,12 @@ export default {
 @import './_shared.sass'
 
 div.full-post-style
+  position: relative
+
+  > div.ribbon-wrapper
+    margin: -6pt -16pt
+    width: calc(100% + 16pt)
+
   > div.logo-wrapper
     overflow-x: hidden
     margin-top: 4pt

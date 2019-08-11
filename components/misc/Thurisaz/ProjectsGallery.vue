@@ -58,6 +58,13 @@ export default {
       processedData: [],
     };
   },
+  computed: {
+    /* For watch purpose */
+    combinedProps() {
+      const { columns, sourceData } = this;
+      return { columns, sourceData };
+    },
+  },
   methods: {
     handleResize() {
       const { innerWidth: w, columns: c } = window;
@@ -98,12 +105,7 @@ export default {
     },
   },
   watch: {
-    columns() {
-      window.setImmediate(() => {
-        this.renderListItems();
-      });
-    },
-    sourceData() {
+    combinedProps() {
       window.setImmediate(() => {
         this.renderListItems();
       });
@@ -154,5 +156,5 @@ section.projects-gallery
 @media screen and (max-width: 576px)
   section.projects-gallery > ul.column
     width: 100%
-  
+
 </style>

@@ -3,7 +3,7 @@
     "title": "Area Chart",
     "link": "/inguz/area-chart",
     "date": [2019, 6],
-    "tags": ["Visualization", "Data", "Chart", "Animation"],
+    "tags": ["Visualization", "Data", "Chart", "SVG", "Animation"],
     "description": "Area chart visualization using Apple Inc. product revenue in different kinds of visualization: standard, stacked and percentage area chart",
     "html": true,
     "meta": {
@@ -51,7 +51,7 @@
     "title": "Donut Chart",
     "link": "/inguz/donut-chart",
     "date": [2019, 2],
-    "tags": ["Visualization", "Data", "RWD", "Chart"],
+    "tags": ["Visualization", "Data", "RWD", "Chart", "SVG"],
     "description": "Donut chart visualization using the Racial Categories in U.S. data",
     "html": true,
     "meta": {
@@ -63,7 +63,7 @@
     "title": "Line Chart",
     "link": "/inguz/line-chart",
     "date": [2019, 1],
-    "tags": ["Visualization", "RWD", "Chart"],
+    "tags": ["Visualization", "RWD", "Chart", "SVG"],
     "description": "Line chart visualization",
     "html": true,
     "meta": {

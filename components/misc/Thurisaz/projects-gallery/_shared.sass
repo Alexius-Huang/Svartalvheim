@@ -21,17 +21,10 @@ a.website:hover > span.url
   text-decoration: underline
   color: white
 
-ul.tags
-  padding: 6pt 0
-  > li
-    display: inline-block
-    width: auto
-    height: 18pt
-    padding: 0 5pt
-    margin-right: 5pt
-    font: 8pt/18pt $default-font-family
-    color: $yellow-500
-    background-color: transparent
-    border: 1pt solid $yellow-500
-    border-radius: 2pt
+.project-info:hover > .ribbon-wrapper
+  opacity: 0
+  transition: .25s
 
+@media screen and (max-width: 768px)
+  .project-info > .ribbon-wrapper
+    display: none
