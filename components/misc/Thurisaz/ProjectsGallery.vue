@@ -74,6 +74,15 @@ export default {
       return `${this.monthToText[dateArray[1]]} ${dateArray[0]}`;
     },
     renderListItems() {
+      const { sourceData, imgUrl: imgURL } = this;
+      this.processedData = sourceData.map(d => ({
+        ...d,
+        ...d.meta,
+        date: this.formatDate(d.date),
+        cover: d.meta.cover ? imgURL + d.meta.cover : null,
+        logo: d.meta.logo ? imgURL + 'logo/' + d.meta.logo : null,
+      }));
+
       const { columns: $columns } = this.$refs;
       this.columnData = [[], [], []];
 
@@ -94,17 +103,13 @@ export default {
         this.renderListItems();
       });
     },
+    sourceData() {
+      window.setImmediate(() => {
+        this.renderListItems();
+      });
+    },
   },
   mounted() {
-    const { sourceData, imgUrl: imgURL } = this;
-    this.processedData = sourceData.map(d => ({
-      ...d,
-      ...d.meta,
-      date: this.formatDate(d.date),
-      cover: d.meta.cover ? imgURL + d.meta.cover : null,
-      logo: d.meta.logo ? imgURL + d.meta.logo : null,
-    }));
-
     window.addEventListener('resize', this.handleResize.bind(this));
     const { innerWidth: w } = window;
     if (w > 768) {

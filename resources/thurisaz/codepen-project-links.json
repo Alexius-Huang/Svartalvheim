@@ -2,106 +2,209 @@
   {
     "title": "Visualized K-Means",
     "link": "https://codepen.io/maxwell_alexius/full/vWeeLQ/",
-    "date": [2017, 11, 16]
+    "date": [2017, 11, 16],
+    "tags": ["CodePen.io", "Machine Learning", "Algorithm", "Visualization"],
+    "description": "Visualization of K-Means using VanillaJS",
+    "meta": {
+      "cover": "Codepen/Visualize_K-Means.png"
+    }
   },
   {
     "title": "Linear Regression - Gradient Descent",
     "link": "https://codepen.io/maxwell_alexius/full/EwEVXj/",
-    "date": [2017, 10, 8]
+    "date": [2017, 10, 8],
+    "tags": ["CodePen.io", "Machine Learning", "Algorithm", "Visualization"],
+    "description": "Visualization of basic linear regression - gradient descent algorithm",
+    "meta": {
+      "cover": "Codepen/Linear_Regression.png"
+    }
   },
   {
     "title": "Python Syntax Highlighter",
     "link": "https://codepen.io/maxwell_alexius/pen/oeVxod",
-    "date": [2017, 9, 3]
+    "date": [2017, 9, 3],
+    "tags": ["CodePen.io", "Lexer", "Algorithm"],
+    "description": "Using VanillaJS to parse the Python syntax dynamically and layout on webpage",
+    "meta": {
+      "cover": "Codepen/Python_Syntax_Highlighter.png"
+    }
   },
   {
     "title": "Mine Sweeper",
     "link": "https://codepen.io/maxwell_alexius/pen/VzPYYa",
-    "date": [2017, 8, 6]
+    "date": [2017, 8, 6],
+    "tags": ["CodePen.io", "Game", "Algorithm"],
+    "description": "Simple mine sweeper game using recursive algorithm to sweep out the areas and bombs",
+    "meta": {
+      "cover": "Codepen/Mine_Sweeper.png"
+    }
   },
   {
     "title": "Network Space",
     "link": "https://codepen.io/maxwell_alexius/pen/prRvvO",
-    "date": [2017, 6, 27]
+    "date": [2017, 6, 27],
+    "tags": ["CodePen.io", "Animation"],
+    "description": "A kind of animation design and effect",
+    "meta": {
+      "cover": "Codepen/Network.png"
+    }
   },
   {
     "title": "Orbital Image Gallery",
     "link": "https://codepen.io/maxwell_alexius/pen/qmmKOj",
-    "date": [2017, 5, 1]
+    "date": [2017, 5, 1],
+    "tags": ["CodePen.io", "Animation", "CSS"],
+    "description": "A kind of circular image gallery layout",
+    "meta": {
+      "cover": "Codepen/Orbital_Image_Gallery.png"
+    }
   },
   {
     "title": "Visualized Heap Sort",
     "link": "http://codepen.io/maxwell_alexius/pen/jBXpRK",
-    "date": [2017, 4, 1]
+    "date": [2017, 4, 1],
+    "tags": ["CodePen.io", "Algorithm", "Visualization"],
+    "description": "Heap sort algorithm visualized",
+    "meta": {
+      "cover": "Codepen/Visualized_Heap_Sort.png"
+    }
   },
   {
     "title": "Visualized Quick Sort",
     "link": "http://codepen.io/maxwell_alexius/pen/peVrMx",
-    "date": [2017, 3, 26]
+    "date": [2017, 3, 26],
+    "tags": ["CodePen.io", "Algorithm", "Visualization"],
+    "description": "Quick sort algorithm visualized",
+    "meta": {
+      "cover": "Codepen/Visualized_Quick_Sort.png"
+    }
   },
   {
     "title": "Visualized Comb Sort",
     "link": "http://codepen.io/maxwell_alexius/pen/zZWbNE",
-    "date": [2017, 3, 22]
+    "date": [2017, 3, 22],
+    "tags": ["CodePen.io", "Algorithm", "Visualization"],
+    "description": "Comb sort algorithm visualized",
+    "meta": {
+      "cover": "Codepen/Visualized_Comb_Sort.png"
+    }
   },
   {
     "title": "Visualized Merge Sort",
     "link": "http://codepen.io/maxwell_alexius/pen/peLbRR",
-    "date": [2017, 3, 21]
+    "date": [2017, 3, 21],
+    "tags": ["CodePen.io", "Algorithm", "Visualization"],
+    "description": "Merge sort algorithm visualized",
+    "meta": {
+      "cover": "Codepen/Visualized_Merge_Sort.png"
+    }
   },
   {
     "title": "Visualized Bubble Sort",
     "link": "http://codepen.io/maxwell_alexius/pen/WpXejG",
-    "date": [2017, 3, 16]
+    "date": [2017, 3, 16],
+    "tags": ["CodePen.io", "Algorithm", "Visualization"],
+    "description": "Bubble sort algorithm visualized",
+    "meta": {
+      "cover": "Codepen/Visualized_Bubble_Sort.png"
+    }
   },
   {
     "title": "HTML5 Canvas Canvas",
     "link": "http://codepen.io/maxwell_alexius/pen/WRYWNp",
-    "date": [2017, 2, 17]
+    "date": [2017, 2, 17],
+    "tags": ["CodePen.io", "HTML5 Canvas", "Tool"],
+    "description": "A drawing tool using HTML5 Canvas",
+    "meta": {}
   },
   {
     "title": "Event Horizon",
     "link": "https://codepen.io/maxwell_alexius/pen/MJVrqv",
-    "date": [2017, 2, 2]
+    "date": [2017, 2, 2],
+    "tags": ["CodePen.io", "HTML5 Canvas", "Physics", "Animation"],
+    "description": "A black hole event horizon animation by using HTML5 Canvas",
+    "meta": {
+      "cover": "Codepen/Event_Horizon.png"
+    }
   },
   {
     "title": "Simple Torus Knot",
     "link": "https://codepen.io/maxwell_alexius/pen/RKjRMz",
-    "date": [2017, 1, 28]
+    "date": [2017, 1, 28],
+    "tags": ["CodePen.io", "THREE.JS"],
+    "description": "Try to learn and draw something using THREE.JS",
+    "meta": {
+      "cover": "Codepen/Simple_Torus_Knot.png"
+    }
   },
   {
     "title": "Doppler Effect",
     "link": "https://codepen.io/maxwell_alexius/pen/VPzVqL",
-    "date": [2017, 1, 26]
+    "date": [2017, 1, 26],
+    "tags": ["CodePen.io", "HTML5 Canvas", "Physics", "Animation"],
+    "description": "Simple animation to visualize Doppler Effect using HTML5 Canvas",
+    "meta": {
+      "cover": "Codepen/Doppler_Effect.png"
+    }
   },
   {
     "title": "Slippy Snake",
     "link": "https://codepen.io/maxwell_alexius/pen/ZLJabv",
-    "date": [2017, 1, 25]
+    "date": [2017, 1, 25],
+    "tags": ["CodePen.io", "Game", "HTML5 Canvas"],
+    "description": "A simple snake game implemented by using HTML5 Canvas",
+    "meta": {
+      "cover": "Codepen/Snake.png"
+    }
   },
   {
     "title": "Brick Breaker",
     "link": "https://codepen.io/maxwell_alexius/pen/PWmJmw",
-    "date": [2017, 1, 22]
+    "date": [2017, 1, 22],
+    "tags": ["CodePen.io", "Game", "HTML5 Canvas", "Collision Detection"],
+    "description": "A simple brick breaker game which involves with collision detection algorithm",
+    "meta": {
+      "cover": "Codepen/Brick_Breaker.png"
+    }
   },
   {
     "title": "Tetris",
     "link": "https://codepen.io/maxwell_alexius/pen/oBzppK",
-    "date": [2017, 1, 16]
+    "date": [2017, 1, 16],
+    "tags": ["CodePen.io", "Game", "HTML5 Canvas", "Algorithm"],
+    "description": "Tetris game implemented using HTML5 Canvas and with simple rotation algorithm (according to matrix transformation)",
+    "meta": {
+      "cover": "Codepen/Tetris.png"
+    }
   },
   {
     "title": "Simple Harmonic Motion",
     "link": "https://codepen.io/maxwell_alexius/pen/GrqKZQ",
-    "date": [2017, 1, 13]
+    "date": [2017, 1, 13],
+    "tags": ["CodePen.io", "Physics", "HTML5 Canvas", "Animation", "Visualization"],
+    "description": "Simple harmonic motion with animation and visualization",
+    "meta": {
+      "cover": "Codepen/Simple_Harmonic_Motion.png"
+    }
   },
   {
     "title": "Game of Life",
     "link": "https://codepen.io/maxwell_alexius/pen/KaVENm",
-    "date": [2017, 1, 11]
+    "date": [2017, 1, 11],
+    "tags": ["CodePen.io", "Game", "Simulation", "HTML5 Canvas"],
+    "description": "Conway's Game of Life",
+    "meta": {
+      "cover": "Codepen/Game_of_Life.png"
+    }
   },
   {
     "title": "2048",
     "link": "https://codepen.io/maxwell_alexius/pen/BpaKKp",
-    "date": [2017, 1, 5]
+    "date": [2017, 1, 5],
+    "tags": ["CodePen.io", "Game", "CSS"],
+    "description": "2048 game implemented only using CSS and JS",
+    "meta": {
+      "cover": "Codepen/2048.png"
+    }
   }
 ]

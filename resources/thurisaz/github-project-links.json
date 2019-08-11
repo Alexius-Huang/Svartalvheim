@@ -4,10 +4,11 @@
     "link": "https://github.com/Maxwell-Alexius/Svartalvheim",
     "date": [2019, 6],
     "tags": ["VueJS", "Nuxt", "Personal Blog"],
-    "description": "My current version of personal blog combine with dichromatic style.",
+    "description": "My current version of personal blog combine with dichromatic style. It includes my resumé, portfolio and even my visualization project such as the data visualization catalogue.",
+    "html": true,
     "meta": {
       "website": "https://svartalvhe.im",
-      "cover": "svartalvheim-cover.png"
+      "cover": "GitHub/svartalvheim-cover.png"
     }
   },
   {
@@ -23,54 +24,12 @@
     }
   },
   {
-    "title": "Avian Influenza",
-    "link": null,
-    "date": [2019, 2],
-    "tags": ["VueJS", "LeafletJS", "Data Visualization"],
-    "description": "An avian influenza monitoring system which belongs to Taiwan government project",
-    "meta": {
-      "company": "EMCT",
-      "companyWebsite": "http://www.emct.com.tw/",
-      "position": "Contractor",
-      "cover": "avian-influenza-cover.png",
-      "logo": "emct-logo.png"
-    }
-  },
-  {
-    "title": "Model Evaluation",
-    "link": null,
-    "date": [2019, 1],
-    "tags": ["ReactJS", "Redux", "Redux Saga", "Data Visualization"],
-    "description": "Trained model evaluation client which visualize the evaluation results",
-    "meta": {
-      "company": "Umbo CV",
-      "companyWebsite": "https://umbocv.ai/",
-      "position": "Intern",
-      "logo": "umbocv-logo.png"
-    }
-  },
-  {
     "title": "Strata.JS",
     "link": "https://github.com/Maxwell-Alexius/StrataJS",
     "date": [2018, 12],
     "tags": ["JavaScript", "NPM Package"],
     "description": "An ORM infrastructure design relative to Rails' ActiveRecord implemented in JavaScript",
     "meta": {}
-  },
-  {
-    "title": "Taiwan National Park",
-    "link": null,
-    "date": [2018, 7],
-    "tags": ["VueJS", "Nuxt", "LeafletJS", "Data Visualization"],
-    "description": "Taiwan National Park main website which belongs to Taiwan government project",
-    "meta": {
-      "company": "EMCT",
-      "position": "Contractor",
-      "website": "https://npgis.cpami.gov.tw/newpublic",
-      "companyWebsite": "http://www.emct.com.tw/",
-      "cover": "taiwan-national-park-cover.png",
-      "logo": "emct-logo.png"
-    }
   },
   {
     "title": "Manufacturer",
@@ -89,8 +48,8 @@
     "meta": {
       "company": "Rx.JS",
       "companyWebsite": "https://rxjs-dev.firebaseapp.com/",
-      "logo": "rxjs-logo.png",
-      "cover": "monster-rx-cover.png"
+      "logo": "rxjs.png",
+      "cover": "GitHub/monster-rx-cover.png"
     }
   },
   {
@@ -100,7 +59,7 @@
     "tags": ["JavaScript", "NPM Package"],
     "description": "Simple code highlighting tool named by 'Lighter' in German",
     "meta": {
-      "cover": "leighter-cover.png"
+      "cover": "GitHub/leighter-cover.png"
     }
   },
   {
@@ -130,7 +89,7 @@
       "position": "Contributor",
       "companyWebsite": "https://github.com/goby-lang/goby",
       "website": "https://github.com/goby-lang/goby",
-      "logo": "goby-lang-logo.svg"
+      "logo": "goby-lang.svg"
     }
   },
   {
@@ -143,7 +102,7 @@
       "company": "Goby Lang.",
       "position": "Contributor",
       "website": "http://sample.goby-lang.org/",
-      "cover": "goby-sample-web-app-cover.png"
+      "cover": "GitHub/goby-sample-web-app-cover.png"
     }
   },
   {
@@ -155,8 +114,8 @@
     "meta": {
       "company": "Vue.JS",
       "companyWebsite": "https://vuejs.org/",
-      "logo": "vuejs-logo.png",
-      "cover": "vue-ubike-info-cover.png"
+      "logo": "vuejs.png",
+      "cover": "GitHub/vue-ubike-info-cover.png"
     }
   },
   {
@@ -168,19 +127,8 @@
     "meta": {
       "company": "Ruby Lang",
       "companyWebsite": "https://www.ruby-lang.org/en/",
-      "logo": "ruby-lang-logo.png",
-      "cover": "kaninchen-cover.png"
-    }
-  },
-  {
-    "title": "NTUST Classroom Application System",
-    "link": "https://github.com/Maxwell-Alexius/NTUST-Classroom-Application-System",
-    "date": [2017, 8],
-    "tags": ["PHP", "CodeIgniter3"],
-    "description": "NTUST classroom leasing application system",
-    "meta": {
-      "company": "NTUST",
-      "position": "Contractor"
+      "logo": "ruby-lang.png",
+      "cover": "GitHub/kaninchen-cover.png"
     }
   },
   {
@@ -190,7 +138,7 @@
     "tags": ["Ruby on Rails", "Python", "Scikit Learn"],
     "description": "My Rails 5 Number Recognizer with Python Scikit-Learn",
     "meta": {
-      "cover": "number-recognizer-rails-cover.png"
+      "cover": "GitHub/number-recognizer-rails-cover.png"
     }
   },
   {
@@ -202,7 +150,7 @@
     "meta": {
       "company": "NTU Hackathon",
       "companyWebsite": "https://www.facebook.com/hackNTU",
-      "logo": "hack-ntu-2017-logo.png",
+      "logo": "hack-ntu-2017.png",
       "position": "Participant"
     }
   },
@@ -213,7 +161,7 @@
     "tags": ["Javascript", "CSS"],
     "description": "A simple JavaScript pop out modal",
     "meta": {
-      "cover": "enlighten-cover.png"
+      "cover": "GitHub/enlighten-cover.png"
     }
   },
   {
@@ -231,20 +179,7 @@
     "tags": ["ReactJS", "Electron"],
     "description": "An MP3 player build with Electron",
     "meta": {
-      "cover": "resonance-cover.png"
-    }
-  },
-  {
-    "title": "daikichi",
-    "link": null,
-    "date": [2017, 4],
-    "tags": ["Ruby on Rails", "Ruby"],
-    "description": "An HR system",
-    "meta": {
-      "company": "5xRuby",
-      "companyWebsite": "https://5xruby.tw/",
-      "position": "Intern",
-      "logo": "5xruby-logo.png"
+      "cover": "GitHub/resonance-cover.png"
     }
   },
   {
@@ -262,7 +197,7 @@
     "tags": ["JavaScript", "CSS"],
     "description": "Music player parser",
     "meta": {
-      "cover": "musique-cover.png"
+      "cover": "GitHub/musique-cover.png"
     }
   }
 ]

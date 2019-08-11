@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Avian Influenza",
+    "link": null,
+    "date": [2019, 2],
+    "tags": ["VueJS", "LeafletJS", "Data Visualization"],
+    "description": "An avian influenza monitoring system which belongs to Taiwan government project",
+    "meta": {
+      "company": "EMCT",
+      "companyWebsite": "http://www.emct.com.tw/",
+      "position": "Contractor",
+      "cover": "Career/avian-influenza-cover.png",
+      "logo": "emct.png"
+    }
+  },
+  {
+    "title": "Model Evaluation",
+    "link": null,
+    "date": [2019, 1],
+    "tags": ["ReactJS", "Redux", "Redux Saga", "Data Visualization"],
+    "description": "Trained model evaluation client which visualize the evaluation results",
+    "meta": {
+      "company": "Umbo CV",
+      "companyWebsite": "https://umbocv.ai/",
+      "position": "Intern",
+      "logo": "umbocv.png"
+    }
+  },
+  {
+    "title": "Taiwan National Park",
+    "link": null,
+    "date": [2018, 7],
+    "tags": ["VueJS", "Nuxt", "LeafletJS", "Data Visualization"],
+    "description": "Taiwan National Park main website which belongs to Taiwan government project",
+    "meta": {
+      "company": "EMCT",
+      "position": "Contractor",
+      "website": "https://npgis.cpami.gov.tw/newpublic",
+      "companyWebsite": "http://www.emct.com.tw/",
+      "cover": "Career/taiwan-national-park-cover.png",
+      "logo": "emct.png"
+    }
+  },
+  {
+    "title": "NTUST Classroom Application System",
+    "link": "https://github.com/Maxwell-Alexius/NTUST-Classroom-Application-System",
+    "date": [2017, 8],
+    "tags": ["PHP", "CodeIgniter3"],
+    "description": "NTUST classroom leasing application system",
+    "meta": {
+      "company": "NTUST",
+      "position": "Contractor"
+    }
+  },
+  {
+    "title": "daikichi",
+    "link": null,
+    "date": [2017, 4],
+    "tags": ["Ruby on Rails", "Ruby"],
+    "description": "An HR system",
+    "meta": {
+      "company": "5xRuby",
+      "companyWebsite": "https://5xruby.tw/",
+      "position": "Intern",
+      "logo": "5xruby.png"
+    }
+  }
+]

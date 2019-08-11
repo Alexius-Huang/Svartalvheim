@@ -25,8 +25,8 @@
       </template>
 
       <projects-gallery
-        :source-data="githubProjectsData"
-        img-url="github-projects-img/"
+        :source-data="dataMap[currentSource]"
+        img-url="projects-img/"
       />
     </div>
   </main>
@@ -39,6 +39,8 @@ import GitHubLogo from '@/assets/logo/github-main.svg';
 import GitHubLogoDark from '@/assets/logo/github-dark.svg';
 import CodePenLogo from '@/assets/logo/codepen-main.svg';
 import CodePenLogoDark from '@/assets/logo/codepen-dark.svg';
+import code from '@/assets/icons/material/code-main.svg';
+import codeDark from '@/assets/icons/material/code-dark.svg';
 import timeline from '@/assets/icons/material/timeline-main.svg';
 import timelineDark from '@/assets/icons/material/timeline-dark.svg';
 import barChart from '@/assets/icons/material/bar-chart-main.svg';
@@ -48,8 +50,19 @@ import starsDark from '@/assets/icons/material/stars-dark.svg';
 import randomString from '@/utils/randomString';
 
 /* Data Sources */
-import codepenLinks from '@/resources/thurisaz/codepen-project-links.json';
-import githubProjectsData from '@/resources/thurisaz/github-project-links.json';
+import githubProjects from '@/resources/thurisaz/github-project-links.json';
+import careerProjects from '@/resources/thurisaz/career-project-links.json';
+import codepenProjects from '@/resources/thurisaz/codepen-project-links.json';
+
+const allProjects = [
+  ...githubProjects,
+  ...careerProjects,
+  ...codepenProjects,
+]
+  .sort(({ date: [y1, m1] }, { date: [y2, m2] }) =>
+    (y1 === y2 && m1 === m2) ? 0 :
+    (y1 > y2) || (y1 === y2 && m1 > m2) ? -1 : 1
+  );
 
 export default {
   components: { ProjectsGallery, BackButton },
@@ -58,6 +71,7 @@ export default {
 
     return {
       logo: {
+        Projects: code,
         GitHub: GitHubLogo,
         CodePen: CodePenLogo,
         Career: timeline,
@@ -65,6 +79,7 @@ export default {
         Special: stars,
       },
       logoDark: {
+        Projects: codeDark,
         GitHub: GitHubLogoDark,
         CodePen: CodePenLogoDark,
         Career: timelineDark,
@@ -72,17 +87,18 @@ export default {
         Special: starsDark,
       },
       dataMap: {
-        GitHub: githubProjectsData,
-        CodePen: codepenLinks,
-        Career: null,
-        Visualization: null,
-        Special: null,
+        Projects: allProjects,
+        GitHub: githubProjects,
+        CodePen: codepenProjects,
+        Career: careerProjects,
+        Visualization: [],
+        Special: [],
       },
-      sources: ['GitHub', 'CodePen', 'Career', 'Visualization', 'Special'],
-      currentSource: 'GitHub',
+      sources: ['Projects', 'GitHub', 'Career', 'CodePen', 'Visualization', 'Special'],
+      currentSource: 'Projects',
 
-      codepenLinks,
-      githubProjectsData,
+      // codepenProjects,
+      // githubProjects,
 
       finalizedTitle,
       title: randomString(finalizedTitle.length),
@@ -235,7 +251,7 @@ main
           background-color: $yellow-500
 
   > div.wrapper
-    padding-top: 75pt
+    padding-top: 100pt
     padding-bottom: 96pt
 
 @media screen and (max-width: 960px)
