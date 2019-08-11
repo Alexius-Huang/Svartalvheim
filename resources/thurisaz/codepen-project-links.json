@@ -6,7 +6,7 @@
     "tags": ["CodePen.io", "Machine Learning", "Algorithm", "Visualization"],
     "description": "Visualization of K-Means using VanillaJS",
     "meta": {
-      "cover": "Codepen/Visualize_K-Means.png"
+      "cover": "CodePen/Visualize_K-Means.png"
     }
   },
   {
@@ -16,7 +16,7 @@
     "tags": ["CodePen.io", "Machine Learning", "Algorithm", "Visualization"],
     "description": "Visualization of basic linear regression - gradient descent algorithm",
     "meta": {
-      "cover": "Codepen/Linear_Regression.png"
+      "cover": "CodePen/Linear_Regression.png"
     }
   },
   {
@@ -26,7 +26,7 @@
     "tags": ["CodePen.io", "Lexer", "Algorithm"],
     "description": "Using VanillaJS to parse the Python syntax dynamically and layout on webpage",
     "meta": {
-      "cover": "Codepen/Python_Syntax_Highlighter.png"
+      "cover": "CodePen/Python_Syntax_Highlighter.png"
     }
   },
   {
@@ -36,7 +36,7 @@
     "tags": ["CodePen.io", "Game", "Algorithm"],
     "description": "Simple mine sweeper game using recursive algorithm to sweep out the areas and bombs",
     "meta": {
-      "cover": "Codepen/Mine_Sweeper.png"
+      "cover": "CodePen/Mine_Sweeper.png"
     }
   },
   {
@@ -46,7 +46,7 @@
     "tags": ["CodePen.io", "Animation"],
     "description": "A kind of animation design and effect",
     "meta": {
-      "cover": "Codepen/Network.png"
+      "cover": "CodePen/Network.png"
     }
   },
   {
@@ -56,7 +56,7 @@
     "tags": ["CodePen.io", "Animation", "CSS"],
     "description": "A kind of circular image gallery layout",
     "meta": {
-      "cover": "Codepen/Orbital_Image_Gallery.png"
+      "cover": "CodePen/Orbital_Image_Gallery.png"
     }
   },
   {
@@ -66,7 +66,7 @@
     "tags": ["CodePen.io", "Algorithm", "Visualization"],
     "description": "Heap sort algorithm visualized",
     "meta": {
-      "cover": "Codepen/Visualized_Heap_Sort.png"
+      "cover": "CodePen/Visualized_Heap_Sort.png"
     }
   },
   {
@@ -76,7 +76,7 @@
     "tags": ["CodePen.io", "Algorithm", "Visualization"],
     "description": "Quick sort algorithm visualized",
     "meta": {
-      "cover": "Codepen/Visualized_Quick_Sort.png"
+      "cover": "CodePen/Visualized_Quick_Sort.png"
     }
   },
   {
@@ -86,7 +86,7 @@
     "tags": ["CodePen.io", "Algorithm", "Visualization"],
     "description": "Comb sort algorithm visualized",
     "meta": {
-      "cover": "Codepen/Visualized_Comb_Sort.png"
+      "cover": "CodePen/Visualized_Comb_Sort.png"
     }
   },
   {
@@ -96,7 +96,7 @@
     "tags": ["CodePen.io", "Algorithm", "Visualization"],
     "description": "Merge sort algorithm visualized",
     "meta": {
-      "cover": "Codepen/Visualized_Merge_Sort.png"
+      "cover": "CodePen/Visualized_Merge_Sort.png"
     }
   },
   {
@@ -106,7 +106,7 @@
     "tags": ["CodePen.io", "Algorithm", "Visualization"],
     "description": "Bubble sort algorithm visualized",
     "meta": {
-      "cover": "Codepen/Visualized_Bubble_Sort.png"
+      "cover": "CodePen/Visualized_Bubble_Sort.png"
     }
   },
   {
@@ -124,7 +124,7 @@
     "tags": ["CodePen.io", "HTML5 Canvas", "Physics", "Animation"],
     "description": "A black hole event horizon animation by using HTML5 Canvas",
     "meta": {
-      "cover": "Codepen/Event_Horizon.png"
+      "cover": "CodePen/Event_Horizon.png"
     }
   },
   {
@@ -134,7 +134,7 @@
     "tags": ["CodePen.io", "THREE.JS"],
     "description": "Try to learn and draw something using THREE.JS",
     "meta": {
-      "cover": "Codepen/Simple_Torus_Knot.png"
+      "cover": "CodePen/Simple_Torus_Knot.png"
     }
   },
   {
@@ -144,7 +144,7 @@
     "tags": ["CodePen.io", "HTML5 Canvas", "Physics", "Animation"],
     "description": "Simple animation to visualize Doppler Effect using HTML5 Canvas",
     "meta": {
-      "cover": "Codepen/Doppler_Effect.png"
+      "cover": "CodePen/Doppler_Effect.png"
     }
   },
   {
@@ -154,7 +154,7 @@
     "tags": ["CodePen.io", "Game", "HTML5 Canvas"],
     "description": "A simple snake game implemented by using HTML5 Canvas",
     "meta": {
-      "cover": "Codepen/Snake.png"
+      "cover": "CodePen/Snake.png"
     }
   },
   {
@@ -164,7 +164,7 @@
     "tags": ["CodePen.io", "Game", "HTML5 Canvas", "Collision Detection"],
     "description": "A simple brick breaker game which involves with collision detection algorithm",
     "meta": {
-      "cover": "Codepen/Brick_Breaker.png"
+      "cover": "CodePen/Brick_Breaker.png"
     }
   },
   {
@@ -174,7 +174,7 @@
     "tags": ["CodePen.io", "Game", "HTML5 Canvas", "Algorithm"],
     "description": "Tetris game implemented using HTML5 Canvas and with simple rotation algorithm (according to matrix transformation)",
     "meta": {
-      "cover": "Codepen/Tetris.png"
+      "cover": "CodePen/Tetris.png"
     }
   },
   {
@@ -184,7 +184,7 @@
     "tags": ["CodePen.io", "Physics", "HTML5 Canvas", "Animation", "Visualization"],
     "description": "Simple harmonic motion with animation and visualization",
     "meta": {
-      "cover": "Codepen/Simple_Harmonic_Motion.png"
+      "cover": "CodePen/Simple_Harmonic_Motion.png"
     }
   },
   {
@@ -194,7 +194,7 @@
     "tags": ["CodePen.io", "Game", "Simulation", "HTML5 Canvas"],
     "description": "Conway's Game of Life",
     "meta": {
-      "cover": "Codepen/Game_of_Life.png"
+      "cover": "CodePen/Game_of_Life.png"
     }
   },
   {
@@ -204,7 +204,7 @@
     "tags": ["CodePen.io", "Game", "CSS"],
     "description": "2048 game implemented only using CSS and JS",
     "meta": {
-      "cover": "Codepen/2048.png"
+      "cover": "CodePen/2048.png"
     }
   }
 ]
