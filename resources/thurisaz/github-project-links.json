@@ -1,17 +1,5 @@
 [
   {
-    "title": "Svartalvheim",
-    "link": "https://github.com/Maxwell-Alexius/Svartalvheim",
-    "date": [2019, 6],
-    "tags": ["VueJS", "Nuxt", "Personal Blog"],
-    "description": "My current version of personal blog combine with dichromatic style. It includes my resumé, portfolio and even my visualization project such as the data visualization catalogue.",
-    "html": true,
-    "meta": {
-      "website": "https://svartalvhe.im",
-      "cover": "GitHub/svartalvheim-cover.png"
-    }
-  },
-  {
     "title": "React Hooks Example",
     "link": "https://github.com/Maxwell-Alexius/React-Hooks-Example",
     "date": [2019, 8],
@@ -21,6 +9,18 @@
       "company": "React.JS",
       "companyWebsite": "https://reactjs.org/",
       "logo": "react-js.png"
+    }
+  },
+  {
+    "title": "Svartalvheim",
+    "link": "https://github.com/Maxwell-Alexius/Svartalvheim",
+    "date": [2019, 1],
+    "tags": ["VueJS", "Nuxt", "RWD", "Personal Blog"],
+    "description": "My current version of personal blog combine with dichromatic style. It includes my resumé, portfolio and even my visualization project such as the data visualization catalogue.",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im",
+      "cover": "GitHub/svartalvheim-cover.png"
     }
   },
   {

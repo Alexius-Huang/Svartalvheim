@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Area Chart",
+    "link": "/inguz/area-chart",
+    "date": [2019, 6],
+    "tags": ["Visualization", "Data", "Chart", "Animation"],
+    "description": "Area chart visualization using Apple Inc. product revenue in different kinds of visualization: standard, stacked and percentage area chart",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im/inguz/",
+      "cover": "Visualization/area-chart-bg.gif"
+    }
+  },
+  {
+    "title": "Pictogram Chart",
+    "link": "/inguz/pictogram-chart",
+    "date": [2019, 2],
+    "tags": ["Visualization", "Data", "RWD", "Chart"],
+    "description": "Pictorgram chart visualization using murder rate in different country",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im/inguz/",
+      "cover": "Visualization/pictogram-chart-bg.gif"
+    }
+  },
+  {
+    "title": "Heat Map",
+    "link": "/inguz/heat-map",
+    "date": [2019, 2],
+    "tags": ["Visualization", "Data", "RWD", "Chart"],
+    "description": "Heat Map visualization using the Monthly Energy Consumption in Taiwan data",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im/inguz/",
+      "cover": "Visualization/heat-map-bg.gif"
+    }
+  },
+  {
+    "title": "Bar Chart",
+    "link": "/inguz/bar-chart",
+    "date": [2019, 2],
+    "tags": ["Visualization", "Data", "RWD", "Chart", "Animation"],
+    "description": "Bar chart visualization with linear and logrithmic scale using U.S. arm sales to Taiwan data",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im/inguz/",
+      "cover": "Visualization/bar-chart-bg.gif"
+    }
+  },
+  {
+    "title": "Donut Chart",
+    "link": "/inguz/donut-chart",
+    "date": [2019, 2],
+    "tags": ["Visualization", "Data", "RWD", "Chart"],
+    "description": "Donut chart visualization using the Racial Categories in U.S. data",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im/inguz/",
+      "cover": "Visualization/donut-chart-bg.gif"
+    }
+  },
+  {
+    "title": "Line Chart",
+    "link": "/inguz/line-chart",
+    "date": [2019, 1],
+    "tags": ["Visualization", "RWD", "Chart"],
+    "description": "Line chart visualization",
+    "html": true,
+    "meta": {
+      "website": "https://svartalvhe.im/inguz/",
+      "cover": "Visualization/line-chart-bg.gif"
+    }
+  }
+]

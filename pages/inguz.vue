@@ -260,7 +260,6 @@ main
       display: inline-block
       width: 100%
       height: auto
-      margin-top: 48pt
 
       > .chart
         width: 33.3%

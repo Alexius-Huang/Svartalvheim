@@ -53,11 +53,13 @@ import randomString from '@/utils/randomString';
 import githubProjects from '@/resources/thurisaz/github-project-links.json';
 import careerProjects from '@/resources/thurisaz/career-project-links.json';
 import codepenProjects from '@/resources/thurisaz/codepen-project-links.json';
+import visualizations from '@/resources/thurisaz/visualization-links.json';
 
 const allProjects = [
   ...githubProjects,
   ...careerProjects,
   ...codepenProjects,
+  ...visualizations,
 ]
   .sort(({ date: [y1, m1] }, { date: [y2, m2] }) =>
     (y1 === y2 && m1 === m2) ? 0 :
@@ -91,7 +93,7 @@ export default {
         GitHub: githubProjects,
         CodePen: codepenProjects,
         Career: careerProjects,
-        Visualization: [],
+        Visualization: visualizations,
         Special: [],
       },
       sources: ['Projects', 'GitHub', 'Career', 'CodePen', 'Visualization', 'Special'],
