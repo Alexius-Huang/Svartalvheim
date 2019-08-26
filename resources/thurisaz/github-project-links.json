@@ -1,5 +1,19 @@
 [
   {
+    "title": "Simple Scrum Board",
+    "link": "https://github.com/Maxwell-Alexius/Simple-Scrum-Board",
+    "date": [2019, 8],
+    "tags": ["Angular", "TypeScript"],
+    "description": "A simple scrum board application develop using Angular, my first Angular project practice.",
+    "meta": {
+      "company": "Angular",
+      "companyWebsite": "https://angular.io",
+      "logo": "angular.png",
+      "developing": true,
+      "cover": "GitHub/simple-scrum-board.png"
+    }
+  },
+  {
     "title": "React Hooks Example",
     "link": "https://github.com/Maxwell-Alexius/React-Hooks-Example",
     "date": [2019, 8],
@@ -8,8 +22,7 @@
     "meta": {
       "company": "React.JS",
       "companyWebsite": "https://reactjs.org/",
-      "logo": "react-js.png",
-      "developing": true
+      "logo": "react-js.png"
     }
   },
   {

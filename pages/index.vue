@@ -12,9 +12,9 @@ export default {
     AppLogo
   },
   mounted() {
-    window.setTimeout(() => {
+    window.setImmediate(() => {
       this.$router.push({ name: 'maxwell-alexius' });
-    }, 2500);
+    });
   },
 }
 </script>
