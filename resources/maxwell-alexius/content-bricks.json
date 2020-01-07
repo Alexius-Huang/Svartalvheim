@@ -1,0 +1,128 @@
+[
+  {
+    "title": "Career Experience",
+    "type": "scroll",
+    "scrollTo": "career-experience"
+  },
+  {
+    "title": "Skill Set",
+    "type": "scroll",
+    "scrollTo": "skill-set"
+  },
+  {
+    "title": "Public Speech",
+    "type": "scroll",
+    "scrollTo": "public-speech"
+  },
+  {
+    "title": "Portfolio",
+    "type": "collection",
+    "collections": [
+      {
+        "name": "All Projects",
+        "icon": "code",
+        "link": {
+          "name": "thurisaz",
+          "query": { "source": "Projects" }
+        }
+      },
+      {
+        "name": "GitHub Projects",
+        "icon": "github",
+        "link": {
+          "name": "thurisaz",
+          "query": { "source": "GitHub" }
+        }
+      },
+      {
+        "name": "Career Projects",
+        "icon": "timeline",
+        "link": {
+          "name": "thurisaz",
+          "query": { "source": "Career" }
+        }
+      },
+      {
+        "name": "CodePen",
+        "icon": "codepen",
+        "link": {
+          "name": "thurisaz",
+          "query": { "source": "CodePen" }
+        }
+      },
+      {
+        "name": "Visualizations",
+        "icon": "barchart",
+        "link": {
+          "name": "thurisaz",
+          "query": { "source": "Visualizations" }
+        }
+      },
+      {
+        "name": "Special",
+        "icon": "star",
+        "link": {
+          "name": "thurisaz",
+          "query": { "source": "Special" }
+        }
+      }
+    ]
+  },
+  {
+    "title": "Blog Posts",
+    "type": "link",
+    "link": { "name": "ansuz" }
+  },
+  {
+    "title": "Data Visualization Catalogue",
+    "type": "collection",
+    "collections": [
+      {
+        "name": "Visualization Catalogue",
+        "link": { "name": "inguz" }
+      },
+      {
+        "name": "Area Chart",
+        "link": {
+          "name": "inguz-chart",
+          "params": { "chart": "area-chart" }
+        }
+      },
+      {
+        "name": "Bar Chart",
+        "link": {
+          "name": "inguz-chart",
+          "params": { "chart": "bar-chart" }
+        }
+      },
+      {
+        "name": "Donut Chart",
+        "link": {
+          "name": "inguz-chart",
+          "params": { "chart": "donut-chart" }
+        }
+      },
+      {
+        "name": "Heat Map",
+        "link": {
+          "name": "inguz-chart",
+          "params": { "chart": "heat-map" }
+        }
+      },
+      {
+        "name": "Line Chart",
+        "link": {
+          "name": "inguz-chart",
+          "params": { "chart": "line-chart" }
+        }
+      },
+      {
+        "name": "Pictogram",
+        "link": {
+          "name": "inguz-chart",
+          "params": { "chart": "pictogram-chart" }
+        }
+      }
+    ]
+  }
+]

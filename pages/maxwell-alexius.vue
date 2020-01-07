@@ -2,9 +2,13 @@
   <main>
     <jumbotron class="jumbotron" />
     <introduction class="introduction" />
-    <career-experience class="career-experience" />
-    <skill-set class="skill-set" />
-    <public-speech class="public-speech" />
+    <content-bricks
+      class="content-bricks"
+      @scroll-to="handleScroll"
+    />
+    <career-experience class="career-experience" ref="career-experience" />
+    <skill-set class="skill-set" ref="skill-set" />
+    <public-speech class="public-speech" ref="public-speech" />
     <!-- <contact class="contact" /> -->
     <!-- <runic-navigation class="runic-navigation" /> -->
   </main>
@@ -13,6 +17,7 @@
 <script>
 import Jumbotron from '@/components/misc/Home/Jumbotron';
 import Introduction from '@/components/misc/Home/Introduction';
+import ContentBricks from '@/components/misc/Home/ContentBricks';
 import CareerExperience from '@/components/misc/Home/CareerExperience';
 import SkillSet from '@/components/misc/Home/SkillSet';
 import PublicSpeech from '@/components/misc/Home/PublicSpeech';
@@ -23,12 +28,22 @@ export default {
   components: {
     Jumbotron,
     Introduction,
+    ContentBricks,
     CareerExperience,
     SkillSet,
     PublicSpeech,
     // Contact,
     // RunicNavigation,
   },
+  methods: {
+    handleScroll(targetSection) {
+      const { $el } = this.$refs[targetSection];
+      window.scrollTo({
+        top: $el.offsetTop,
+        behavior: 'smooth',
+      });
+    },
+  }
 };
 </script>
 
@@ -37,6 +52,8 @@ main
   overflow-x: hidden
   padding-bottom: 50vh
 
+.content-bricks
+  margin-top: 50pt
 .career-experience
   margin-top: 100vh
 .skill-set
