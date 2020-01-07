@@ -1,0 +1,97 @@
+[
+  {
+    "key": "emct",
+    "company": "Environmental Management Consultant Technologies, Inc.",
+    "date": "Jul. 2018 - Jun. 2019",
+    "position": "Freelance Front-End Engineer",
+    "tags": [
+      "VueJS",
+      "Nuxt Framework",
+      "Government Project",
+      "Data Visualization",
+      "Browser Compatibility",
+      "SSR"
+    ],
+    "content": [
+      "Worked on two government projects using VueJS and Nuxt framework",
+      "Both Front-End projects are built independently"
+    ]
+  },
+  {
+    "key": "umbo-cv",
+    "company": "Umbo Computer Vision, Inc.",
+    "date": "Nov. 2017 - Jan. 2019",
+    "position": "Intern. Front-End & Data Visualization Engineer",
+    "tags": [
+      "ReactJS",
+      "SVG",
+      "HTML5 Canvas",
+      "Data Visualization",
+      "Animation",
+      "Presentation",
+      "Go Lang",
+      "GraphQL"
+    ],
+    "content": [
+      "Built a data visualization tool for showing the images' ground-truth and metrices by using Radar charts",
+      "Helped maintain Front-end projects including the data visualization and data labelling platform",
+      "Visualizes the evaluation results of trained model using Line charts with Animation",
+      "Refactor and helped upgrade the model demo site for Sales & Marketing team",
+      "Held internal share about asynchronous programming in JavaScript including the ES6 Promise and ES7 Async-Await feature",
+      "Held internal share about GraphQL 101 and use Go Lang. to demonstrate GraphQL Go"
+    ]
+  },
+  {
+    "key": "5xruby-contractor",
+    "company": "5xRuby, Inc.",
+    "date": "Aug. 2017 - Oct. 2017",
+    "position": "Contractor. Fullstack Engineer",
+    "tags": [
+      "Ruby",
+      "Ruby on Rails"
+    ],
+    "content": [
+      "Use `tenant` gem to realize multitenancy in Ruby on Rails",
+      "Has experience working remotely"
+    ]
+  },
+  {
+    "key": "5xruby",
+    "company": "5xRuby, Inc.",
+    "date": "Mar. 2017 - Jul. 2017",
+    "position": "Intern. Ruby on Rails Developer",
+    "tags": [
+      "Ruby",
+      "Ruby on Rails",
+      "ReactJS",
+      "HTML5 & CSS3",
+      "Functional Programming",
+      "Go Lang",
+      "Open Source Project",
+      "Presentation"
+    ],
+    "content": [
+      "Learned basics of HTML5, CSS3, JavaScript and Ruby on Rails",
+      "Helped build the internal HR management system with Rails",
+      "Learned the basic concept of functional programming",
+      "Contributed an open source project, Goby Lang, which is another programming language compiled by Go but has a Ruby-like syntax with Go's concurrency feature",
+      "Attended SITCON Hong Kong 2017 as a speaker and talked about contributing open-source projects experience"
+    ]
+  },
+  {
+    "key": "potentia",
+    "company": "Potentia Computer, Inc.",
+    "date": "Jul. 2016 - Aug. 2016",
+    "position": "Intern. Back-End Engineer",
+    "tags": [
+      "PHP",
+      "CodeIgniter 3",
+      "ReactJS"
+    ],
+    "content": [
+      "Learned the MVC framework - PHP CodeIgniter 3",
+      "Helped build the system which manages the backend of the company product",
+      "Present ReactJS 101 for colleagues"
+    ]
+  }
+]

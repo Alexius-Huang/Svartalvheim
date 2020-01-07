@@ -1,143 +1,49 @@
 <template>
   <section class="career-experience">
-    <!-- <pre>
-      <code>
-        <span class="hl">async function</span> fetchData() {
-          <span class="hl">try</span> {
-            <span class="hl">const</span> responses = <span class="hl">await</span> Promise.all([
-              fetchTopics(),
-              fetchContents(),
-              fetchLists()
-            ]);
-
-            <span class="hl">return</span> responses;
-          } <span class="hl">catch</span> (err) {
-            console.error(`[Fetch Data Error] ${err}`);
-          }
-        }
-
-        <span class="hl">const</span> $el = <span class="hl">document</span>.getElementById('element');
-
-        (<span class="hl">async function</span>() {
-          <span class="hl">const</span> [
-            topics,
-            contents,
-            lists
-          ] = <span class="hl">await</span> fetchData();
-
-          topics
-            .concat(contents)
-            .concat(lists)
-            .forEach((item) => {
-              <span class="hl">const</span> node = <span class="hl">document</span>.createElement('p');
-              node.innerText(item);
-
-              $el.appendChild(node);
-            });
-        })();
-      </code>
-    </pre> -->
-
     <div class="parallelogram-bg">
       <h2 class="title">Career Experience</h2>
 
       <div class="content-wrapper">
         <ul class="timeline">
-          <li :class="{ active: active.includes('umbo-cv') }" @click="handleToggleEvent('umbo-cv')">
-            <h3>Umbo Computer Vision, Inc.</h3>
-            <p class="date">Nov. 2017 - Present</p>
-            <p class="position">Intern. CV Team Front-End Engineer</p>
+          <li
+            v-for="{
+              key,
+              company,
+              date,
+              position,
+              tags,
+              content,
+            } in careerExperienceData"
+            :key="key"
+            :class="{ active: active.includes(key) }"
+            @click="handleToggleEvent(key)"
+          >
+            <h3>{{ position }}</h3>
+            <p class="date">{{ date }}</p>
+            <p class="company">{{ company }}</p>
             <div class="tags">
-              <span class="tag">ReactJS</span>
-              <span class="tag">SVG</span>
-              <span class="tag">HTML5 Canvas</span>
-              <span class="tag">Data Visualization</span>
-              <span class="tag">Animation</span>
-              <span class="tag">Presentation</span>
-              <span class="tag">Go Lang.</span>
-              <span class="tag">GraphQL</span>
+              <span class="tag" v-for="tag of tags" :key="`${key}-${tag}`">{{ tag }}</span>
             </div>
             <article class="content">
               <ul>
-                <li>Built a data visualization tool for showing the images' ground-truth and metrices by using Radar charts</li>
-                <li>Helped maintain Front-end projects including the data visualization and data labelling platform</li>
-                <li>Visualizes the evaluation results of trained model using Line charts with Animation</li>
-                <li>Refactor and helped upgrade the model demo site for Sales & Marketing team</li>
-                <li>Held internal share about asynchronous programming in JavaScript including the ES6 Promise and ES7 Async-Await feature</li>
-                <li>Held internal share about GraphQL 101 and use Go Lang. to demonstrate GraphQL Go</li>
-              </ul>
-            </article>
-          </li>
-          <li :class="{ active: active.includes('5xruby-contractor') }" @click="handleToggleEvent('5xruby-contractor')">
-            <h3>5xRuby, Inc.</h3>
-            <p class="date">Aug. 2017 - Oct. 2017</p>
-            <p class="position">Contractor. Fullstack Engineer</p>
-            <div class="tags">
-              <span class="tag">Ruby</span>
-              <span class="tag">Ruby on Rails</span>
-            </div>
-            <article class="content">
-              <ul>
-                <li>Use <code>tenant</code> gem to realize multitenancy in Ruby on Rails</li>
-                <li>Has experience working remotely</li>
-              </ul>
-            </article>
-          </li>
-          <li :class="{ active: active.includes('5xruby') }" @click="handleToggleEvent('5xruby')">
-            <h3>5xRuby, Inc.</h3>
-            <p class="date">Mar. 2017 - Jul. 2017</p>
-            <p class="position">Intern. Ruby on Rails Developer</p>
-            <div class="tags">
-              <span class="tag">Ruby</span>
-              <span class="tag">Ruby on Rails</span>
-              <span class="tag">ReactJS</span>
-              <span class="tag">HTML5 & CSS3</span>
-              <span class="tag">Functional Programming</span>
-              <span class="tag">Go Lang.</span>
-              <span class="tag">Open Source Project</span>
-              <span class="tag">Presentation</span>
-            </div>
-            <article class="content">
-              <ul>
-                <li>Learned basics of HTML5, CSS3, JavaScript and Ruby on Rails</li>
-                <li>Helped build the internal HR management system with Rails</li>
-                <li>Learned the basic concept of functional programming</li>
-                <li>Contributed an open source project, Goby Lang, which is another programming language compiled by Go but has a Ruby-like syntax with Go's concurrency feature</li>
-                <li>Attended SITCON Hong Kong 2017 as a speaker and talked about contributing open-source projects experience</li>
-              </ul>
-            </article>
-          </li>
-          <li :class="{ active: active.includes('potentia') }" @click="handleToggleEvent('potentia')">
-            <h3>Potentia Computer, Inc.</h3>
-            <p class="date">Jul. 2016 - Aug. 2016</p>
-            <p class="position">Intern. Back-End Engineer</p>
-            <div class="tags">
-              <span class="tag">PHP</span>
-              <span class="tag">CodeIgniter 3</span>
-              <span class="tag">ReactJS</span>
-            </div>
-            <article class="content">
-              <ul>
-                <li>Learned the MVC framework - PHP CodeIgniter 3</li>
-                <li>Helped build the system which manages the backend of the company product</li>
-                <li>Present ReactJS 101 for colleagues</li>
+                <li v-for="(c, i) of content" :key="i">
+                  {{ c }}
+                </li>
               </ul>
             </article>
           </li>
         </ul>
-
-        <!-- <div class="timeline-wrapper">
-          
-        </div> -->
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import careerExperienceData from '@/resources/maxwell-alexius/career-experience.json';
+
 export default {
   data() {
-    return { active: [] };
+    return { active: [], careerExperienceData };
   },
   methods: {
     handleToggleEvent(type) {
@@ -269,7 +175,7 @@ ul.timeline
         margin-top: 16pt
         font-size: 14pt
         font-style: italic
-      &.position
+      &.company
         font-size: 14pt
         font-weight: 500
 
@@ -402,7 +308,7 @@ ul.timeline
       > p.date
         margin-top: 20pt
         font-size: 12pt
-      > p.position
+      > p.company
 
       > div.tags
         line-height: 26pt
