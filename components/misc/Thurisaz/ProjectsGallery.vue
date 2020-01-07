@@ -6,7 +6,7 @@
       ref="columns"
     >
       <li
-        v-for="data in columnData[i - 1]" :key="data.title"
+        v-for="(data, j) in columnData[i - 1]" :key="`${data.title}-${j}`"
         :class="{ 'timeline-block': data.belongsToTimeline }"
       >
         <template v-if="data.belongsToTimeline">
