@@ -5,7 +5,7 @@
     <career-experience class="career-experience" />
     <skill-set class="skill-set" />
     <public-speech class="public-speech" />
-    <contact class="contact" />
+    <!-- <contact class="contact" /> -->
     <!-- <runic-navigation class="runic-navigation" /> -->
   </main>
 </template>
@@ -16,7 +16,7 @@ import Introduction from '@/components/misc/Home/Introduction';
 import CareerExperience from '@/components/misc/Home/CareerExperience';
 import SkillSet from '@/components/misc/Home/SkillSet';
 import PublicSpeech from '@/components/misc/Home/PublicSpeech';
-import Contact from '@/components/misc/Home/Contact';
+// import Contact from '@/components/misc/Home/Contact';
 // import RunicNavigation from '@/components/misc/Home/RunicNavigation';
 
 export default {
@@ -26,7 +26,7 @@ export default {
     CareerExperience,
     SkillSet,
     PublicSpeech,
-    Contact,
+    // Contact,
     // RunicNavigation,
   },
 };

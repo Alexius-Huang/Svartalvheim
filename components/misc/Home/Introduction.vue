@@ -88,6 +88,7 @@ div.title-wrapper
       color: $yellow-500
 
 div.info-wrapper
+  font-size: 0
   > a
     background-color: white
     font-family: $base-font-family
@@ -103,6 +104,7 @@ div.info-wrapper
     opacity: .6
     transition: .25s
     position: relative
+    margin-right: 6pt
 
     &:hover
       opacity: 1
@@ -127,8 +129,6 @@ div.info-wrapper
       width: 100%
       padding: 0 12pt
       transition: width .25s
-    + a
-      margin-left: 3pt
 
 div.description-wrapper
   margin-top: 12pt
@@ -154,6 +154,19 @@ div.description-wrapper
       line-height: 48pt
       &:before
         content: ''
+
+  div.info-wrapper
+    margin-top: -6pt
+    > a
+      font-size: 18pt
+      color: #333
+      background-color: $yellow-500
+      opacity: 1
+      height: 32pt
+      line-height: 32pt
+      margin-top: 6pt
+      &:after
+        display: none
 
   p.description
     font-size: 16pt
