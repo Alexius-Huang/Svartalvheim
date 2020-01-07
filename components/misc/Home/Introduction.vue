@@ -4,6 +4,18 @@
       <h1 class="title">{{ t1 }}<span class="highlight">{{ t2 }}</span>_</h1>
     </div>
 
+    <div class="info-wrapper">
+      <a target="_blank" href="https://github.com/Maxwell-Alexius" data-link-name="> GitHub">
+        > GitHub
+      </a>
+      <a target="_blank" href="https://twitter.com/AlexiusMaxwell" data-link-name="> Twitter">
+        > Twitter
+      </a>
+      <a target="_blank" href="mailto:alexius.huang@gmail.com" data-link-name="> Gmail">
+        > Gmail
+      </a>
+    </div>
+
     <div class="description-wrapper">
       <p class="description">Passionated Front-End Developer which has both experience on working in the office and working as a contractor remotely.</p>
       <p class="description">Eagers to dedicate time to improve the programming skills, diving deep into JavaScript, learning from design patterns and from building the tools from scratch.</p>
@@ -54,6 +66,7 @@ export default {
 
 <style scoped lang="sass">
 @import '~/sass/colors.sass'
+@import '~/sass/shared.sass'
 
 section.introduction
   width: 80vw
@@ -74,17 +87,62 @@ div.title-wrapper
     > span.highlight
       color: $yellow-500
 
-p.description
-  font-weight: 500
-  font-size: 18pt
-  line-height: 1.7
-  letter-spacing: 1pt
-  color: white
-  &:first-letter
-    color: $yellow-500
+div.info-wrapper
+  > a
+    background-color: white
+    font-family: $base-font-family
+    text-decoration: none
+    display: inline-block
+    height: 42pt
+    line-height: 42pt
     font-size: 24pt
-  + p.description
-    margin-top: 16pt
+    padding: 0 12pt
+    border-radius: 1pt
+    background-color: #444
+    color: $yellow-500
+    opacity: .6
+    transition: .25s
+    position: relative
+
+    &:hover
+      opacity: 1
+      transition: .25s
+
+    &:after
+      pointer-events: none
+      position: absolute
+      width: 0
+      height: 42pt
+      line-height: 42pt
+      display: inline-block
+      border-radius: 1pt
+      left: 0
+      top: 0
+      color: #333
+      background-color: $yellow-500
+      box-sizing: border-box
+      content: attr(data-link-name)
+      overflow: hidden
+    &:hover:after
+      width: 100%
+      padding: 0 12pt
+      transition: width .25s
+    + a
+      margin-left: 3pt
+
+div.description-wrapper
+  margin-top: 12pt
+  > p.description
+    font-weight: 500
+    font-size: 18pt
+    line-height: 1.7
+    letter-spacing: 1pt
+    color: white
+    &:first-letter
+      color: $yellow-500
+      font-size: 24pt
+    + p.description
+      margin-top: 16pt
 
 @media screen and (max-width: 768px)
   div.title-wrapper
