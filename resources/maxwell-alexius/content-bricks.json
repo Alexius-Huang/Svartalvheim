@@ -135,5 +135,19 @@
         }
       }
     ]
+  },
+  {
+    "title": "Miscellaneous",
+    "type": "collection",
+    "collections": [
+      {
+        "name": "Norse Runes",
+        "link": { "name": "pertho" }
+      },
+      {
+        "name": "Fenrisúlfr",
+        "link": { "name": "algiz" }
+      }
+    ]
   }
 ]
