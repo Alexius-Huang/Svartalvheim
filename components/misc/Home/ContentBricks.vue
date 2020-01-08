@@ -10,7 +10,7 @@
       >
         <div class="content">
           <span>{{ title }}</span>
-          <img v-if="icon" :src="icons[icon]" class="icon" />
+          <img :src="icons[icon || 'default']" class="icon" />
         </div>
 
         <ul
@@ -22,7 +22,7 @@
             class="sub-brick"
             @click="link ? $router.push(link) : undefined"
           >
-            <img v-if="icon" class="icon" :src="icons[icon]" />
+            <img class="icon" :src="icons[icon || 'default']" />
             <span>{{ name }}</span>
           </li>
         </ul>
@@ -39,6 +39,10 @@ import codeDark from '@/assets/material/code-dark.svg';
 import timelineDark from '@/assets/material/timeline-dark.svg';
 import barChartDark from '@/assets/material/bar-chart-dark.svg';
 import starsDark from '@/assets/material/stars-dark.svg';
+import forumDark from '@/assets/material/forum-dark.svg';
+import bookmarkDark from '@/assets/material/bookmark-dark.svg';
+import whatshotDark from '@/assets/material/whatshot-dark.svg';
+import valknutDark from '@/assets/svartalvheim/valknut-dark.svg';
 
 export default {
   data() {
@@ -51,6 +55,10 @@ export default {
         timeline: timelineDark,
         star: starsDark,
         barchart: barChartDark,
+        forum: forumDark,
+        bookmark: bookmarkDark,
+        whatshot: whatshotDark,
+        default: valknutDark,
       },
       bricks: contentBricks,
     };
@@ -77,7 +85,7 @@ export default {
 @import '../../../sass/colors.sass'
 
 $brick-height: 120pt
-$brick-icon-size: 120pt
+$brick-icon-size: 100pt
 $sub-brick-height: 150pt
 $sub-brick-icon-size: 150pt
 
@@ -120,14 +128,16 @@ ul.content-bricks
         position: absolute
         width: $brick-icon-size
         height: $brick-icon-size
-        left: -50pt
-        bottom: -10pt
+        right: -20pt
+        bottom: -5pt
         transition: .25s
 
     &:hover > div.content > img.icon
-      left: 10pt
+      right: 10pt
       opacity: .8
       transition: .25s
+    &.focused > div.content > img.icon
+      display: none
 
 ul.content-bricks > li.brick > ul.collections
   overflow: hidden
@@ -213,7 +223,7 @@ ul.content-bricks > li.brick.focused
     > div.content
       height: $brick-height
       > img.icon
-        left: 10pt
+        right: 10pt
         opacity: .8
 
     > ul.collections
