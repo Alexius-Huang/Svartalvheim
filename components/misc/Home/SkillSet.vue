@@ -155,15 +155,15 @@
 </template>
 
 <script>
-import HTML5Icon from '@/assets/icons/html5-icon.png';
-import CSS3Icon from '@/assets/icons/css3-icon.png';
-import GoLangIcon from '@/assets/icons/golang-icon.png';
-import RubyLangIcon from '@/assets/icons/ruby-lang-icon.png';
-import PythonLangIcon from '@/assets/icons/python-lang-icon.png';
-import GitIcon from '@/assets/icons/git-icon.png';
-import HaskellLangIcon from '@/assets/icons/haskell-lang-icon.png';
-import DatabaseIcon from '@/assets/icons/database.png';
-import CodeIcon from '@/assets/icons/code.png';
+import HTML5Icon from '@/assets/icons/programming-lang/html5-icon.png';
+import CSS3Icon from '@/assets/icons/programming-lang/css3-icon.png';
+import GoLangIcon from '@/assets/icons/programming-lang/golang-icon.png';
+import RubyLangIcon from '@/assets/icons/programming-lang/ruby-lang-icon.png';
+import PythonLangIcon from '@/assets/icons/programming-lang/python-lang-icon.png';
+import GitIcon from '@/assets/icons/programming-lang/git-icon.png';
+import HaskellLangIcon from '@/assets/icons/programming-lang/haskell-lang-icon.png';
+import DatabaseIcon from '@/assets/icons/maxwell-alexius/database.png';
+import CodeIcon from '@/assets/icons/maxwell-alexius/code.png';
 
 import Diamond from './SkillSet/Diamond';
 

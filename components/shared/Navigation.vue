@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import home from '@/assets/icons/material/home-main.svg';
-import assessment from '@/assets/icons/material/assessment-main.svg';
-import bookmark from '@/assets/icons/material/bookmark-main.svg';
-import stars from '@/assets/icons/material/stars-main.svg';
-import homeDark from '@/assets/icons/material/home-dark.svg';
-import assessmentDark from '@/assets/icons/material/assessment-dark.svg';
-import bookmarkDark from '@/assets/icons/material/bookmark-dark.svg';
-import starsDark from '@/assets/icons/material/stars-dark.svg';
+import home from '@/assets/material/home-main.svg';
+import assessment from '@/assets/material/assessment-main.svg';
+import bookmark from '@/assets/material/bookmark-main.svg';
+import stars from '@/assets/material/stars-main.svg';
+import homeDark from '@/assets/material/home-dark.svg';
+import assessmentDark from '@/assets/material/assessment-dark.svg';
+import bookmarkDark from '@/assets/material/bookmark-dark.svg';
+import starsDark from '@/assets/material/stars-dark.svg';
 
 export default {
   data() {

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Thor from '@/assets/icons/thor-bg.svg';
+import Thor from '@/assets/svartalvheim/thor-bg.svg';
 
 export default {
   data() {

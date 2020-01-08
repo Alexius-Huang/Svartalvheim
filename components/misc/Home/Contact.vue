@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import Facebook from '@/assets/icons/facebook.png';
-import LinkedIn from '@/assets/icons/linkedin.png';
-import Medium from '@/assets/icons/medium.png';
-import GitHub from '@/assets/icons/github.png';
+import Facebook from '@/assets/icons/social-media/facebook.png';
+import LinkedIn from '@/assets/icons/social-media/linkedin.png';
+import Medium from '@/assets/icons/social-media/medium.png';
+import GitHub from '@/assets/icons/social-media/github.png';
 
 export default {
   data() {

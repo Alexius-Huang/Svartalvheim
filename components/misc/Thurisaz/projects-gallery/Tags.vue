@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import fastForward from '@/assets/icons/material/fast-forward-white.svg';
-import warning from '@/assets/icons/material/warning-white.svg';
+import fastForward from '@/assets/material/fast-forward-white.svg';
+import warning from '@/assets/material/warning-white.svg';
 
 export default {
   props: ['tags', 'developing', 'wip', 'theme'],
