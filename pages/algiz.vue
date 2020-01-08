@@ -38,7 +38,7 @@
 
 <script>
 import WarningModal from '@/components/misc/Algiz/WarningModal';
-import logo from '@/assets/icons/valknut.svg';
+import logo from '@/assets/svartalvheim/valknut.svg';
 
 export default {
   components: { WarningModal },
