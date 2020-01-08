@@ -162,8 +162,8 @@ import RubyLangIcon from '@/assets/icons/programming-lang/ruby-lang-icon.png';
 import PythonLangIcon from '@/assets/icons/programming-lang/python-lang-icon.png';
 import GitIcon from '@/assets/icons/programming-lang/git-icon.png';
 import HaskellLangIcon from '@/assets/icons/programming-lang/haskell-lang-icon.png';
-import DatabaseIcon from '@/assets/icons/database.png';
-import CodeIcon from '@/assets/icons/code.png';
+import DatabaseIcon from '@/assets/icons/maxwell-alexius/database.png';
+import CodeIcon from '@/assets/icons/maxwell-alexius/code.png';
 
 import Diamond from './SkillSet/Diamond';
 

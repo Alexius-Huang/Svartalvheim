@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import pointer from '@/assets/icons/pointer.png';
-import ppt from '@/assets/icons/ppt.svg';
-import language from '@/assets/icons/language.png'; 
+import pointer from '@/assets/icons/maxwell-alexius/pointer.png';
+import ppt from '@/assets/icons/maxwell-alexius/ppt.svg';
+import language from '@/assets/icons/maxwell-alexius/language.png'; 
 
 export default {
   data() {
