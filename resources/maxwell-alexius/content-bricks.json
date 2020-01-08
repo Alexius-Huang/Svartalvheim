@@ -17,6 +17,7 @@
   {
     "title": "Portfolio",
     "type": "collection",
+    "icon": "code",
     "collections": [
       {
         "name": "All Projects",

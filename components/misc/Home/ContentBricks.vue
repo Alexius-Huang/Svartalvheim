@@ -3,13 +3,14 @@
     <ul class="content-bricks">
       <li
         class="brick"
-        v-for="{ title, type, scrollTo, collections = [], link } in bricks"
+        v-for="{ title, type, icon, scrollTo, collections = [], link } in bricks"
         :key="title"
         @click="handleClick({ title, type, scrollTo, link })"
         :class="{ focused: focused === title }"
       >
         <div class="content">
           <span>{{ title }}</span>
+          <img v-if="icon" :src="icons[icon]" class="icon" />
         </div>
 
         <ul
@@ -75,6 +76,11 @@ export default {
 @import '../../../sass/shared.sass'
 @import '../../../sass/colors.sass'
 
+$brick-height: 120pt
+$brick-icon-size: 120pt
+$sub-brick-height: 150pt
+$sub-brick-icon-size: 150pt
+
 ul.content-bricks
   width: 80vw
   margin: 0 auto
@@ -85,8 +91,8 @@ ul.content-bricks
     display: inline-block
     padding-left: 20pt
     padding-right: 5pt
-    height: 120pt
-    min-height: 120pt
+    height: $brick-height
+    min-height: $brick-height
     width: auto
     min-width: 150pt
     text-align: right
@@ -96,86 +102,104 @@ ul.content-bricks
     margin-top: 5pt
     transition: .5s
     vertical-align: top
+    overflow: hidden
     &.focused, &:hover
       background-color: $yellow-500
       transition: .25s
+
     > div.content
+      width: 100%
+      height: 100%
+      position: relative
       > span
         vertical-align: bottom
         font-size: 24pt
         font-family: $base-font-family
+      > img.icon
+        opacity: .1
+        position: absolute
+        width: $brick-icon-size
+        height: $brick-icon-size
+        left: -50pt
+        bottom: -10pt
+        transition: .25s
 
-    > ul.collections
-      overflow: hidden
-      height: 0
-      width: 0
+    &:hover > div.content > img.icon
+      left: 10pt
+      opacity: .8
       transition: .25s
-      margin-top: -5pt
-      text-align: left
-      font-size: 0
-      > li.sub-brick
-        border-radius: 5pt
-        text-align: right
-        padding-left: 20pt
-        padding-right: 10pt
-        height: 150pt
-        line-height: 50pt
-        min-width: 150pt
-        width: auto
-        margin-right: 5pt
-        margin-top: 5pt
-        opacity: 0
-        display: inline-block
-        background-color: $yellow-500
-        transition: .25s
-        overflow: hidden
-        position: relative
-        &:before
-          content: ''
-          display: inline-block
-          width: 0
-          height: 150pt
-          vertical-align: bottom
-        > img.icon
-          opacity: .1
-          position: absolute
-          width: 150pt
-          height: 150pt
-          left: -50pt
-          top: -25pt
-          transition: .25s
-        &:hover > img.icon
-          left: 25pt
-          opacity: .8
-          transition: .25s
-        > span
-          vertical-align: bottom
-          color: transparentize(#333, .5)
-          font-size: 24pt
-          font-family: $base-font-family
-          transition: .25s
-        &:hover > span
-          color: #333
-          transition: .25s
 
-    &.focused
-      height: auto
-      padding-left: 0
-      min-width: 100%
-      background-color: #222
-      border: 1pt solid $yellow-500
-      transition: .5s
-      > div.content > span
-        color: $yellow-500
-      > ul.collections
-        padding-bottom: 10pt
-        padding-left: 10pt
-        height: auto
-        width: 100%
-        transition: .25s
-        > li.sub-brick
-          opacity: 1
-          translation: .25s
+ul.content-bricks > li.brick > ul.collections
+  overflow: hidden
+  height: 0
+  width: 0
+  transition: .25s
+  margin-top: -5pt
+  text-align: left
+  font-size: 0
+  > li.sub-brick
+    border-radius: 5pt
+    text-align: right
+    padding-left: 20pt
+    padding-right: 10pt
+    height: $sub-brick-height
+    line-height: 50pt
+    min-width: $sub-brick-height
+    width: auto
+    margin-right: 5pt
+    margin-top: 5pt
+    opacity: 0
+    display: inline-block
+    background-color: $yellow-500
+    transition: .25s
+    overflow: hidden
+    position: relative
+    &:before
+      content: ''
+      display: inline-block
+      width: 0
+      height: $sub-brick-height
+      vertical-align: bottom
+    > img.icon
+      opacity: .1
+      position: absolute
+      width: $sub-brick-icon-size
+      height: $sub-brick-icon-size
+      left: -50pt
+      top: -25pt
+      transition: .25s
+    &:hover > img.icon
+      left: 25pt
+      opacity: .8
+      transition: .25s
+    > span
+      vertical-align: bottom
+      color: transparentize(#333, .5)
+      font-size: 24pt
+      font-family: $base-font-family
+      transition: .25s
+    &:hover > span
+      color: #333
+      transition: .25s
+
+ul.content-bricks > li.brick.focused
+  height: auto
+  padding-left: 0
+  min-width: 100%
+  background-color: #222
+  border: 1pt solid $yellow-500
+  transition: .5s
+  > div.content > span
+    color: $yellow-500
+  > ul.collections
+    padding-bottom: 10pt
+    padding-left: 10pt
+    height: auto
+    width: 100%
+    transition: .25s
+    > li.sub-brick
+      opacity: 1
+      translation: .25s
 
 @media screen and (max-width: 768px)
   ul.content-bricks > li.brick
@@ -185,6 +209,12 @@ ul.content-bricks
 
     + li.brick
       margin-top: 8pt
+
+    > div.content
+      height: $brick-height
+      > img.icon
+        left: 10pt
+        opacity: .8
 
     > ul.collections
       > li.sub-brick
@@ -197,5 +227,4 @@ ul.content-bricks
           left: 15pt
         > span
           color: #333
-          // font-size: 24pt
 </style>
