@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import chevronLeft from '@/assets/icons/material/chevron-left-main.svg';
+import chevronLeft from '@/assets/material/chevron-left-main.svg';
 
 export default {
   props: ['position', 'to', 'params', 'query'],

@@ -34,10 +34,10 @@
 import contentBricks from '@/resources/maxwell-alexius/content-bricks.json';
 import GitHubLogoDark from '@/assets/svg/logo/github-dark.svg';
 import CodePenLogoDark from '@/assets/svg/logo/codepen-dark.svg';
-import codeDark from '@/assets/icons/material/code-dark.svg';
-import timelineDark from '@/assets/icons/material/timeline-dark.svg';
-import barChartDark from '@/assets/icons/material/bar-chart-dark.svg';
-import starsDark from '@/assets/icons/material/stars-dark.svg';
+import codeDark from '@/assets/material/code-dark.svg';
+import timelineDark from '@/assets/material/timeline-dark.svg';
+import barChartDark from '@/assets/material/bar-chart-dark.svg';
+import starsDark from '@/assets/material/stars-dark.svg';
 
 export default {
   data() {

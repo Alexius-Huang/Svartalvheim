@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import warning from '@/assets/icons/material/warning-white.svg'; 
+import warning from '@/assets/material/warning-white.svg'; 
 
 export default {
   props: ['wip'],

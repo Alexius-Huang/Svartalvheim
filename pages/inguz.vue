@@ -46,7 +46,7 @@ import donutChartImg from '@/assets/inguz/donut-chart-bg.gif';
 import heatMapImg from '@/assets/inguz/heat-map-bg.gif';
 import lineChartImg from '@/assets/inguz/line-chart-bg.gif';
 import pictogramChartImg from '@/assets/inguz/pictogram-chart-bg.gif';
-import chevronRight from '@/assets/icons/material/chevron-right-main.svg';
+import chevronRight from '@/assets/material/chevron-right-main.svg';
 
 export default {
   components: { BackButton },

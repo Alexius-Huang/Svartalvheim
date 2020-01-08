@@ -26,7 +26,7 @@
 <script>
 import Tags from './Tags';
 import UnderConstructionRibbon from './UnderConstructionRibbon';
-import worldwide from '@/assets/icons/material/worldwide-main.svg';
+import worldwide from '@/assets/material/worldwide-main.svg';
 
 export default {
   components: { Tags, UnderConstructionRibbon },

@@ -35,14 +35,14 @@ import GitHubLogo from '@/assets/svg/logo/github-main.svg';
 import GitHubLogoDark from '@/assets/svg/logo/github-dark.svg';
 import CodePenLogo from '@/assets/svg/logo/codepen-main.svg';
 import CodePenLogoDark from '@/assets/svg/logo/codepen-dark.svg';
-import code from '@/assets/icons/material/code-main.svg';
-import codeDark from '@/assets/icons/material/code-dark.svg';
-import timeline from '@/assets/icons/material/timeline-main.svg';
-import timelineDark from '@/assets/icons/material/timeline-dark.svg';
-import barChart from '@/assets/icons/material/bar-chart-main.svg';
-import barChartDark from '@/assets/icons/material/bar-chart-dark.svg';
-import stars from '@/assets/icons/material/stars-main.svg';
-import starsDark from '@/assets/icons/material/stars-dark.svg';
+import code from '@/assets/material/code-main.svg';
+import codeDark from '@/assets/material/code-dark.svg';
+import timeline from '@/assets/material/timeline-main.svg';
+import timelineDark from '@/assets/material/timeline-dark.svg';
+import barChart from '@/assets/material/bar-chart-main.svg';
+import barChartDark from '@/assets/material/bar-chart-dark.svg';
+import stars from '@/assets/material/stars-main.svg';
+import starsDark from '@/assets/material/stars-dark.svg';
 import randomString from '@/utils/randomString';
 
 /* Data Sources */
