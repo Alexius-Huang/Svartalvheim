@@ -31,10 +31,10 @@
 <script>
 import ProjectsGallery from '@/components/misc/Thurisaz/ProjectsGallery';
 import BackButton from '@/components/shared/BackButton';
-import GitHubLogo from '@/assets/logo/github-main.svg';
-import GitHubLogoDark from '@/assets/logo/github-dark.svg';
-import CodePenLogo from '@/assets/logo/codepen-main.svg';
-import CodePenLogoDark from '@/assets/logo/codepen-dark.svg';
+import GitHubLogo from '@/assets/svg/logo/github-main.svg';
+import GitHubLogoDark from '@/assets/svg/logo/github-dark.svg';
+import CodePenLogo from '@/assets/svg/logo/codepen-main.svg';
+import CodePenLogoDark from '@/assets/svg/logo/codepen-dark.svg';
 import code from '@/assets/icons/material/code-main.svg';
 import codeDark from '@/assets/icons/material/code-dark.svg';
 import timeline from '@/assets/icons/material/timeline-main.svg';
