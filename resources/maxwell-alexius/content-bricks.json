@@ -2,17 +2,20 @@
   {
     "title": "Career Experience",
     "type": "scroll",
-    "scrollTo": "career-experience"
+    "scrollTo": "career-experience",
+    "icon": "timeline"
   },
   {
     "title": "Skill Set",
     "type": "scroll",
-    "scrollTo": "skill-set"
+    "scrollTo": "skill-set",
+    "icon": "whatshot"
   },
   {
     "title": "Public Speech",
     "type": "scroll",
-    "scrollTo": "public-speech"
+    "scrollTo": "public-speech",
+    "icon": "forum"
   },
   {
     "title": "Portfolio",
@@ -71,11 +74,13 @@
   {
     "title": "Blog Posts",
     "type": "link",
-    "link": { "name": "ansuz" }
+    "link": { "name": "ansuz" },
+    "icon": "bookmark"
   },
   {
     "title": "Data Visualization Catalogue",
     "type": "collection",
+    "icon": "barchart",
     "collections": [
       {
         "name": "Visualization Catalogue",
@@ -83,6 +88,7 @@
       },
       {
         "name": "Area Chart",
+        "icon": "timeline",
         "link": {
           "name": "inguz-chart",
           "params": { "chart": "area-chart" }
@@ -90,6 +96,7 @@
       },
       {
         "name": "Bar Chart",
+        "icon": "timeline",
         "link": {
           "name": "inguz-chart",
           "params": { "chart": "bar-chart" }
@@ -97,6 +104,7 @@
       },
       {
         "name": "Donut Chart",
+        "icon": "timeline",
         "link": {
           "name": "inguz-chart",
           "params": { "chart": "donut-chart" }
@@ -104,6 +112,7 @@
       },
       {
         "name": "Heat Map",
+        "icon": "timeline",
         "link": {
           "name": "inguz-chart",
           "params": { "chart": "heat-map" }
@@ -111,6 +120,7 @@
       },
       {
         "name": "Line Chart",
+        "icon": "timeline",
         "link": {
           "name": "inguz-chart",
           "params": { "chart": "line-chart" }
@@ -118,6 +128,7 @@
       },
       {
         "name": "Pictogram",
+        "icon": "timeline",
         "link": {
           "name": "inguz-chart",
           "params": { "chart": "pictogram-chart" }
