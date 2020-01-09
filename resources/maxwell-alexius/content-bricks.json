@@ -137,6 +137,12 @@
     ]
   },
   {
+    "title": "Simple Resumé",
+    "type": "link",
+    "link": { "name": "resume" },
+    "icon": "verticalsplit"
+  },
+  {
     "title": "Miscellaneous",
     "type": "collection",
     "collections": [

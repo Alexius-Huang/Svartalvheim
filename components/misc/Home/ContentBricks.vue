@@ -43,6 +43,7 @@ import forumDark from '@/assets/material/forum-dark.svg';
 import bookmarkDark from '@/assets/material/bookmark-dark.svg';
 import whatshotDark from '@/assets/material/whatshot-dark.svg';
 import valknutDark from '@/assets/svartalvheim/valknut-dark.svg';
+import verticalSplitDark from '@/assets/material/vertical-split-dark.svg';
 
 export default {
   data() {
@@ -58,6 +59,7 @@ export default {
         forum: forumDark,
         bookmark: bookmarkDark,
         whatshot: whatshotDark,
+        verticalsplit: verticalSplitDark,
         default: valknutDark,
       },
       bricks: contentBricks,

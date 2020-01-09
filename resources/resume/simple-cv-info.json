@@ -1,0 +1,66 @@
+{
+  "header": {
+    "name": "Maxwell Huang",
+    "title": "Front-End Developer"
+  },
+  "links": [
+    {
+      "name": "Website",
+      "url": "https://svartalvhe.im/",
+      "type": "link"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Maxwell-Alexius",
+      "type": "link"
+    },
+    {
+      "name": "Portfolio",
+      "url": "https://svartalvhe.im/thurisaz?source=Projects",
+      "type": "link"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/AlexiusMaxwell",
+      "type": "link"
+    },
+    {
+      "name": "Gmail",
+      "url": "alexius.huang@gmail.com",
+      "type": "clipboard"
+    }
+  ],
+  "summary": [
+    "Self-taught with 4+ years of experience using JavaScript to create UI, data visualizations and animations and is familiar with tools like ReactJS.",
+    "Having Open Source project contribution experience on a over 3k stars project — Goby Lang.",
+    "Given two public speeches about Open-Source project development and Frontend related topics"
+  ],
+  "speeches": [
+    {
+      "title": "Travel Through Timeline - Realizing Graceful User Experience",
+      "location": "SITCON Taipei, Taiwan 2018",
+      "lang": "Chinese",
+      "description": "Introducing Observable and using RxJS to implement simple but graceful UX mechanism.",
+      "slideLink": "shorturl.at/csK23",
+      "videoLink": "https://www.youtube.com/watch?v=9OhkntHUE_k"
+    },
+    {
+      "title": "Welcome the Brand New Ruby-Like Language - Goby",
+      "location": "SITCON, Hong Kong, China 2017",
+      "lang": "English",
+      "description": "Introducing an open-source project - Goby programming language implemented by Golang.",
+      "slideLink": "shorturl.at/fhuCQ",
+      "videoLink": "https://www.youtube.com/watch?v=211a5wV55Zs"
+    }
+  ],
+  "education": {
+    "degree": "BACHELOR’S DEGREE IN ELECTRICAL ENGINEERING",
+    "location": "National Taiwan University of Science and Technology, Taipei/Taiwan",
+    "date": "Sep. 2014 - June. 2019"
+  },
+  "interests": [
+    "Norse Mythology",
+    "Drawings and Digital Arts",
+    "Board Games"
+  ]
+}
