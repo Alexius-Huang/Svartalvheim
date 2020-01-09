@@ -1,6 +1,6 @@
 <template>
   <main>
-    <back-button :position="['top', 'right']" to="back" />
+    <home-button />
 
     <section v-if="!chart" class="left">
       <div class="title-wrapper">
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import BackButton from '@/components/shared/BackButton';
+import HomeButton from '@/components/shared/HomeButton';
 import chartInfos from '@/resources/inguz/info.json';
 import areaChartImg from '@/assets/inguz/area-chart-bg.gif';
 import barChartImg from '@/assets/inguz/bar-chart-bg.gif';
@@ -49,7 +49,7 @@ import pictogramChartImg from '@/assets/inguz/pictogram-chart-bg.gif';
 import chevronRight from '@/assets/material/chevron-right-main.svg';
 
 export default {
-  components: { BackButton },
+  components: { HomeButton },
   data() {
     return {
       chartInfos,

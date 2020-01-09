@@ -1,6 +1,6 @@
 <template>
   <main>
-    <back-button to="back" :position="['top', 'right']" />
+    <home-button />
     <h1 class="title">{{ title }}</h1>
     <img class="huge-bg-img" :src="logo[currentSource]" />
 
@@ -30,7 +30,7 @@
 
 <script>
 import ProjectsGallery from '@/components/misc/Thurisaz/ProjectsGallery';
-import BackButton from '@/components/shared/BackButton';
+import HomeButton from '@/components/shared/HomeButton';
 import GitHubLogo from '@/assets/svg/logo/github-main.svg';
 import GitHubLogoDark from '@/assets/svg/logo/github-dark.svg';
 import CodePenLogo from '@/assets/svg/logo/codepen-main.svg';
@@ -65,7 +65,7 @@ const allProjects = [
   );
 
 export default {
-  components: { ProjectsGallery, BackButton },
+  components: { ProjectsGallery, HomeButton },
   data() {
     const finalizedTitle = 'Portfolio';
 
