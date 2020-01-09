@@ -6,10 +6,11 @@
       @start="navigateTo('menu')"
     />
 
-    <menu-section
+    <!-- TODO -->
+    <!-- <menu-section
       ref="menu"
       @daily-rune="handleStartDailyRuneMode"
-    />
+    /> -->
 
     <template v-if="!loading">
       <runes-gallery ref="gallery" v-bind="{ runeImages, attes, attesTypes}" />
