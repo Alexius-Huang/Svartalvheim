@@ -1,6 +1,10 @@
 <template>
   <main class="resume">
     <home-button />
+    <message-modal
+      :hide="copyToClipboardState === null"
+      :message="copyToClipboardMessage"
+    />
 
     <section class="header">
       <h1>{{ info.header.name }}</h1>
@@ -15,7 +19,7 @@
             <span class="link-url">{{ url }}</span>
           </a>
 
-          <a v-else-if="type === 'clipboard'" href="#" @click="handleCopyClipboard(url)">
+          <a v-else-if="type === 'clipboard'" href="javascript:void(0)" @click="handleCopyClipboard(url)">
             <span class="link-name">{{ name }}</span>
             <span class="link-url">{{ url }}</span>
           </a>
@@ -89,25 +93,48 @@
 
 <script>
 import HomeButton from '@/components/shared/HomeButton';
+import MessageModal from '@/components/shared/MessageModal';
 import SimpleCVInfo from '@/resources/resume/simple-cv-info.json';
 import CareerExperience from '@/resources/maxwell-alexius/career-experience.json';
 
 export default {
-  components: { HomeButton },
+  components: { HomeButton, MessageModal },
   data() {
     return {
       info: SimpleCVInfo,
       careerExp: CareerExperience,
+      copyToClipboardState: null,
+      messageModalTimeout: null,
+      cacheModalMessage: '',
     };
+  },
+  computed: {
+    copyToClipboardMessage() {
+      if (this.copyToClipboardState === 'success')
+        return 'Copied to clipboard!';
+      else if (this.copyToClipboardState === 'error')
+        return 'Some error happened, could not copy to clipboard!';
+      return this.cacheModalMessage;
+    },
+  },
+  watch: {
+    copyToClipboardState() {
+      this.cacheModalMessage = this.copyToClipboardMessage;
+    },
   },
   methods: {
     handleCopyClipboard(text) {
+      window.clearTimeout(this.messageModalTimeout);
+
       navigator.clipboard.writeText(text).then(() => {
-        // TODO: show copy to clipboard message
-        // console.log('Async: Copying to clipboard was successful!');
-      }, function(err) {
-        // console.error('Async: Could not copy text: ', err);
+        this.copyToClipboardState = 'success';
+      }, () => {
+        this.copyToClipboardState = 'error';
       });
+
+      this.messageModalTimeout = setTimeout(() => {
+        this.copyToClipboardState = null;
+      }, 1000);
     },
   },
 };
