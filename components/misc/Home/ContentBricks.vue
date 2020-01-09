@@ -211,6 +211,21 @@ ul.content-bricks > li.brick.focused
       opacity: 1
       translation: .25s
 
+@media screen and (min-width: 960px)
+  ul.content-bricks > li.brick
+    min-width: 200pt
+    min-height: 150pt
+    height: 150pt
+    > div.content > span
+      font-size: 36pt
+    > div.content > img.icon
+      right: -25pt
+      bottom: -15pt
+      width: 130pt
+      height: 130pt
+    &:hover > div.content > img.icon
+      bottom: -15pt
+
 @media screen and (max-width: 768px)
   ul.content-bricks > li.brick
     width: 100%
