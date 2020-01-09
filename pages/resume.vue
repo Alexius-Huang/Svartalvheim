@@ -53,6 +53,57 @@
       </ul>
     </section>
 
+    <section class="portfolio-highlights">
+      <h2>Portfolio Highlights</h2>
+
+      <ul>
+        <li
+          v-for="{ title, description, link } in info.portfolioHighlights"
+          :key="title"
+        >
+          <p class="title">{{ title }}</p>
+          <p class="description">{{ description }}</p>
+          <a class="link" :href="link" target="_blank">{{ link }}</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="contribution-highlights">
+      <h2>Contribution Highlights</h2>
+
+      <ul>
+        <li
+          v-for="{ title, description, link } in info.contributionHighlights"
+          :key="title"
+        >
+          <p class="title">{{ title }}</p>
+          <p class="description">{{ description }}</p>
+          <a class="link" :href="link" target="_blank">{{ link }}</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="competition-awards">
+      <h2>Competition Awards</h2>
+
+      <ul>
+        <li
+          v-for="{ title, competitionName, awardTitle, awardLink, description, link } in info.competitionAwards"
+          :key="title"
+        >
+          <p class="title">{{ title }}</p>
+          <p class="competition">
+            <a v-if="awardLink" :href="awardLink">{{ competitionName }} | {{ awardTitle }}</a>
+            <template v-else>
+              {{ competitionName }} | {{ awardTitle }}
+            </template>
+          </p>
+          <p class="description">{{ description }}</p>
+          <a :href="link" class="link">{{ link }}</a>
+        </li>
+      </ul>
+    </section>
+
     <section class="public-speech">
       <h2>Public Speech</h2>
 
@@ -273,6 +324,54 @@ section.career-experience
     &:last-child:before
       display: none
 
+section.portfolio-highlights,
+section.contribution-highlights,
+section.competition-awards
+  > ul > li
+    padding-left: 16pt
+    position: relative
+    &:before
+      content: ''
+      display: inline-block
+      width: 5pt
+      height: 5pt
+      transform: rotate(45deg)
+      box-sizing: border-box
+      border: 1pt solid $yellow-500
+      position: absolute
+      top: 10pt
+      left: 4pt
+    + li
+      margin-top: 12pt
+    > p.title
+      font-family: $base-font-family
+      color: $yellow-500
+      font-size: 18pt
+      line-height: 28pt
+
+    > p.description
+      color: white
+      line-height: 20pt
+      font-size: 14pt
+    > a.link
+      color: $yellow-500
+      font-size: 12pt
+      text-decoration: none
+      display: block
+      word-break: break-all
+      margin-top: 4pt
+      &:hover
+        text-decoration: underline
+
+section.competition-awards
+  > ul > li
+    > p.competition,
+    > p.competition > a
+      color: white
+      font-weight: bold
+      font-size: 14pt
+      margin-bottom: 6pt
+
 section.public-speech
   > ul > li
     border: 1pt solid $yellow-500
@@ -369,6 +468,28 @@ section.interest
         font-size: 10pt
       > ul.job-descriptions > li
         font-size: 10pt
+
+  section.portfolio-highlights,
+  section.contribution-highlights,
+  section.competition-awards
+    > ul > li
+      &:before
+        top: 7pt
+      > p.title
+        line-height: 20pt
+        font-size: 14pt
+      > p.description
+        font-size: 10pt
+        line-height: 16pt
+      > a.link
+        font-size: 10pt
+
+  section.competition-awards
+    > ul > li
+      > p.competition,
+      > p.competition > a
+        font-size: 10pt
+        line-height: 16pt
 
   section.public-speech
     > ul > li

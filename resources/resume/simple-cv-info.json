@@ -35,6 +35,30 @@
     "Having Open Source project contribution experience on a over 3k stars project — Goby Lang.",
     "Given two public speeches about Open-Source project development and Frontend related topics"
   ],
+  "portfolioHighlights": [
+    {
+      "title": "Data Visualization Catalogue",
+      "description": "Data visualizations demonstrated in different kinds of chart.",
+      "link": "https://svartalvhe.im/inguz"
+    },
+    {
+      "title": "Maxwell's CodePen",
+      "description": "My collection of CodePen projects.",
+      "link": "http://svartalvhe.im/thurisaz?source=CodePen"
+    },
+    {
+      "title": "Svartalvheim",
+      "description": "Personal website with my portfolio. (Current Site)",
+      "link": "https://svartalvhe.im"
+    }
+  ],
+  "contributionHighlights": [
+    {
+      "title": "Goby Programming Language",
+      "description": "An elegant Ruby-like syntax programming language. Contributed over 10,000 lines of code with up to 80 commits.",
+      "link": "https://github.com/goby-lang/goby/commits?author=Maxwell-Alexius"
+    }
+  ],
   "speeches": [
     {
       "title": "Travel Through Timeline - Realizing Graceful User Experience",
@@ -51,6 +75,16 @@
       "description": "Introducing an open-source project - Goby programming language implemented by Golang.",
       "slideLink": "shorturl.at/fhuCQ",
       "videoLink": "https://www.youtube.com/watch?v=211a5wV55Zs"
+    }
+  ],
+  "competitionAwards": [
+    {
+      "competitionName": "IT Help Ironman 2020 Blogger Series",
+      "awardTitle": "Champion of Modern Web Blogger Series",
+      "title": "Let TypeScript Become Your ACE in Front-End Development",
+      "description": "Continuous 30 days of TypeScript blogging series with over 40 articles from the basics to intermediate topics including OOP, design patterns and simple applications.",
+      "awardLink": "https://ithelp.ithome.com.tw/2020ironman/reward",
+      "link": "https://ithelp.ithome.com.tw/users/20120614/ironman/2685"
     }
   ],
   "education": {
