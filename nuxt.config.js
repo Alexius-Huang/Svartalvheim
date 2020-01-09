@@ -3,11 +3,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Svartalvheim',
+    title: 'Maxwell Alexius\' Portfolio Site | Svartalvheim',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Maxwell Alexius' },
+      { hid: 'description', name: 'description', content: 'Maxwell Alexius\'s portfolio site' },
       { property: 'og:url', content: 'https://svartalvhe.im/maxwell-alexius' },
       { property: 'og:type', content: 'article' },
       { property: 'og:title', content: 'Maxwell Alexius' },
