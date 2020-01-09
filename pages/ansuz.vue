@@ -1,6 +1,6 @@
 <template>
   <main>
-    <back-button :position="['top', 'right']" to="back" />
+    <home-button />
     <h1 class="title">Maxwell's Blog Posts</h1>
 
     <ul class="timeline-layout">
@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import BackButton from '@/components/shared/BackButton';
+import HomeButton from '@/components/shared/HomeButton';
 import posts from '@/resources/ansuz/posts.json';
 
 export default {
-  components: { BackButton },
+  components: { HomeButton },
   data() {
     return {
       totalPosts: posts,

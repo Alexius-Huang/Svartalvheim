@@ -96,7 +96,7 @@ ul.content-bricks
   margin: 0 auto
   margin-top: -5pt
   > li.brick
-    background-color: transparentize($yellow-500, .5)
+    background-color: transparentize($yellow-500, .3)
     color: #333
     display: inline-block
     padding-left: 20pt
