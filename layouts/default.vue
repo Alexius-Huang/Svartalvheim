@@ -10,6 +10,8 @@
       <nuxt/>
     </transition>
 
+    <scroll-to-top-button />
+
     <div ref="scriptHolder"></div>
   </div>
 </template>
@@ -17,9 +19,10 @@
 <script>
 import Navigation from '@/components/shared/Navigation';
 import PictureModal from '@/components/shared/PictureModal';
+import ScrollToTopButton from '@/components/shared/ScrollToTopButton';
 
 export default {
-  components: { Navigation, PictureModal },
+  components: { Navigation, PictureModal, ScrollToTopButton },
   mounted() {
     const scriptEl = document.createElement('script');
     scriptEl.setAttribute('async', '');

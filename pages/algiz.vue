@@ -78,6 +78,16 @@ export default {
 
       return { transform: `translateZ(${translateZ}px) scale(${scale})` };
     },
+    disableWindowScroll() {
+      window.scrollTo(0, 0);
+    },
+  },
+
+  mounted() {
+    window.addEventListener('scroll', this.disableWindowScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.disableWindowScroll);
   },
 };
 </script>
