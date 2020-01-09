@@ -69,4 +69,13 @@ button.scroll-to-top
     width: 36pt
     height: 36pt
     vertical-align: middle
+
+@media screen and (max-width: 768px)
+  button.scroll-to-top
+    width: 30pt
+    height: 30pt
+    right: 30pt
+    > img.icon
+      width: 18pt
+      height: 18pt
 </style>

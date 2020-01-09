@@ -120,7 +120,7 @@ export default {
 main.resume
   max-width: 960px
   margin: 0 auto
-  padding-bottom: 96pt
+  padding: 0 24pt 96pt 24pt
 
 section + section
   margin-top: 24pt
@@ -302,4 +302,63 @@ section.interest
     font-size: 12pt
     line-height: 20pt
     color: white
+
+@media screen and (max-width: 768px)
+  main.resume
+    padding: 0 16pt 96pt 16pt
+
+  section > h2:first-child
+    font-size: 18pt
+
+  section.header
+    > h1
+      font-size: 42pt
+    > h2
+      font-size: 24pt
+
+  section.links
+    > ul > li
+      width: 100%
+      display: block
+    > ul > li > a
+      > span.link-name
+        font-size: 16pt
+      > span.link-url
+        font-size: 10pt
+
+  section.summary
+    > p
+      font-size: 10pt
+      &:before
+        border-left-width: 4pt
+        border-top-width: 4pt
+        border-bottom-width: 4pt
+
+  section.career-experience
+    > ul > li
+      > p.position
+        font-size: 14pt
+      > p.company-and-date
+        font-size: 10pt
+      > ul.job-descriptions > li
+        font-size: 10pt
+
+  section.public-speech
+    > ul > li
+      > p.title
+        font-size: 14pt
+      > p.location
+        font-size: 10pt
+      > p.description
+        font-size: 10pt
+
+  section.education
+    > p.degree
+      font-size: 14pt
+    > p.location-and-date
+      font-size: 10pt
+
+  section.interest
+    > ul > li
+      font-size: 10pt
 </style>
