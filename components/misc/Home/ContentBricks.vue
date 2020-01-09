@@ -71,7 +71,9 @@ export default {
         this.focused = null;
 
       if (type === 'scroll')
-        this.$emit('scroll-to', scrollTo);
+        setImmediate(() => {
+          this.$emit('scroll-to', scrollTo);
+        });
 
       if (type === 'link')
         this.$router.push(link);
