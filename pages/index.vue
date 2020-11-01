@@ -5,12 +5,7 @@
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue';
-
 export default {
-  components: {
-    AppLogo
-  },
   mounted() {
     window.setImmediate(() => {
       this.$router.push({ name: 'maxwell-alexius' });
@@ -33,4 +28,3 @@ section.container
     color: $yellow-500
 
 </style>
-

@@ -30,14 +30,14 @@
 
 <script>
 import Jumbotron from '@/components/misc/Pertho/Jumbotron';
-import MenuSection from '@/components/misc/Pertho/MenuSection';
+// import MenuSection from '@/components/misc/Pertho/MenuSection';
 import RunesGallery from '@/components/misc/Pertho/RunesGallery';
 import ShuffleSection from '@/components/misc/Pertho/ShuffleSection';
 import valknut from '@/assets/icons/pertho/valknut.svg';
 import valknutSmall from '@/assets/icons/pertho/valknut-small.svg';
 
 export default {
-  components: { Jumbotron, MenuSection, RunesGallery, ShuffleSection },
+  components: { Jumbotron, RunesGallery, ShuffleSection /* , MenuSection */ },
   data() {
     /* Default width and height */
     let width = 1440;

@@ -20,7 +20,7 @@
               <circle class="donut-ring" cx="21" cy="21" :r="r" fill="transparent" stroke="#444" stroke-width="3"></circle>
 
               <circle
-                v-for="{ name, value, color, strokeDashArray, strokeDashOffset } in ethnicityDerivedData"
+                v-for="{ name, color, strokeDashArray, strokeDashOffset } in ethnicityDerivedData"
                 :key="name"
                 class="donut-segment"
                 cx="21" cy="21" :r="r"
